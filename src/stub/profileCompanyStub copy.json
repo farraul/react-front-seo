@@ -1,0 +1,17 @@
+{
+  "name": "Pool S.L",
+  "namePersonContact": "Javi",
+  "email": "javi@gmail.com",
+  "phone": "6544565344",
+  "whatsApp": "6114565555",
+  "website": "www.pool.sl",
+  "priceHour": "13",
+  "availability": "Todo el año",
+  "yearsActive": "2",
+  "community": "Andalucia",
+  "province": "Almería",
+  "location": "El Ejido",
+  "servicesAditionals": ["Clases natación", "Limpieza piscinas"],
+  "id": "59363115-6841-4363-a277-482137545891",
+  "token": "token-452435234534"
+}

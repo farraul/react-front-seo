@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Pedro",
+    "lastname": "lucena",
+    "email": "predro@gmail.com",
+    "community": "Andalucia",
+    "province": "Almería",
+    "location": "Polo",
+    "weeklyhours": "40",
+    "numberworkers": "1",
+    "start": "Junio",
+    "end": "Agosto",
+    "id": "59363115-68k41-4363-a277-482137545891"
+  },
+  {
+    "name": "Maria",
+    "lastname": "lucena",
+    "email": "predro@gmail.com",
+    "community": "C.Valenciana",
+    "province": "Alicante",
+    "location": "Ondara",
+    "weeklyhours": "20",
+    "numberworkers": "2",
+    "start": "Junio",
+    "end": "Septiembre",
+    "id": "59363115-68k41-4363-a277-4821375p45891"
+  },
+  {
+    "name": "Luis",
+    "lastname": "Mateo",
+    "email": "leuis@gmail.com",
+    "community": "Madrid",
+    "province": "Madrid",
+    "location": "Madrid",
+    "weeklyhours": "40",
+    "numberworkers": "3",
+    "start": "Inmediata",
+    "end": "Agosto",
+    "id": "59363115-68k41-4363-a277-4882137545891"
+  },
+  {
+    "name": "Marco",
+    "lastname": "Lelo",
+    "email": "leuis@gmail.com",
+    "community": "Andalucia",
+    "province": "Madrid",
+    "location": "Madrid",
+    "weeklyhours": "25",
+    "numberworkers": "1",
+    "start": "Inmediata",
+    "end": "Agosto",
+    "id": "59363115-68k41-84363-a277-4882137545891"
+  },
+  {
+    "name": "Andres",
+    "lastname": "Mateo",
+    "email": "leuis@gmail.com",
+    "community": "Madrid",
+    "province": "Madrid",
+    "location": "Madrid",
+    "weeklyhours": "40",
+    "numberworkers": "3",
+    "start": "Inmediata",
+    "end": "Agosto",
+    "id": "59363115-68k41-48363-a277-4882137545891"
+  }
+]
