@@ -1,113 +1,89 @@
-import React, { useState } from 'react';
-import { ReactSpreadsheetImport } from 'react-spreadsheet-import';
+import React, { useRef, useState } from 'react';
+import { ImportSpreadSheet } from 'src/components/ImportSpreadSheet/ImportSpreadSheet';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from 'src/components/ui/select';
 
 function Excel() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [group, setgroup] = useState();
+  const [isOpenImportModal, setIsOpenImportModal] = useState(false);
+  const [keywordsImported, setKeywordsImported] = useState<any>({
+    seo: { vol: 500, intention: 'ninguna' },
+    sem: { vol: 700, intention: 'ninguna' },
+    'seo es lo mejor': { vol: 200, intention: 'ninguna' },
+    'seo para barcelona': { vol: 300, intention: 'ninguna' },
+    'seo online españa': { vol: 230, intention: 'ninguna' },
+    'seo en denia': { vol: 120, intention: 'ninguna' },
+  });
 
-  const [selectedOption, setSelectedOption] = useState();
-  const [checkedState, setCheckedState] = useState<string[]>([]);
-  console.log('Excel  checkedState:', checkedState);
-
-  console.log('Excel  checkedState:', checkedState);
-  const [openModal, setOpenModal] = useState(false);
-
-  // console.log('ImportExcel  keywords:', keywords);
-
-  const fields = [
-    {
-      label: 'keyword',
-      key: 'name',
-      alternateMatches: ['Keyword', 'first'],
-      fieldType: {
-        type: 'input',
+  const [keywordsChecked, setKeywordsChecked] = useState<string[]>([]);
+  const [intentions, setIntentions] = useState<any>({
+    seo: {
+      seo: {
+        vol: 1000,
+        synonymous: ['mi seo', 'mi seo'],
+        longTail: ['mi seo madirid', 'mi seo madrids'],
       },
-      example: 'Seo',
-      validations: [
-        {
-          rule: 'required',
-          errorMessage: 'Name is required',
-          level: 'error',
-        },
-      ],
+      'search organic': {
+        vol: 700,
+        synonymous: ['organic search'],
+        longTail: ['organic search madrid', 'seo organiv barcelona'],
+      },
+      news: ['new1', 'new2', 'new3'],
     },
-  ];
+    sem: {
+      sem: {
+        vol: 1200,
+        synonymous: ['sem pay', 'i want sem'],
+        longTail: ['sem madrid', 'sem madrid'],
+      },
+      'sem ads': {
+        vol: 500,
+        synonymous: ['sem ads pay', 'pay ads'],
+        longTail: ['pay ads online free'],
+      },
+      news: ['new11', 'new22', 'new33'],
+    },
+  });
 
   const onClose = () => {
-    setIsOpen(false);
+    setIsOpenImportModal(false);
   };
 
   const onSubmit = (e: any) => {
     console.log({ e });
-    setKeywords(e.validData);
+    setKeywordsImported(e.validData);
   };
 
   const handleOnChange = (event: any) => {
     const { value, checked } = event.target;
     if (checked) {
-      setOpenModal(true);
-      setCheckedState((prev) => [...prev, value]);
+      setKeywordsChecked((prev) => [...prev, value]);
     } else {
-      setOpenModal(false);
-      setCheckedState(checkedState.filter((o) => o !== value));
+      setKeywordsChecked(keywordsChecked.filter((o) => o !== value));
     }
   };
 
-  const options = [
-    { name: 'a', value: 'a' },
-    { name: 'b', value: 'b' },
-  ];
-
-  const [intentionSearch, setIntentionSearch] = useState<any>({
-    seo: {
-      'seo palabra principal': {
-        synonymous: ['mi seo', 'mi seo'],
-        longTail: ['mi seo madirid', 'mi seo madrids'],
-      },
-      'search organic': {
-        synonymous: ['organic search'],
-        longTail: ['organic search madrid', 'seo organiv barcelona'],
-      },
-    },
-    sem: {
-      sem: {
-        synonymous: ['sem pay', 'i want sem'],
-        longTail: ['sem madrid', 'sem madrid'],
-      },
-      'sem ads': {
-        synonymous: ['sem ads pay', 'pay ads'],
-        longTail: ['pay ads online free'],
-      },
-    },
-  });
-
-  const [keywords, setKeywords] = useState<any>({
-    seo: { vol: 500, intention: 'ninguna' },
-    sem: { vol: 700, intention: 'ninguna' },
-  });
-  const [isMainKeyword, setIsMainKeyword] = useState<any>(false);
-
-  const onChangeSelect = (e: any) => {
-    console.log('onChangeSelect  e:', e);
-
-    console.log({ isMainKeyword });
-    setIsMainKeyword(e);
-    console.log({ isMainKeyword });
+  const onChangeSelect = (param: any) => {
+    const updatedNews: any = [...new Set(intentions[param].news.concat(keywordsChecked))];
+    setIntentions((prevState: any) => ({
+      ...prevState,
+      [param]: { ...prevState[param], news: updatedNews },
+    }));
   };
 
   return (
     <>
-      <ReactSpreadsheetImport
-        isOpen={isOpen}
-        onClose={onClose}
-        onSubmit={onSubmit}
-        fields={fields}
-      />
+      <ImportSpreadSheet isOpen={isOpenImportModal} onClose={onClose} onSubmit={onSubmit} />
+
       <section>
         <button
           className='btn-secondary'
           onClick={() => {
-            setIsOpen((prev) => {
+            setIsOpenImportModal((prev) => {
               return !prev;
             });
           }}
@@ -115,13 +91,12 @@ function Excel() {
           Añadir archivo
         </button>
 
-        {Object.keys(keywords).map((keyword: any, index: any) => {
+        {Object.keys(keywordsImported).map((keyword: any, index: any) => {
           return (
             <li key={index} className='flex'>
               <div className=''>
                 <div className='flex py-2'>
-                  {/* <Select name={''} options={options} onChange={onChangeSelect} onBlur={undefined} /> */}
-                  <div className='w-56'>
+                  <div className='w-72'>
                     <label htmlFor={`custom-checkbox-${index}`}>
                       <input
                         type='checkbox'
@@ -133,73 +108,10 @@ function Excel() {
                       />
                     </label>
                     {keyword}
-                    <span className='ml-4'>{keywords[keyword].vol}</span>
-                    <span className='ml-4'>{keywords[keyword].intention}</span>
-                    {/* {<span className='ml-4'>{keywords[keyword].intention}</span>} */}
+                    <span className='ml-4'>{keywordsImported[keyword].vol}</span>
+                    <span className='ml-4'>{keywordsImported[keyword].intention}</span>
                   </div>
-                  <div>
-                    {/* <select
-                      value={selectedOption}
-                      onChange={
-                        // (e) => setSelectedOption(e.target.value)
-                        (e) => onChangeSelect(e.target.value)
-                      }
-                    >
-                      <option value='' disabled hidden>
-                        Selecciona intención de búsqueda
-                      </option>
-                      {/* <option value=''>Crear intención de búsqueda</option> */}
-
-                    {/* {Object.keys(intentionSearch).map((item, i) => {
-                      return (
-                        <option key={item} value={item}>
-                          {item}
-                        </option>
-                      );
-                      // {Object.keys(intentionSearch[item]).map((item, i) => {
-                      // return <p>{item}</p>;}}
-                    })} */}
-
-                    {/* 
-                      // {Object.keys(intentionSearch).map((item, i) => (
-                      //   <option key={item} value={item}>
-                      //     {item}
-                      //   </option>
-                      // ))} }
-                    </select> */}
-
-                    {/* {isMainKeyword && (
-                      <select
-                        value={selectedOption}
-                        onChange={
-                          // (e) => setSelectedOption(e.target.value)
-                          onChangeSelect
-                        }
-                      >
-                        <option value='' disabled hidden>
-                          Selecciona intención de búsqueda
-                        </option>
-                        {/* <option value=''>Crear intención de búsqueda</option> */}
-
-                    {/* {Object.keys(intentionSearch).map((item, i) => {
-                      return (
-                        <option key={item} value={item}>
-                          {item}
-                        </option>
-                      );
-                      // {Object.keys(intentionSearch[item]).map((item, i) => {
-                      // return <p>{item}</p>;}}
-                    })} */}
-
-                    {/* 
-                      // {Object.keys(intentionSearch).map((item, i) => (
-                      //   <option key={item} value={item}>
-                      //     {item}
-                      //   </option>
-                      // ))} }
-                      </select> 
-                      )}*/}
-                  </div>
+                  <div></div>
                 </div>
               </div>
             </li>
@@ -207,71 +119,92 @@ function Excel() {
         })}
       </section>
       <section>
-        <p>Elementos seleccionados: {checkedState.length}</p>
-        <select
-          value={selectedOption}
-          onChange={
-            // (e) => setSelectedOption(e.target.value)
-            (e) => onChangeSelect(e.target.value)
-          }
+        <p>Elementos seleccionados: {keywordsChecked.length}</p>
+
+        <Select
+          required
+          onValueChange={(e) => {
+            console.log({ e });
+            onChangeSelect(e);
+          }}
         >
-          <option value='' disabled hidden>
-            Selecciona intención de búsqueda
-          </option>
-          {/* <option value=''>Crear intención de búsqueda</option> */}
+          <SelectTrigger className='w-[100%] bg-white'>
+            <SelectValue placeholder='Selecciona intención' />
+          </SelectTrigger>
 
-          {Object.keys(intentionSearch).map((item, i) => {
-            return (
-              <option key={item} value={item}>
+          <SelectContent>
+            {Object.keys(intentions).map((item) => (
+              <SelectItem key={item} value={item}>
                 {item}
-              </option>
-            );
-            // {Object.keys(intentionSearch[item]).map((item, i) => {
-            // return <p>{item}</p>;}}
-          })}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
 
-          {/* 
-                      // {Object.keys(intentionSearch).map((item, i) => (
-                      //   <option key={item} value={item}>
-                      //     {item}
-                      //   </option>
-                      // ))} */}
-        </select>
+        <div className='flex gap-x-4'>
+          {Object.keys(intentions).map((item) => (
+            <>
+              <div
+                key={item}
+                className=' max-w-xl   bg-primary mt-10 text-white flex flex-col justify-between'
+              >
+                <div className='p-10'>
+                  <h3 className='text-3xl font-bold'>{item}</h3>
+                  {intentions[item] &&
+                    Object.keys(intentions[item]).map((intention: any) => {
+                      return (
+                        <div key={intention}>
+                          {intention !== 'news' && (
+                            <>
+                              <p className=' ml-6 text-xl font-bold mt-8'>
+                                {intention}
+                                <span className='ml-4 text-sm text-green-400'>
+                                  {intentions[item][intention]['vol']}
+                                </span>
+                              </p>
+                              {intentions[item][intention]['synonymous'] && (
+                                <>
+                                  <p className='ml-10 text-gray-500 mt-2'>Sinónimos</p>
+                                  {intentions[item][intention]['synonymous'].map(
+                                    (aynonymous: any) => (
+                                      <p className='ml-16'>{aynonymous}</p>
+                                    ),
+                                  )}
+                                </>
+                              )}
 
-        {/* <section>{openPopUp && <div className='bg-slate-200'>ñññ</div>}</section> */}
+                              {intentions[item][intention]['longTail'] && (
+                                <>
+                                  <p className='ml-10 text-gray-500'>Long tails</p>
+                                  <div className='ml-16 '>
+                                    {intentions[item][intention]['longTail'].map(
+                                      (longTail: any) => (
+                                        <p className=''> {longTail}</p>
+                                      ),
+                                    )}
+                                  </div>
+                                </>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      );
+                    })}
+                </div>
+                <div className='bg-gray-400 text-l px-10 py-4'>New keywords </div>
+                {intentions[item]['news'] && (
+                  <div className='py-10'>
+                    {intentions[item]['news'].map((aynonymous: any) => (
+                      <p className='mx-10'>{aynonymous}</p>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </>
 
-        {Object.keys(intentionSearch).map((item, i) => (
-          <div key={item} className='p-4 mt-6 bg-primary mt-1 text-white'>
-            <h3 className='text-2xl font-bold'>Intención de búsqueda: {item}</h3>
-            {console.log(intentionSearch[item])}
-
-            {intentionSearch[item] &&
-              Object.keys(intentionSearch[item]).map((intention: any) => {
-                return (
-                  <>
-                    <p className='mt-2 ml-6'>Keywords principales: {intention}</p>
-                    {intentionSearch[item][intention]['synonymous'] &&
-                      intentionSearch[item][intention]['synonymous'].map((aynonymous: any) => (
-                        <p className='ml-12'>Sinónimo: {aynonymous}</p>
-                      ))}
-
-                    {intentionSearch[item][intention]['longTail'] && (
-                      <div className='ml-12 mt-6'>
-                        {intentionSearch[item][intention]['longTail'].map((longTail: any) => (
-                          <p className=''>Long Tail: {longTail}</p>
-                        ))}
-                      </div>
-                    )}
-                  </>
-                );
-              })}
-
-            {/* {intentionSearch[item] &&
-            intentionSearch[item].map((intention: any) => <p className='mt-2'>{intention} 
-                </p>
-              ))}} */}
-          </div>
-        ))}
+            // }
+          ))}
+        </div>
       </section>
     </>
   );
