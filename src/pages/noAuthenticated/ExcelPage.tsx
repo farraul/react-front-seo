@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import { ImportSpreadSheet } from 'src/components/ImportSpreadSheet/ImportSpreadSheet';
 import {
   Select,
@@ -20,6 +20,7 @@ function Excel() {
   });
 
   const [keywordsChecked, setKeywordsChecked] = useState<string[]>([]);
+
   const [intentions, setIntentions] = useState<any>({
     seo: {
       seo: {
@@ -49,21 +50,29 @@ function Excel() {
     },
   });
 
+  const [isChecked, setIsChecked] = useState(
+    new Array(Object.keys(keywordsImported).length).fill(false),
+  );
+
   const onClose = () => {
     setIsOpenImportModal(false);
   };
 
   const onSubmit = (e: any) => {
-    console.log({ e });
     setKeywordsImported(e.validData);
   };
 
-  const handleOnChange = (event: any) => {
-    const { value, checked } = event.target;
-    if (checked) {
-      setKeywordsChecked((prev) => [...prev, value]);
+  const handleOnChange = (indexIn: number) => {
+    const updatedCheckedState = isChecked.map((item, index) => (index === indexIn ? !item : item));
+
+    const arreglo = Object.entries(keywordsImported);
+
+    setIsChecked(updatedCheckedState);
+
+    if (updatedCheckedState) {
+      setKeywordsChecked((prev) => [...prev, arreglo[indexIn][0]]);
     } else {
-      setKeywordsChecked(keywordsChecked.filter((o) => o !== value));
+      setKeywordsChecked(keywordsChecked.filter((o) => o !== arreglo[indexIn][0]));
     }
   };
 
@@ -73,6 +82,8 @@ function Excel() {
       ...prevState,
       [param]: { ...prevState[param], news: updatedNews },
     }));
+
+    setIsChecked(new Array(Object.keys(keywordsImported).length).fill(false));
   };
 
   return (
@@ -103,7 +114,8 @@ function Excel() {
                         id={`custom-checkbox-${index}`}
                         name={keyword}
                         value={keyword}
-                        onChange={handleOnChange}
+                        checked={isChecked[index]}
+                        onChange={() => handleOnChange(index)}
                         className='mr-2'
                       />
                     </label>
@@ -124,7 +136,6 @@ function Excel() {
         <Select
           required
           onValueChange={(e) => {
-            console.log({ e });
             onChangeSelect(e);
           }}
         >
