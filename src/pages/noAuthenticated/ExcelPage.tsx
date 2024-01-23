@@ -19,7 +19,7 @@ function Excel() {
     'seo en denia': { vol: 120, intention: 'ninguna' },
   });
 
-  const [keywordsChecked, setKeywordsChecked] = useState<string[]>([]);
+  const [keywordsChecked, setKeywordsChecked] = useState<object>({});
 
   const [intentions, setIntentions] = useState<any>({
     seo: {
@@ -64,20 +64,25 @@ function Excel() {
 
   const handleOnChange = (indexIn: number) => {
     const updatedCheckedState = isChecked.map((item, index) => (index === indexIn ? !item : item));
-
+    console.log({ keywordsImported });
     const arreglo = Object.entries(keywordsImported);
+    console.log('handleOnChange  arreglo:', arreglo);
 
     setIsChecked(updatedCheckedState);
+    console.log(arreglo[indexIn][0]);
 
     if (updatedCheckedState) {
-      setKeywordsChecked((prev) => [...prev, arreglo[indexIn][0]]);
+      setKeywordsChecked((prev) => ({ ...prev, keywordsImported }));
     } else {
-      setKeywordsChecked(keywordsChecked.filter((o) => o !== arreglo[indexIn][0]));
+      // setKeywordsChecked(keywordsChecked.filter((o) => o !== arreglo[indexIn][0]));
     }
   };
 
   const onChangeSelect = (param: any) => {
-    const updatedNews: any = [...new Set(intentions[param].news.concat(keywordsChecked))];
+    console.log(intentions[param].news);
+    console.log(keywordsChecked);
+    const updatedNews: any = Object.assign({}, intentions[param].news, keywordsChecked);
+
     setIntentions((prevState: any) => ({
       ...prevState,
       [param]: { ...prevState[param], news: updatedNews },
@@ -131,7 +136,7 @@ function Excel() {
         })}
       </section>
       <section>
-        <p>Elementos seleccionados: {keywordsChecked.length}</p>
+        <p>Elementos seleccionados: {Object.keys(keywordsChecked).length}</p>
 
         <Select
           required
@@ -224,39 +229,62 @@ function Excel() {
                             <Select
                               required
                               onValueChange={(param) => {
-                                // console.log(item);
-                                // console.log(intentions[item]);
-                                // console.log(intentions[item]['synonymous']);
-
+                                console.log('Excel  param:', param);
+                                console.log(param.split('*'));
                                 const typeKeyword = param.split('*')[0];
-                                const mainKeyword = param.split('*')[1];
-                                const keyword = param.split('*')[2];
+                                console.log('Excel  typeKeyword:', typeKeyword);
 
-                                console.log('Excel  keyword:', mainKeyword);
+                                const mainKeyword = param.split('*')[1];
+                                console.log('Excel  mainKeyword:', mainKeyword);
+
+                                const keyword: any = param.split('*')[2];
+                                console.log('Excel  keyword:', keyword);
+
+                                const vol: any = param.split('*')[3];
+                                console.log('Excel  vol:', vol);
+                                console.log({ item });
+
                                 // console.log('Excel  type:', typeKeyword);
                                 // console.log({ newKeyword });
-
                                 console.log(intentions[item]);
-                                console.log(intentions[item][mainKeyword]);
-                                console.log(intentions[item][mainKeyword][typeKeyword]);
-                                console.log(intentions[item]['news']);
-                                const updatedType: any = [
-                                  ...new Set(
-                                    intentions[item][mainKeyword][typeKeyword].concat(keyword),
-                                  ),
-                                ];
-                                const updatedNews: any = [
-                                  ...new Set(
-                                    intentions[item]['news'].filter(
-                                      (newsItem: string) => newsItem !== keyword,
-                                    ),
-                                  ),
-                                ];
-                                console.log('Excel  updatedNews:', updatedNews);
+                                console.log(intentions[item][keyword]);
+                                console.log(intentions[item][keyword][typeKeyword]);
+                                console.log(keyword);
+                                // console.log(keyword);
 
+                                const updatedType: any = Object.assign(
+                                  ...[intentions[item][keyword][typeKeyword]],
+                                  ...keyword,
+                                );
                                 console.log('Excel  updatedType:', updatedType);
-                                console.log({ item });
-                                console.log(intentions);
+
+                                // const updatedNews: any = [
+                                //   ...new Set(
+                                //     intentions[item]['news'].filter(
+                                //       (newsItem: string) => newsItem !== keyword,
+                                //     ),
+                                //   ),
+                                // ];
+
+                                // let updatedNews: any = {
+                                //   intentions[item]['news']
+                                // };
+
+                                console.log(intentions[item]['news']);
+
+                                for (const i of Object.entries(intentions[item]['news'])) {
+                                  const dataIn = { [i[0]]: i[1] };
+
+                                  if (dataIn !== keyword) {
+                                    //  updatedNews={ updatedNews, i[0]}
+                                  }
+                                }
+
+                                // console.log('Excel  updatedNews:', updatedNews);
+
+                                // console.log('Excel  updatedType:', updatedType);
+                                // console.log({ item });
+                                // console.log(intentions);
 
                                 setIntentions((prevState: any) => ({
                                   ...prevState,
@@ -266,7 +294,7 @@ function Excel() {
                                       ...prevState[item][mainKeyword],
                                       [typeKeyword]: updatedType,
                                     },
-                                    ['news']: updatedNews,
+                                    ['news']: intentions[item]['news'],
                                   },
                                 }));
 
@@ -286,27 +314,36 @@ function Excel() {
                               </SelectTrigger>
 
                               <SelectContent>
-                                {Object.keys(intentions[item])
-                                  .filter((i: any) => i !== 'news')
-                                  .map((i: any) => (
-                                    <>
-                                      <SelectItem disabled value={i} className='font-bold'>
-                                        {i}
-                                      </SelectItem>
-                                      <SelectItem
-                                        key={`synonymous${i}`}
-                                        value={`synonymous*${i}*${aynonymous}`}
-                                      >
-                                        Sinónimos
-                                      </SelectItem>
-                                      <SelectItem
-                                        key={`longTail${i}`}
-                                        value={`longTail*${i}*${aynonymous}`}
-                                      >
-                                        Long tails
-                                      </SelectItem>
-                                    </>
-                                  ))}
+                                <>
+                                  {console.log(intentions[item]['news'])}
+                                  {console.log(Object.entries(intentions[item]))}
+                                  {/* {Object.entries(intentions[item])
+                                    .filter((i: any, a) => i !== 'news')
+                                    .map((i: any) => ( */}
+                                  {Object.keys(intentions[item]['news']).map((i: any) => {
+                                    console.log(i);
+                                    console.log(intentions[item]['news'][i]);
+                                    return (
+                                      <>
+                                        <SelectItem disabled value={i} className='font-bold'>
+                                          {i}
+                                        </SelectItem>
+                                        <SelectItem
+                                          key={`synonymous${i}`}
+                                          value={`synonymous*${i}*${item}*${intentions[item]['news'][i]}`}
+                                        >
+                                          Sinónimos
+                                        </SelectItem>
+                                        <SelectItem
+                                          key={`longTail${i}`}
+                                          value={`longTail*${i}*${aynonymous}`}
+                                        >
+                                          Long tails
+                                        </SelectItem>
+                                      </>
+                                    );
+                                  })}
+                                </>
                               </SelectContent>
                             </Select>
                           </div>
