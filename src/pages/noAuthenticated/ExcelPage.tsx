@@ -12,6 +12,7 @@ import {
 } from 'src/components/ui/select';
 
 function Excel() {
+  //Section: news keywords
   const [isOpenImportModal, setIsOpenImportModal] = useState(false);
   const [keywordsImported, setKeywordsImported] = useState<any>({
     ' Que es el seo': 500,
@@ -23,6 +24,17 @@ function Excel() {
     'seo para barcelona y cercan para barcelona y cercan': 300,
     'pay per clic': 500,
   });
+
+  const [isChecked, setIsChecked] = useState(
+    new Array(Object.keys(keywordsImported).length).fill(false),
+  );
+
+  const [keywordsChecked, setKeywordsChecked] = useState<object>({});
+
+  //Section: intentions
+  const [intentionSelected, setIntentionSelected] = useState<string>('');
+
+  const [keywordsSelected, setKeywordsSelected] = useState<string>('intention');
 
   const [intentions, setIntentions] = useState<any>({
     Seo: {
@@ -41,33 +53,27 @@ function Excel() {
         synonymous: { 'mi seo adirid': 100, 'mi seno madrids': 300 },
         longTail: { 'mi seo mairid': 100, 'mi sbeo madrids': 300 },
       },
-      'Search búsqUedas': {
+      'Search búsquedas': {
         vol: 700,
         synonymous: { 'mi seo adirid': 100, 'mi seno madrids': 300 },
         longTail: { 'mi seo mairid': 100, 'mi sbeo madrids': 300 },
       },
       news: {},
     },
-    // sem: {
-    //   sem: {
-    //     vol: 1200,
-    //     synonymous: {},
-    //     longTail: {},
-    //   },
-    //   semAds: {
-    //     vol: 500,
-    //     synonymous: {},
-    //     longTail: {},
-    //   },
-    //   news: {},
-    // },
+    sem: {
+      sem: {
+        vol: 1200,
+        synonymous: {},
+        longTail: {},
+      },
+      semAds: {
+        vol: 500,
+        synonymous: {},
+        longTail: {},
+      },
+      news: {},
+    },
   });
-
-  const [isChecked, setIsChecked] = useState(
-    new Array(Object.keys(keywordsImported).length).fill(false),
-  );
-  const [keywordsChecked, setKeywordsChecked] = useState<object>({});
-  const [keywordsSelected, setKeywordsSelected] = useState<string>('intention');
 
   const onClose = () => {
     setIsOpenImportModal(false);
@@ -143,12 +149,15 @@ function Excel() {
             </p>
 
             <Select
+              disabled={Object.keys(keywordsChecked).length ? false : true}
               required
               value={keywordsSelected}
               onValueChange={(e) => {
                 console.log(e);
                 onChangeSelect(e);
                 setKeywordsSelected('intention');
+                setIntentionSelected(e);
+                setKeywordsChecked({});
               }}
             >
               <SelectTrigger className='w-[100%] bg-white'>
@@ -170,177 +179,184 @@ function Excel() {
         </div>
         <div className='w-full'>
           <div className='flex gap-x-4'>
-            {Object.keys(intentions).map((item) => (
+            {intentionSelected && (
               <>
-                <div
-                  key={item}
-                  className=' text-white flex flex-col items-center  rounded-sm w-full  '
-                >
-                  <h3 className='text-4xl font-bold px-12  text-primary-generic mb-16'>{item}</h3>
-                  <div className='flex'>
-                    <div className='w-96  border-2 bg-gray-700'>
-                      <p className='bg-gray-800 text-l px-10 py-4 '>Nuevas palabras</p>
-                      {Object.keys(intentions[item]['news']).length ? (
-                        <div className='px-6  bg-gray-700'>
-                          {Object.keys(intentions[item]['news']).map((keyword) => (
-                            <>
-                              <div className='flex mt-4 flex-col '>
-                                <p className=' w-full flex justify-between'>
-                                  {keyword}
-                                  <span className='ml-4 text-green-400  mr-2'>
-                                    {intentions[item]['news'][keyword]}
-                                  </span>
-                                </p>
-                                <div className='w-full mt-2'>
-                                  <Select
-                                    required
-                                    onValueChange={(param) => {
-                                      const mainKeyword = param.split('*')[1];
-                                      const typeKeyword: any = param.split('*')[2];
-                                      const keyword: any = param.split('*')[3];
-                                      const vol: any = param.split('*')[4];
-                                      const updatedType: any = Object.assign(
-                                        ...[intentions[item][mainKeyword][typeKeyword]],
-                                        { [keyword]: vol },
-                                      );
+                {console.log(intentionSelected)}
+                <>
+                  <div className=' text-white flex flex-col items-center  rounded-sm w-full  '>
+                    <h3 className='text-4xl font-bold px-12  text-primary-generic mb-16'>
+                      {intentionSelected}
+                    </h3>
+                    <div className='flex'>
+                      <div className='w-96  border-2 bg-gray-700'>
+                        <p className='bg-gray-800 text-l px-10 py-4 '>Nuevas palabras</p>
+                        {Object.keys(intentions[intentionSelected]['news']).length ? (
+                          <div className='px-6  bg-gray-700 pb-8'>
+                            {Object.keys(intentions[intentionSelected]['news']).map((keyword) => (
+                              <>
+                                <div className='flex mt-4 flex-col '>
+                                  <p className=' w-full flex justify-between'>
+                                    {keyword}
+                                    <span className='ml-4 text-green-400  mr-2'>
+                                      {intentions[intentionSelected]['news'][keyword]}
+                                    </span>
+                                  </p>
+                                  <div className='w-full mt-2'>
+                                    <Select
+                                      required
+                                      onValueChange={(param) => {
+                                        const mainKeyword = param.split('*')[1];
+                                        const typeKeyword: any = param.split('*')[2];
+                                        const keyword: any = param.split('*')[3];
+                                        const vol: any = param.split('*')[4];
+                                        const updatedType: any = Object.assign(
+                                          ...[
+                                            intentions[intentionSelected][mainKeyword][typeKeyword],
+                                          ],
+                                          { [keyword]: vol },
+                                        );
 
-                                      delete intentions[item]['news'][keyword];
+                                        delete intentions[intentionSelected]['news'][keyword];
 
-                                      setIntentions((prevState: any) => ({
-                                        ...prevState,
-                                        [item]: {
-                                          ...prevState[item],
-                                          [mainKeyword]: {
-                                            ...prevState[item][mainKeyword],
-                                            [typeKeyword]: updatedType,
+                                        setIntentions((prevState: any) => ({
+                                          ...prevState,
+                                          [intentionSelected]: {
+                                            ...prevState[intentionSelected],
+                                            [mainKeyword]: {
+                                              ...prevState[intentionSelected][mainKeyword],
+                                              [typeKeyword]: updatedType,
+                                            },
+                                            ['news']: intentions[intentionSelected]['news'],
                                           },
-                                          ['news']: intentions[item]['news'],
-                                        },
-                                      }));
-                                    }}
-                                  >
-                                    <SelectTrigger className='w-[100%] bg-white text-black'>
-                                      <SelectValue placeholder='Asignar' />
-                                    </SelectTrigger>
+                                        }));
+                                      }}
+                                    >
+                                      <SelectTrigger className='w-[100%] bg-white text-black'>
+                                        <SelectValue placeholder='Asignar' />
+                                      </SelectTrigger>
 
-                                    <SelectContent>
-                                      <>
-                                        {Object.keys(intentions[item])
-                                          .filter((b: any) => b !== 'news')
-                                          .map((i: any) => {
-                                            return (
-                                              <>
-                                                <SelectGroup>
-                                                  <SelectLabel>{i}</SelectLabel>
-
-                                                  <SelectItem
-                                                    key={`synonymous${i}`}
-                                                    value={`${item}*${i}*synonymous*${keyword}*${intentions[item]['news'][keyword]}`}
-                                                  >
-                                                    Sinónimos
-                                                  </SelectItem>
-                                                  <SelectItem
-                                                    key={`longTail${i}`}
-                                                    value={`${item}*${i}*longTail*${keyword}*${intentions[item]['news'][keyword]}`}
-                                                  >
-                                                    Long tails
-                                                  </SelectItem>
-                                                </SelectGroup>
-                                              </>
-                                            );
-                                          })}
-                                      </>
-                                    </SelectContent>
-                                  </Select>
-                                </div>
-                              </div>
-                            </>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className='bg-gray-600'>
-                          <p className='px-10 py-5'>No hay nuevas keywords</p>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className=' flex  flex-wrap  '>
-                      {intentions[item] &&
-                        Object.keys(intentions[item])
-                          .filter((mainKeyword: any) => mainKeyword !== 'news')
-                          .map((intention: any) => {
-                            return (
-                              <div
-                                key={intention}
-                                className='w-full max-w-md border-2 px-10 py-10 bg-primary'
-                              >
-                                {intention !== 'news' && (
-                                  <>
-                                    <div className='flex ml-2 mt-8 text-xl font-bold justify-between '>
-                                      <p className=' '>{intention}</p>
-                                      <span className='  text-green-400'>
-                                        {intentions[item][intention]['vol']}
-                                      </span>
-                                    </div>
-                                    {console.log(intentions[item][intention]['synonymous'])}
-                                    <div className='ml-14'>
-                                      <p className=' text-gray-400 mt-2'>Sinónimos</p>
-                                      {Object.keys(intentions[item][intention]['synonymous'])
-                                        .length ? (
+                                      <SelectContent>
                                         <>
-                                          {Object.keys(
-                                            intentions[item][intention]['synonymous'],
-                                          ).map((aynonymous: any) => (
-                                            <div className='ml-15 flex justify-between'>
-                                              <p>{aynonymous}</p>
+                                          {Object.keys(intentions[intentionSelected])
+                                            .filter((b: any) => b !== 'news')
+                                            .map((i: any) => {
+                                              return (
+                                                <>
+                                                  <SelectGroup>
+                                                    <SelectLabel>{i}</SelectLabel>
 
-                                              <span className='ml-4 text-green-400'>
-                                                {
-                                                  intentions[item][intention]['synonymous'][
-                                                    aynonymous
-                                                  ]
-                                                }
-                                              </span>
-                                            </div>
-                                          ))}
+                                                    <SelectItem
+                                                      key={`synonymous${i}`}
+                                                      value={`${intentionSelected}*${i}*synonymous*${keyword}*${intentions[intentionSelected]['news'][keyword]}`}
+                                                    >
+                                                      Sinónimos
+                                                    </SelectItem>
+                                                    <SelectItem
+                                                      key={`longTail${i}`}
+                                                      value={`${intentionSelected}*${i}*longTail*${keyword}*${intentions[intentionSelected]['news'][keyword]}`}
+                                                    >
+                                                      Long tails
+                                                    </SelectItem>
+                                                  </SelectGroup>
+                                                </>
+                                              );
+                                            })}
                                         </>
-                                      ) : null}
-                                    </div>
+                                      </SelectContent>
+                                    </Select>
+                                  </div>
+                                </div>
+                              </>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className='bg-gray-600'>
+                            <p className='px-10 py-5'>No hay nuevas keywords</p>
+                          </div>
+                        )}
+                      </div>
 
-                                    <div className='ml-14'>
-                                      <p className=' text-gray-400 mt-4'>Long tails</p>
-                                      {intentions[item][intention]['longTail'] ? (
-                                        <>
-                                          {Object.keys(intentions[item][intention]['longTail']).map(
-                                            (longTail: any) => (
+                      <div className=' flex  flex-wrap  '>
+                        {intentions[intentionSelected] &&
+                          Object.keys(intentions[intentionSelected])
+                            .filter((mainKeyword: any) => mainKeyword !== 'news')
+                            .map((intention: any) => {
+                              return (
+                                <div
+                                  key={intention}
+                                  className='w-full max-w-md border-2 px-10 py-10 bg-primary'
+                                >
+                                  {intention !== 'news' && (
+                                    <>
+                                      <div className='flex ml-2 mt-8 text-xl font-bold justify-between '>
+                                        <p className=' '>{intention}</p>
+                                        <span className='  text-green-400'>
+                                          {intentions[intentionSelected][intention]['vol']}
+                                        </span>
+                                      </div>
+                                      {console.log(
+                                        intentions[intentionSelected][intention]['synonymous'],
+                                      )}
+                                      <div className='ml-14'>
+                                        <p className=' text-gray-400 mt-2'>Sinónimos</p>
+                                        {Object.keys(
+                                          intentions[intentionSelected][intention]['synonymous'],
+                                        ).length ? (
+                                          <>
+                                            {Object.keys(
+                                              intentions[intentionSelected][intention][
+                                                'synonymous'
+                                              ],
+                                            ).map((aynonymous: any) => (
+                                              <div className='ml-15 flex justify-between'>
+                                                <p>{aynonymous}</p>
+
+                                                <span className='ml-4 text-green-400'>
+                                                  {
+                                                    intentions[intentionSelected][intention][
+                                                      'synonymous'
+                                                    ][aynonymous]
+                                                  }
+                                                </span>
+                                              </div>
+                                            ))}
+                                          </>
+                                        ) : null}
+                                      </div>
+
+                                      <div className='ml-14'>
+                                        <p className=' text-gray-400 mt-4'>Long tails</p>
+                                        {intentions[intentionSelected][intention]['longTail'] ? (
+                                          <>
+                                            {Object.keys(
+                                              intentions[intentionSelected][intention]['longTail'],
+                                            ).map((longTail: any) => (
                                               <div className='ml-15 flex justify-between'>
                                                 <p>{longTail}</p>
                                                 <span className='ml-4 text-green-500'>
                                                   {
-                                                    intentions[item][intention]['longTail'][
-                                                      longTail
-                                                    ]
+                                                    intentions[intentionSelected][intention][
+                                                      'longTail'
+                                                    ][longTail]
                                                   }
                                                 </span>
                                               </div>
-                                            ),
-                                          )}
-                                        </>
-                                      ) : null}
-                                    </div>
-                                  </>
-                                )}
-                              </div>
-                            );
-                            //  :null}
-                          })}
+                                            ))}
+                                          </>
+                                        ) : null}
+                                      </div>
+                                    </>
+                                  )}
+                                </div>
+                              );
+                              //  :null}
+                            })}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </>
               </>
-
-              // }
-            ))}
+            )}
           </div>
         </div>
       </section>
