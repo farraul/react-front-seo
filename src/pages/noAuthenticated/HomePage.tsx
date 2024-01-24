@@ -5,7 +5,7 @@ import ReserveBusinessCard from 'src/components/Cards/ReserveBusinessCard';
 import ReserveLeadCard from 'src/components/Cards/ReserveLeadCard';
 import ReserveLifeguardCard from 'src/components/Cards/ReserveLifeguardCard';
 import { SearchCompany } from 'src/components/Search/SearchCompany';
-import business from 'src/stub/businessStub.json';
+// import business from 'src/stub/businessStub.json';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -71,7 +71,7 @@ const HomePage = () => {
         </section>
         <section className=' items-center flex-col flex justify-center'>
           <div>
-            {business.map((company) => {
+            {/* {business.map((company: any) => {
               company.location === searchSelected.location;
 
               return (company.community == searchSelected.community ||
@@ -94,7 +94,7 @@ const HomePage = () => {
                   key={company.id}
                 />
               ) : null;
-            })}
+            })} */}
           </div>
         </section>
         <section className='flex items-center flex-col justify-center'></section>

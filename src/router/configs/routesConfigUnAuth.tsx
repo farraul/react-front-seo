@@ -13,7 +13,8 @@ const AdministratorRegisterPage = lazy(
 );
 
 const ErrorPage = lazy(() => import('src/pages/authenticated/ErrorPage'));
-const ExcelPage = lazy(() => import('src/pages/noAuthenticated/ExcelPage'));
+const AddKeywordsPage = lazy(() => import('src/pages/noAuthenticated/AddKeywordsPage'));
+const InstentionsPage = lazy(() => import('src/pages/noAuthenticated/IntentionsPage'));
 
 // const ReserveLeadPage = lazy(() => import('src/pages/authenticated/ReserveLeadPage '));
 // const ReserveLifeguardPage = lazy(() => import('src/pages/authenticated/ReserveLifeguardPage'));
@@ -31,7 +32,15 @@ export const routesConfigUnAuth = createBrowserRouter([
             index: true,
             element: (
               <Suspense fallback={<Spinner />}>
-                <ExcelPage />
+                <AddKeywordsPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/intentions',
+            element: (
+              <Suspense fallback={<Spinner />}>
+                <InstentionsPage />
               </Suspense>
             ),
           },

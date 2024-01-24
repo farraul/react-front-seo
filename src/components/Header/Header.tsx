@@ -86,8 +86,20 @@ function Header() {
                   >
                     servicios
                   </Link> */}
+                <button className='text-theme-primary text-xl mr-12' onClick={() => navigate('/')}>
+                  News keywords
+                </button>
+                <button
+                  className='text-theme-primary text-xl mr-12'
+                  onClick={() => navigate('/intentions')}
+                >
+                  Intentions
+                </button>
                 {isLogged ? (
-                  <DropDownMenu />
+                  <>
+                    servicios
+                    <DropDownMenu />
+                  </>
                 ) : (
                   <button className='text-theme-primary text-xl' onClick={() => navigate('/login')}>
                     Login

@@ -1,6 +1,9 @@
 import React, { ChangeEvent, useRef, useState } from 'react';
 import { ImportSpreadSheet } from 'src/components/ImportSpreadSheet/ImportSpreadSheet';
 import { Button } from 'src/components/ui/button';
+import keywordsStub from 'src/stub/keywordsStub.json';
+import intentionsStub from 'src/stub/intentionsStub.json';
+
 import {
   Select,
   SelectContent,
@@ -11,19 +14,10 @@ import {
   SelectValue,
 } from 'src/components/ui/select';
 
-function Excel() {
+function AddKeywordsPage() {
   //Section: news keywords
   const [isOpenImportModal, setIsOpenImportModal] = useState(false);
-  const [keywordsImported, setKeywordsImported] = useState<any>({
-    ' Que es el seo': 500,
-    'seo es lo mejor': 200,
-    'sem valencia': 700,
-    'agencia de anuncios': 240,
-    'seo pro': 130,
-    sem: 700,
-    'seo para barcelona y cercan para barcelona y cercan': 300,
-    'pay per clic': 500,
-  });
+  const [keywordsImported, setKeywordsImported] = useState<any>(keywordsStub);
 
   const [isChecked, setIsChecked] = useState(
     new Array(Object.keys(keywordsImported).length).fill(false),
@@ -36,44 +30,7 @@ function Excel() {
 
   const [keywordsSelected, setKeywordsSelected] = useState<string>('intention');
 
-  const [intentions, setIntentions] = useState<any>({
-    Seo: {
-      Seo: {
-        vol: 1000,
-        synonymous: { 'sinmi seo madird': 40, 'mi seno madrids': 34 },
-        longTail: { 'longmi seo madiridpppp': 100, 'mi sebo madrids': 300 },
-      },
-      'search Organic': {
-        vol: 700,
-        synonymous: { 'mi seo adirid': 100, 'mi seno madrids': 300 },
-        longTail: { 'mi seo mairid': 100, 'mi sbeo madrids': 300 },
-      },
-      'El seo': {
-        vol: 700,
-        synonymous: { 'mi seo adirid': 100, 'mi seno madrids': 300 },
-        longTail: { 'mi seo mairid': 100, 'mi sbeo madrids': 300 },
-      },
-      'Search búsquedas': {
-        vol: 700,
-        synonymous: { 'mi seo adirid': 100, 'mi seno madrids': 300 },
-        longTail: { 'mi seo mairid': 100, 'mi sbeo madrids': 300 },
-      },
-      news: {},
-    },
-    sem: {
-      sem: {
-        vol: 1200,
-        synonymous: {},
-        longTail: {},
-      },
-      semAds: {
-        vol: 500,
-        synonymous: {},
-        longTail: {},
-      },
-      news: {},
-    },
-  });
+  const [intentions, setIntentions] = useState<any>(intentionsStub);
 
   const onClose = () => {
     setIsOpenImportModal(false);
@@ -379,4 +336,4 @@ function Excel() {
   );
 }
 
-export default Excel;
+export default AddKeywordsPage;

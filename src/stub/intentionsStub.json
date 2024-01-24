@@ -1,0 +1,25 @@
+{
+  "Seo": {
+    "Seo": {
+      "vol": 1000,
+      "synonymous": { "sinmi seo madird'": 40, "mi seno madrids": 34 },
+      "longTail": { "longmi seo madiridppp'": 100, "mi sebo madrids": 300 }
+    },
+    "search Organic": {
+      "vol": 800,
+      "synonymous": { "lllllmi seo adirid'": 100, "lllllllmi seno madrids": 300 },
+      "longTail": { " mi seo mairid'": 100, " mi sbeo madrids": 300 }
+    },
+    "El seo": {
+      "vol": 700,
+      "synonymous": { "pppppppppmi seo adirid": 100, "pmi seno madrids": 300 },
+      "longTail": { "mi seo mairid": 100, "mi sbeo madrids": 300 }
+    },
+    "Search búsquedas": {
+      "vol": 400,
+      "synonymous": { "mmmmmmmi seo adirid": 100, "mmmmmi seno madrids": 300 },
+      "longTail": { "1mi seo mairid": 100, "2mi sbeo madrid": 300 }
+    },
+    "news": { "mi seo mairid": 100 }
+  }
+}
