@@ -79,8 +79,13 @@ function Excel() {
     setIsOpenImportModal(false);
   };
 
-  const onSubmit = (e: any) => {
-    setKeywordsImported(e.validData);
+  const onSubmit = ({ validData }: any) => {
+    const dataFormatted = validData.map((dataKeyword: any) => {
+      return { [dataKeyword['Keyword']]: dataKeyword['vol'] };
+    });
+
+    const ArraytoObject = Object.assign({}, ...dataFormatted);
+    setKeywordsImported(ArraytoObject);
   };
 
   const handleOnChange = (indexIn: number, keyword: any) => {
@@ -118,32 +123,34 @@ function Excel() {
               Añadir archivo
             </button>
             <p className='mt-10 font-bold text-xl text-gray-700 mb-6'>Keywords importadas:</p>
-            {Object.entries(keywordsImported).map(([keyword, vol], i) => {
-              console.log(keyword, vol, i);
-              return (
-                <li key={keyword} className='flex'>
-                  <div className=''>
-                    <div className='flex py-2'>
-                      <div className='w-72'>
-                        <label htmlFor={`custom-checkbox-${keyword}`}>
-                          <input
-                            type='checkbox'
-                            id={`custom-checkbox-${keyword}`}
-                            name={keyword}
-                            value={keyword}
-                            checked={isChecked[i]}
-                            onChange={() => handleOnChange(i, keyword)}
-                            className='mr-2'
-                          />
-                        </label>
-                        {keyword}
+            <div className=' overflow-y-auto h-96'>
+              {Object.entries(keywordsImported).map(([keyword, vol], i) => {
+                console.log(keyword, vol, i);
+                return (
+                  <li key={keyword} className='flex'>
+                    <div className=''>
+                      <div className='flex py-2'>
+                        <div className='w-72 flex items-center'>
+                          <label htmlFor={`custom-checkbox-${keyword}`}>
+                            <input
+                              type='checkbox'
+                              id={`custom-checkbox-${keyword}`}
+                              name={keyword}
+                              value={keyword}
+                              checked={isChecked[i]}
+                              onChange={() => handleOnChange(i, keyword)}
+                              className='mr-2 h-5 w-5'
+                            />
+                          </label>
+                          <span className='mb-1 ml-2'>{keyword}</span>
+                        </div>
+                        <div></div>
                       </div>
-                      <div></div>
                     </div>
-                  </div>
-                </li>
-              );
-            })}
+                  </li>
+                );
+              })}
+            </div>
             <p className='font-bold mt-10 text-xl mb-6 text-gray-700'>
               Keywords seleccionadas: {Object.keys(keywordsChecked).length}
             </p>
@@ -188,10 +195,10 @@ function Excel() {
                       {intentionSelected}
                     </h3>
                     <div className='flex'>
-                      <div className='w-96  border-2 bg-gray-700'>
+                      <div className=' w-full max-w-sm border-2 bg-gray-700'>
                         <p className='bg-gray-800 text-l px-10 py-4 '>Nuevas palabras</p>
                         {Object.keys(intentions[intentionSelected]['news']).length ? (
-                          <div className='px-6  bg-gray-700 pb-8'>
+                          <div className='px-6  bg-gray-700 pb-8  overflow-y-auto max-h-[550px]		'>
                             {Object.keys(intentions[intentionSelected]['news']).map((keyword) => (
                               <>
                                 <div className='flex mt-4 flex-col '>
