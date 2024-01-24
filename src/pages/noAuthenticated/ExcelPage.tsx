@@ -20,7 +20,7 @@ function Excel() {
     'agencia de anuncios': 240,
     'seo pro': 130,
     sem: 700,
-    'seo para barcelona y cercanias': 300,
+    'seo para barcelona y cercan para barcelona y cercan': 300,
     'pay per clic': 500,
   });
 
@@ -36,21 +36,31 @@ function Excel() {
         synonymous: { 'mi seo adirid': 100, 'mi seno madrids': 300 },
         longTail: { 'mi seo mairid': 100, 'mi sbeo madrids': 300 },
       },
-      news: {},
-    },
-    sem: {
-      sem: {
-        vol: 1200,
-        synonymous: {},
-        longTail: {},
+      'El seo': {
+        vol: 700,
+        synonymous: { 'mi seo adirid': 100, 'mi seno madrids': 300 },
+        longTail: { 'mi seo mairid': 100, 'mi sbeo madrids': 300 },
       },
-      semAds: {
-        vol: 500,
-        synonymous: { 'mbi seko madirid': 100, 'mi seo madrids': 120 },
-        longTail: { 'mi bseo madirid': 140, 'mi seo madrids': 400 },
+      'Search búsuqedas': {
+        vol: 700,
+        synonymous: { 'mi seo adirid': 100, 'mi seno madrids': 300 },
+        longTail: { 'mi seo mairid': 100, 'mi sbeo madrids': 300 },
       },
       news: {},
     },
+    // sem: {
+    //   sem: {
+    //     vol: 1200,
+    //     synonymous: {},
+    //     longTail: {},
+    //   },
+    //   semAds: {
+    //     vol: 500,
+    //     synonymous: {},
+    //     longTail: {},
+    //   },
+    //   news: {},
+    // },
   });
 
   const [isChecked, setIsChecked] = useState(
@@ -87,7 +97,7 @@ function Excel() {
   return (
     <>
       <section className='flex p-20 gap-x-10'>
-        <div className=' max-w-xl w-full'>
+        <div className=' max-w-lg w-full h-fit'>
           <div className=' bg-gray-200 p-10 rounded-sm'>
             <ImportSpreadSheet isOpen={isOpenImportModal} onClose={onClose} onSubmit={onSubmit} />
             <button
@@ -157,30 +167,34 @@ function Excel() {
             </Select>
           </div>
         </div>
-        <div>
-          <div className='flex gap-x-4 '>
+        <div className='w-full'>
+          <div className='flex gap-x-4'>
             {Object.keys(intentions).map((item) => (
               <>
                 <div
                   key={item}
-                  className=' max-w-4xl w-100 bg-primary text-white flex flex-col justify-between rounded-sm'
+                  className=' text-white flex flex-col items-center  rounded-sm w-full  '
                 >
-                  <div className='p-10'>
-                    <h3 className='text-3xl font-bold'>{item}</h3>
+                  <h3 className='text-3xl font-bold px-12  text-primary-generic'>{item}</h3>
+                  <div className='p-10 flex  flex-wrap gap-2 justify-center'>
                     {intentions[item] &&
                       Object.keys(intentions[item]).map((intention: any) => {
+                        // {intention !=='news' ?
                         return (
-                          <div key={intention}>
+                          <div
+                            key={intention}
+                            className='w-full max-w-md border-2 px-10 py-10 bg-primary'
+                          >
                             {intention !== 'news' && (
                               <>
-                                <div className='flex ml-6 mt-8 text-xl font-bold justify-between'>
-                                  <p className='  '>{intention}</p>
+                                <div className='flex ml-2 mt-8 text-xl font-bold justify-between '>
+                                  <p className=' '>{intention}</p>
                                   <span className='  text-green-400'>
                                     {intentions[item][intention]['vol']}
                                   </span>
                                 </div>
                                 {console.log(intentions[item][intention]['synonymous'])}
-                                <div className='ml-20'>
+                                <div className='ml-14'>
                                   <p className=' text-gray-400 mt-2'>Sinónimos</p>
                                   {Object.keys(intentions[item][intention]['synonymous']).length ? (
                                     <>
@@ -203,7 +217,7 @@ function Excel() {
                                   ) : null}
                                 </div>
 
-                                <div className='ml-20'>
+                                <div className='ml-14'>
                                   <p className=' text-gray-400 mt-4'>Long tails</p>
                                   {intentions[item][intention]['longTail'] ? (
                                     <>
@@ -224,6 +238,7 @@ function Excel() {
                             )}
                           </div>
                         );
+                        //  :null}
                       })}
                   </div>
                   <div>
@@ -318,6 +333,14 @@ function Excel() {
             ))}
           </div>
         </div>
+      </section>
+      <section>
+        <h1 className='text-2xl p-20'>
+          Intenciones de búsqueda
+          <p className='text-sm bg-blue-400 w-fit p-4 rounded-sm mt-4 font-bold'>
+            crear intención de búsuqeda
+          </p>
+        </h1>
       </section>
     </>
   );

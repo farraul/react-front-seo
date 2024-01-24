@@ -4,7 +4,7 @@ import { ReactSpreadsheetImport } from 'react-spreadsheet-import';
 export const ImportSpreadSheet = ({ isOpen, onClose, onSubmit }: any) => {
   const fields = [
     {
-      label: 'keyword',
+      label: ['keyword'],
       key: 'name',
       alternateMatches: ['Keyword', 'first'],
       fieldType: {
