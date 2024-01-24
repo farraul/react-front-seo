@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useRef, useState } from 'react';
 import { ImportSpreadSheet } from 'src/components/ImportSpreadSheet/ImportSpreadSheet';
+import { Button } from 'src/components/ui/button';
 import {
   Select,
   SelectContent,
@@ -13,12 +14,13 @@ import {
 function Excel() {
   const [isOpenImportModal, setIsOpenImportModal] = useState(false);
   const [keywordsImported, setKeywordsImported] = useState<any>({
-    seo: 500,
+    ' Que es el seo': 500,
     'seo es lo mejor': 200,
+    'sem valencia': 700,
+    'agencia de anuncios': 240,
     'seo pro': 130,
     sem: 700,
     'seo para barcelona y cercanias': 300,
-    'sem valencia': 700,
     'pay per clic': 500,
   });
 
@@ -55,6 +57,7 @@ function Excel() {
     new Array(Object.keys(keywordsImported).length).fill(false),
   );
   const [keywordsChecked, setKeywordsChecked] = useState<object>({});
+  const [keywordsSelected, setKeywordsSelected] = useState<string>('intention');
 
   const onClose = () => {
     setIsOpenImportModal(false);
@@ -97,7 +100,7 @@ function Excel() {
             >
               Añadir archivo
             </button>
-            <p className='mt-10 font-bold text-xl text-gray-700 mb-6'>Keywords inmportadas:</p>
+            <p className='mt-10 font-bold text-xl text-gray-700 mb-6'>Keywords importadas:</p>
             {Object.entries(keywordsImported).map(([keyword, vol], i) => {
               console.log(keyword, vol, i);
               return (
@@ -117,7 +120,6 @@ function Excel() {
                           />
                         </label>
                         {keyword}
-                        <span className='ml-4'>{vol}</span>
                       </div>
                       <div></div>
                     </div>
@@ -131,15 +133,21 @@ function Excel() {
 
             <Select
               required
+              value={keywordsSelected}
               onValueChange={(e) => {
+                console.log(e);
                 onChangeSelect(e);
+                setKeywordsSelected('intention');
               }}
             >
               <SelectTrigger className='w-[100%] bg-white'>
-                <SelectValue placeholder='Selecciona intención de búsqueda' />
+                <SelectValue placeholder='Selecciona laintención de búsqueda' />
               </SelectTrigger>
 
               <SelectContent>
+                <SelectItem key='{intention} ' value='intention'>
+                  Selecciona la intención de búsqueda
+                </SelectItem>
                 {Object.keys(intentions).map((intention) => (
                   <SelectItem key={intention} value={intention}>
                     {intention}
@@ -177,7 +185,7 @@ function Excel() {
                                   {Object.keys(intentions[item][intention]['synonymous']).length ? (
                                     <>
                                       {Object.keys(intentions[item][intention]['synonymous']).map(
-                                        (aynonymous: any, vol: number) => (
+                                        (aynonymous: any) => (
                                           <div className='ml-15 flex justify-between'>
                                             <p>{aynonymous}</p>
 
@@ -219,10 +227,9 @@ function Excel() {
                       })}
                   </div>
                   <div>
-                    <p className='bg-gray-400 text-l px-10 py-4'>New keywords</p>
-                    {/* {console.log(Object.keys(intentions[item]['news']))} */}
+                    <p className='bg-gray-800 text-l px-10 py-4'>Nuevas palabras</p>
                     {Object.keys(intentions[item]['news']).length ? (
-                      <div className='p-10 '>
+                      <div className='p-10 bg-gray-700'>
                         {Object.keys(intentions[item]['news']).map((keyword) => (
                           <>
                             <div className='flex mt-1 '>
@@ -299,7 +306,9 @@ function Excel() {
                         ))}
                       </div>
                     ) : (
-                      <p className='px-10 py-5'>No hay nuevas keywords</p>
+                      <div className='bg-gray-600'>
+                        <p className='px-10 py-5'>No hay nuevas keywords</p>
+                      </div>
                     )}
                   </div>
                 </div>
