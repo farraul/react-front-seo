@@ -27,23 +27,19 @@ const PortalModal = ({ close, isOpen, title, className, children }: ModalProps) 
           isOpen ? 'flex' : 'hidden'
         } mx-auto overflow-y-auto overflow-x-hidden absolute z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full opacity-100`}
       >
-        <div className=' relative p-4 w-full max-w-2xl max-h-full z-[60]'>
-          <div
-            className={`${className} relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5`}
-          >
-            <div className='flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600'>
-              <h3 className='text-lg font-semibold text-gray-900 dark:text-white'>{title}</h3>
-              <button
-                type='button'
-                onClick={close}
-                className='gap-4 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white'
-              >
-                <IoMdClose className='w-8 h-8' />
-                <span className='sr-only'>Close modal</span>
-              </button>
-            </div>
-            {children}
+        <div className={`${className} relative shadow rounded-lg p-8 w-full max-h-full z-[60]`}>
+          <div className='flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600'>
+            <h3 className='text-lg font-semibold text-gray-900 dark:text-white'>{title}</h3>
+            <button
+              type='button'
+              onClick={close}
+              className='gap-4 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white'
+            >
+              <IoMdClose className='w-8 h-8' />
+              <span className='sr-only'>Close modal</span>
+            </button>
           </div>
+          {children}
         </div>
       </div>
     </>,
