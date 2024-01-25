@@ -139,9 +139,10 @@ function AddKeywordsPage() {
                 ))}
               </SelectContent>
             </Select>
+            <p className=' mt-5 ml-4 underline mb-0 text-gray-700'>Crear intención de búsqueda</p>
           </div>
         </div>
-        <div className='w-full'>
+        <div className='w-full max-w-7xl'>
           <div className='flex gap-x-4'>
             {intentionSelected && (
               <>
@@ -323,14 +324,6 @@ function AddKeywordsPage() {
             )}
           </div>
         </div>
-      </section>
-      <section>
-        <h1 className='text-2xl p-20'>
-          Intenciones de búsqueda
-          <p className='text-sm bg-blue-400 w-fit p-4 rounded-sm mt-4 font-bold'>
-            crear intención de búsuqeda
-          </p>
-        </h1>
       </section>
     </>
   );

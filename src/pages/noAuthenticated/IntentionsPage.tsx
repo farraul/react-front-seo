@@ -15,22 +15,26 @@ const IntentionsPage = () => {
   return (
     <>
       <article>
-        <section className='flex items-center flex-col justify-center'>
-          {Object.entries(intentionsStub).map(([intention, vol]) => {
-            return (
-              <div>
+        <section>
+          <div className=' mb-16 mt-20 flex items-center flex-col justify-cente'>
+            <h1 className=' text-4xl font-bold  text-primary-generic'>Intenciones</h1>
+            <p className='mt-5 text-xl'>Selecciona la inteción que quieras revisar</p>
+          </div>
+          <div className=' flex  flex-row flex-wrap gap-x-2 gap-y-2'>
+            {Object.entries(intentionsStub).map(([intention, vol]) => {
+              return (
                 <div>
-                  <div className=' flex  flex-wrap  '>
+                  <div>
                     {intentions[intention] && (
-                      <>
-                        <p>{intention}</p>
-                        {Object.keys(intentions[intention])
+                      <div className='bg-primary w-80 h-40 flex  items-center justify-center rounded-2xl'>
+                        <p className='text-2xl text-white  '>{intention}</p>
+                        {/* {Object.keys(intentions[intention])
                           .filter((mainKeyword: any) => mainKeyword !== 'news')
                           .map((mainKeyword: any) => {
                             return (
                               <div
                                 key={intention}
-                                className='w-full max-w-md border-2 px-10 py-10 bg-primary'
+                                className='w-full max-w-md border-2 px-10 py-10 bg-primary flex'
                               >
                                 {intention !== 'news' && (
                                   <>
@@ -45,14 +49,14 @@ const IntentionsPage = () => {
                               </div>
                             );
                             //  :null}
-                          })}
-                      </>
+                          })} */}
+                      </div>
                     )}
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </section>
       </article>
       {/* <section className='flex items-center flex-col justify-center'>
