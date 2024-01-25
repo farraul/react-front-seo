@@ -13,6 +13,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from 'src/components/ui/select';
+import { Modal } from 'src/components/Modals';
+import { CustomInput } from 'src/components/PrimitiveElements';
+import { RegisterOptions, SubmitHandler, UseFormRegisterReturn, useForm } from 'react-hook-form';
+
+const initialState: any = {
+  intention: '',
+};
 
 function AddKeywordsPage() {
   //Section: news keywords
@@ -24,6 +31,33 @@ function AddKeywordsPage() {
   );
 
   const [keywordsChecked, setKeywordsChecked] = useState<object>({});
+
+  //modal
+  const [isOpenModalCreateIntention, setIsOpenModalCreateIntention] = useState<any>(false);
+  const [valueModalCreateIntention, setValueModalCreateIntention] = useState<any>();
+  function handleChange<T>(e: any) {
+    console.log(e.target.value);
+    const value = e.target.value as T;
+    setValueModalCreateIntention({ ...valueModalCreateIntention, [e.target.name]: value });
+  }
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    control,
+    formState: { errors },
+  } = useForm<any>({
+    defaultValues: initialState,
+  });
+
+  const closeModalCreateIntention = () => {
+    setIsOpenModalCreateIntention(false);
+  };
+
+  const onSubmitform: SubmitHandler<Inputs> = (value) => {
+    closeModalCreateIntention();
+    console.log('data: ', value);
+  };
 
   //Section: intentions
   const [intentionSelected, setIntentionSelected] = useState<string>('');
@@ -61,6 +95,8 @@ function AddKeywordsPage() {
     setIsChecked(new Array(Object.keys(keywordsImported).length).fill(false));
     setKeywordsChecked({});
   };
+
+  type Inputs = { intention: string };
 
   return (
     <>
@@ -139,7 +175,12 @@ function AddKeywordsPage() {
                 ))}
               </SelectContent>
             </Select>
-            <p className=' mt-5 ml-4 underline mb-0 text-gray-700'>Crear intención de búsqueda</p>
+            <button
+              className=' mt-5 ml-4 underline mb-0 text-gray-700'
+              onClick={() => setIsOpenModalCreateIntention(!isOpenModalCreateIntention)}
+            >
+              Crear intención de búsqueda
+            </button>
           </div>
         </div>
         <div className='w-full max-w-7xl'>
@@ -235,8 +276,8 @@ function AddKeywordsPage() {
                             ))}
                           </div>
                         ) : (
-                          <div className='bg-gray-600'>
-                            <p className='px-10 py-5'>No hay nuevas keywords</p>
+                          <div className='flex justify-center '>
+                            <p className='mt-20'>No hay nuevas keywords</p>
                           </div>
                         )}
                       </div>
@@ -324,6 +365,37 @@ function AddKeywordsPage() {
             )}
           </div>
         </div>
+        <Modal
+          close={closeModalCreateIntention}
+          title='Añade una intención de búsqueda'
+          isOpen={isOpenModalCreateIntention}
+          className={'bg-slate-200'}
+        >
+          <form
+            onSubmit={handleSubmit(onSubmitform)}
+            className='space-y-4 md:space-y-6 flex flex-col justify-center bg'
+          >
+            <CustomInput
+              name='intention'
+              error={errors.intention?.message as string}
+              register={register}
+              rules={{
+                required: true,
+              }}
+              type='text'
+              id='intetion'
+              isRequired={true}
+              placeholder='intention'
+            />
+
+            <Button
+              className='h-12 text-center hover:scale-110 active:scale-90 transition flex items-center text-white bg-primary justify-center'
+              type='submit'
+            >
+              Loguearse
+            </Button>
+          </form>
+        </Modal>
       </section>
     </>
   );

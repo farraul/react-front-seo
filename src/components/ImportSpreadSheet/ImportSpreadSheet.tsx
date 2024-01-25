@@ -37,6 +37,39 @@ export const ImportSpreadSheet = ({ isOpen, onClose, onSubmit }: any) => {
     },
   ];
   return (
-    <ReactSpreadsheetImport isOpen={isOpen} onClose={onClose} onSubmit={onSubmit} fields={fields} />
+    <ReactSpreadsheetImport
+      isOpen={isOpen}
+      onClose={onClose}
+      onSubmit={onSubmit}
+      fields={fields}
+      customTheme={{
+        // Button: {
+        //   defaultProps: {
+        //     bg: 'green',
+        //     color: 'white',
+        //   },
+        // },
+
+        components: {
+          Button: {
+            baseStyle: {
+              borderRadius: 'none',
+            },
+            defaultProps: {
+              colorScheme: 'yellow',
+              bg: 'green',
+            },
+          },
+          // UploadStep: {
+          //   baseStyle: {
+          //     dropzoneButton: {
+          //       bg: 'green!important',
+          //       color: 'white!important',
+          //     },
+          //   },
+          // },
+        },
+      }}
+    />
   );
 };
