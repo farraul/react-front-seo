@@ -51,19 +51,19 @@ export const ImportSpreadSheet = ({ isOpen, onClose, onSubmit }: any) => {
         // },
 
         components: {
-          Button: {
-            baseStyle: {
-              borderRadius: 'none',
-            },
-            defaultProps: {
-              colorScheme: 'yellow',
-              bg: 'green',
-            },
-          },
+          // Button: {
+          //   baseStyle: {
+          //     borderRadius: 'none',
+          //   },
+          //   defaultProps: {
+          //     colorScheme: 'yellow',
+          //     bg: 'green',
+          //   },
+          // },
           // UploadStep: {
           //   baseStyle: {
           //     dropzoneButton: {
-          //       bg: 'green!important',
+          //       bg: 'blue!important',
           //       color: 'white!important',
           //     },
           //   },

@@ -1,4 +1,5 @@
 @import './vars.css';
+@import './spreadsheetImport.css';
 
 @tailwind base;
 @tailwind components;

@@ -109,6 +109,48 @@ function Header() {
             </ul>
           </div>
         </nav>
+        <nav className='  h-20 flex flex-nowrap items-center bg-gray-300 justify-between px-40 '>
+          <div className='text-theme-primary'>
+            <p
+              className='title text-theme-primary cursor-pointer text-3xl'
+              onClick={() => navigate('/')}
+            >
+              Lifeguard
+            </p>
+          </div>
+
+          <div className='  justify-between items-center  '>
+            <ul className='flex font-medium space-x-8 mt-0 gap-12 '>
+              <li>
+                {/* <Link
+                    href='/servicios'
+                    className='font-light block py-2 pr-4 pl-3 text-fifth hover:bg-second hover:rounded-xl transition md:text-2xl  lg:hover:bg-transparent lg:hover:text-primary-700 lg:p-0 uppercase '
+                  >
+                    servicios
+                  </Link> */}
+                <button className='text-theme-primary text-xl mr-12' onClick={() => navigate('/')}>
+                  News keywords
+                </button>
+                <button
+                  className='text-theme-primary text-xl mr-12'
+                  onClick={() => navigate('/intentions')}
+                >
+                  Intentions
+                </button>
+                {isLogged ? (
+                  <>
+                    servicios
+                    <DropDownMenu />
+                  </>
+                ) : (
+                  <button className='text-theme-primary text-xl' onClick={() => navigate('/login')}>
+                    Login
+                  </button>
+                )}
+              </li>
+            </ul>
+          </div>
+        </nav>
       </header>
     </>
   );

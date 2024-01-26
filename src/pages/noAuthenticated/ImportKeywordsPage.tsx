@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import keywordsStub from 'src/stub/keywordsStub.json';
 import intentionsStub from 'src/stub/intentionsStub.json';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   Select,
@@ -11,12 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from 'src/components/ui/select';
-
-import { ImportKeywordsPanel } from 'src/components/Panels/Editables/ImportKeywordsPanel';
-
-const initialState: any = {
-  intention: '',
-};
+import { ImportKeywordsLeftHandlingKewyords } from 'src/components/ImportKeywords/HandlingKewyords/ImportKeywordsLeftHandlingKewyords';
 
 function ImportKeywordsPage() {
   const [keywordsImported, setKeywordsImported] = useState<any>(keywordsStub);
@@ -28,7 +24,7 @@ function ImportKeywordsPage() {
       <section className='flex p-20 gap-x-14 '>
         <div className=' max-w-lg w-full h-fit'>
           <h3 className='text-4xl font-bold px-12  text-primary-generic mb-16'>Nuevas Keywords</h3>
-          <ImportKeywordsPanel
+          <ImportKeywordsLeftHandlingKewyords
             setIntentionSelected={setIntentionSelected}
             keywordsImported={keywordsImported}
             setKeywordsImported={setKeywordsImported}
@@ -53,7 +49,7 @@ function ImportKeywordsPage() {
                           <div className='px-6  bg-gray-700 pb-8  overflow-y-auto max-h-[550px]		'>
                             {Object.keys(intentions[intentionSelected]['news']).map((keyword) => (
                               <>
-                                <div className='flex mt-4 flex-col '>
+                                <div key={keyword} className='flex mt-4 flex-col '>
                                   <p className=' w-full flex justify-between'>
                                     {keyword}
                                     <span className='ml-4 text-green-400  mr-2'>
@@ -142,7 +138,7 @@ function ImportKeywordsPage() {
                             .map((intention: any) => {
                               return (
                                 <div
-                                  key={intention}
+                                  key={uuidv4()}
                                   className='w-full max-w-md border-2 px-10 py-10 bg-primary'
                                 >
                                   {intention !== 'news' && (
@@ -208,7 +204,6 @@ function ImportKeywordsPage() {
                                   )}
                                 </div>
                               );
-                              //  :null}
                             })}
                       </div>
                     </div>
