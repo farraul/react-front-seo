@@ -18,7 +18,7 @@ const initialState: any = {
 };
 type Inputs = { intention: string };
 
-export const ImportKeywordsLeftHandlingKewyords = ({
+export const LeftHandleKewyords = ({
   setIntentionSelected,
   keywordsImported,
   setKeywordsImported,

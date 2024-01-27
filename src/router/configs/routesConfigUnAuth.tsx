@@ -6,8 +6,9 @@ import { Layout } from 'src/layouts';
 const Home = lazy(() => import('src/pages/noAuthenticated/HomePage'));
 const ErrorPage = lazy(() => import('src/pages/authenticated/ErrorPage'));
 
-const ImportKeywordsPage = lazy(() => import('src/pages/noAuthenticated/ImportKeywordsPage'));
+const KeywordsPage = lazy(() => import('src/pages/noAuthenticated/KeywordsPage'));
 const InstentionsPage = lazy(() => import('src/pages/noAuthenticated/IntentionsPage'));
+const EstructurePage = lazy(() => import('src/pages/noAuthenticated/EstructurePage'));
 
 // const ReserveLeadPage = lazy(() => import('src/pages/authenticated/ReserveLeadPage '));
 // const ReserveLifeguardPage = lazy(() => import('src/pages/authenticated/ReserveLifeguardPage'));
@@ -25,7 +26,7 @@ export const routesConfigUnAuth = createBrowserRouter([
             index: true,
             element: (
               <Suspense fallback={<Spinner />}>
-                <ImportKeywordsPage />
+                <KeywordsPage />
               </Suspense>
             ),
           },
@@ -34,6 +35,14 @@ export const routesConfigUnAuth = createBrowserRouter([
             element: (
               <Suspense fallback={<Spinner />}>
                 <InstentionsPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/estructure',
+            element: (
+              <Suspense fallback={<Spinner />}>
+                <EstructurePage />
               </Suspense>
             ),
           },

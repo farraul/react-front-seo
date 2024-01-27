@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from 'src/components/ui/select';
 
-export const KeywordsHandleKewyords = ({ intentions, intentionSelected }: any) => {
+export const HandleKewyords = ({ intentions, intentionSelected, setIntentions }: any) => {
   return (
     <div className=' w-full max-w-sm border-2 bg-gray-700'>
       <p className='bg-gray-800 text-l px-10 py-4 '>Nuevas palabras</p>

@@ -12,8 +12,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from 'src/components/ui/select';
-import { ImportKeywordsLeftHandlingKewyords } from 'src/components/ImportKeywords/HandleKewyords/ImportKeywordsLeftHandlingKewyords';
-import { KeywordsHandleKewyords } from 'src/components/ImportKeywords/HandleKewyords/KeywordsLHandleKewyords';
+import { LeftHandleKewyords } from 'src/components/Keywords/Handle/LeftHandleKewyords';
+import { HandleKewyords } from 'src/components/Keywords/Handle/HandleKewyords';
 
 function ImportKeywordsPage() {
   const [keywordsImported, setKeywordsImported] = useState<any>(keywordsStub);
@@ -25,7 +25,7 @@ function ImportKeywordsPage() {
       <section className='flex p-20 gap-x-14 '>
         <div className=' max-w-lg w-full h-fit'>
           <h3 className='text-4xl font-bold px-12  text-primary-generic mb-16'>Nuevas Keywords</h3>
-          <ImportKeywordsLeftHandlingKewyords
+          <LeftHandleKewyords
             setIntentionSelected={setIntentionSelected}
             keywordsImported={keywordsImported}
             setKeywordsImported={setKeywordsImported}
@@ -44,9 +44,10 @@ function ImportKeywordsPage() {
                       {intentionSelected}
                     </h3>
                     <div className='flex'>
-                      <KeywordsHandleKewyords
+                      <HandleKewyords
                         intentions={intentions}
                         intentionSelected={intentionSelected}
+                        setIntentions={setIntentions}
                       />
 
                       <div className=' flex  flex-wrap  '>

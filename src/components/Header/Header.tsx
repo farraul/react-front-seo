@@ -86,15 +86,7 @@ function Header() {
                   >
                     servicios
                   </Link> */}
-                <button className='text-theme-primary text-xl mr-12' onClick={() => navigate('/')}>
-                  News keywords
-                </button>
-                <button
-                  className='text-theme-primary text-xl mr-12'
-                  onClick={() => navigate('/intentions')}
-                >
-                  Intentions
-                </button>
+
                 {isLogged ? (
                   <>
                     servicios
@@ -109,15 +101,8 @@ function Header() {
             </ul>
           </div>
         </nav>
-        <nav className='  h-20 flex flex-nowrap items-center bg-gray-300 justify-between px-40 '>
-          <div className='text-theme-primary'>
-            <p
-              className='title text-theme-primary cursor-pointer text-3xl'
-              onClick={() => navigate('/')}
-            >
-              Lifeguard
-            </p>
-          </div>
+        <nav className='  h-20 flex flex-nowrap items-center bg-gray-300 justify-between px-40  text-gray-700'>
+          <div className='text-theme-primary'></div>
 
           <div className='  justify-between items-center  '>
             <ul className='flex font-medium space-x-8 mt-0 gap-12 '>
@@ -128,25 +113,15 @@ function Header() {
                   >
                     servicios
                   </Link> */}
-                <button className='text-theme-primary text-xl mr-12' onClick={() => navigate('/')}>
-                  News keywords
+                <button className=' text-xl mr-12' onClick={() => navigate('/')}>
+                  Nuevas palabras{' '}
                 </button>
-                <button
-                  className='text-theme-primary text-xl mr-12'
-                  onClick={() => navigate('/intentions')}
-                >
-                  Intentions
+                <button className='text-xl mr-12' onClick={() => navigate('/intentions')}>
+                  Inteciones
                 </button>
-                {isLogged ? (
-                  <>
-                    servicios
-                    <DropDownMenu />
-                  </>
-                ) : (
-                  <button className='text-theme-primary text-xl' onClick={() => navigate('/login')}>
-                    Login
-                  </button>
-                )}
+                <button className='text-xl mr-12' onClick={() => navigate('/estructure')}>
+                  Estructura{' '}
+                </button>
               </li>
             </ul>
           </div>
