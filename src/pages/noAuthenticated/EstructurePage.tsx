@@ -20,8 +20,8 @@ const EstructurePage = () => {
   console.log(droppableAreas['h1']['headings']);
   console.log('EstructurePage  droppableAreas:', droppableAreas);
 
-  const handleDragStart = (event, index) => {
-    event.dataTransfer.setData('word', words[index]);
+  const handleDragStart = (event, word) => {
+    event.dataTransfer.setData('word', word);
   };
   const handleDragOver = (event) => {
     event.preventDefault();
@@ -81,7 +81,21 @@ const EstructurePage = () => {
     <section>
       <div className='mt-16 mb-1 flex'>
         <div className='w-1/2'>
-          <div onDragStart={(event) => handleDragStart(event, 0)} draggable>
+          <h1 className='font-bold text-3xl mb-6'> Nuevas palabras </h1>
+          <p className='mb-8'>Pincha y arrastra las palabras:</p>
+          {words.map((word) => {
+            return (
+              <span
+                className='border-2 ml-4 py-2 px-4'
+                onDragStart={(event) => handleDragStart(event, word)}
+                draggable
+              >
+                <span className=''>{word}</span>
+              </span>
+            );
+          })}
+
+          {/* <div onDragStart={(event) => handleDragStart(event, 0)} draggable>
             <p className=''>{words[0]}</p>
           </div>
           <div onDragStart={(event) => handleDragStart(event, 1)} draggable>
@@ -89,31 +103,29 @@ const EstructurePage = () => {
           </div>
           <div className='mb-16' onDragStart={(event) => handleDragStart(event, 2)} draggable>
             <p>{words[2]}</p>
-          </div>
-
+          </div> */}
           {Object.keys(droppableAreas) &&
             Object.keys(droppableAreas).map((area, areaIndex) => (
               <div key={uuidv4}>
-                <div className='bg-blue-600 p-10 text-white rounded-md'>
-                  <div className='pl-10'>
+                <div className='bg-blue-600 px-20 py-10 text-white rounded-md mt-10'>
+                  <div className=''>
                     <p className=' py-2 text-3xl font-bold'>
-                      {droppableAreas[area].value}
-                      <span className='text-gray-400 ml-5'>{area}</span>
+                      <span className='text-gray-400 '>{area}</span>
+                      <span className='ml-5 text-2xl'> {droppableAreas[area].value}</span>
                     </p>
-                    <div className='ml-10'>
-                      <p className='font-bold'>Kewyords</p>
-                      {Object.keys(droppableAreas[area]['keywords']).map((keyword) => {
-                        return <p className=''>{keyword}</p>;
-                      })}
-
-                      <div
-                        key={area}
+                    <div className=' flex'>
+                      <div className='font-bold  text-gray-400 flex items-center'>Keyyord</div>
+                      <button
                         onDragOver={handleDragOver}
                         onDrop={(event) => handleDroph1(event, area, areaIndex)}
+                        className='py-2 ml-6  text-gray-400 border-gray-300 border-2 px-4  rounded-md border-dotted '
                       >
-                        <button className='py-2 text-white border-gray-300 border-2 px-6 mt-4 rounded-md border-dotted'>
-                          {`Añadir keywords aquí`}
-                        </button>
+                        {'+'}
+                      </button>
+                      <div className='ml-5 '>
+                        {Object.keys(droppableAreas[area]['keywords']).map((keyword) => {
+                          return <p className=''>{keyword}</p>;
+                        })}
                       </div>
                     </div>
                   </div>
@@ -123,35 +135,38 @@ const EstructurePage = () => {
                       ? Object.keys(droppableAreas[area]['headings']).map((heading: any) => {
                           console.log({ heading });
                           return (
-                            <div className='pl-20 mt-10'>
-                              {/* <span className='font-bold text-gray-400 text-2xl py-2 mt-2'>H2</span> */}
-                              {Object.keys(droppableAreas[area]['headings'][heading]).map(
-                                (headingValue: any) => {
-                                  console.log(headingValue);
-                                  return (
-                                    <p className=' p-1' key={uuidv4}>
-                                      {headingValue}
-                                      <span className='font-bold text-gray-400 text-xl ml-5'>
-                                        H2
-                                      </span>
-                                    </p>
-                                  );
-                                },
-                              )}
-                            </div>
+                            <>
+                              <div className='flex mt-4'>
+                                <span className='font-bold text-gray-400 text-xl ml-5 flex items-center'>
+                                  H2
+                                </span>
+
+                                <button
+                                  key={area}
+                                  onDragOver={handleDragOver}
+                                  onDrop={(event) => handleDrop(event, area, areaIndex)}
+                                  className='py-2 ml-6  text-gray-400 border-gray-300 border-2 px-4  rounded-md border-dotted 	'
+                                >
+                                  {`+`}
+                                </button>
+                                <div className='pl-4 '>
+                                  {/* <span className='font-bold text-gray-400 text-2xl py-2 mt-2'>H2</span> */}
+                                  {Object.keys(droppableAreas[area]['headings'][heading]).map(
+                                    (headingValue: any) => {
+                                      console.log(headingValue);
+                                      return (
+                                        <p className=' p-1' key={uuidv4}>
+                                          {headingValue}
+                                        </p>
+                                      );
+                                    },
+                                  )}
+                                </div>
+                              </div>
+                            </>
                           );
                         })
                       : null}
-                    <div
-                      className='pl-20 '
-                      key={area}
-                      onDragOver={handleDragOver}
-                      onDrop={(event) => handleDrop(event, area, areaIndex)}
-                    >
-                      <button className='py-2 text-white border-gray-300 border-2 px-6 mt-4 rounded-md border-dotted'>
-                        {`Añadir H2 aquí`}
-                      </button>
-                    </div>
                   </div>
                 </div>
               </div>
