@@ -1,33 +1,70 @@
 import React, { useState } from 'react';
+import { PanelConstruction } from 'src/components/Estructure/PanelConstruction';
 import { PanelResult } from 'src/components/Estructure/PanelResult';
 import { v4 as uuidv4 } from 'uuid';
 
-const EstructurePage = () => {
-  const [words, setWords] = useState(['Que es el seo?', 'Seo para empresas', 'Inicio para el seo']);
-  const [droppableAreas, setDroppableAreas] = useState<any>({
-    h1: {
-      value: 'Seo',
-      headings: {
-        h2: {
-          'Seo local': {},
-          'Seo online': {},
-          'Seo presencial': {},
+const estructure = {
+  Seo: {
+    headings: {
+      'Seo local': {
+        headings: {
+          'Seo local valencia': {
+            headings: {
+              'Seo local valencia ahora': {
+                headings: {
+                  'seo local valencia ahora mismo': {
+                    headings: {
+                      'Seo local valencia ahora': {
+                        headings: {
+                          headings: {},
+                          keywords: { 'Seo local': 100 },
+                          type: 7,
+                        },
+                      },
+                      keywords: { 'Seo local': 100 },
+                      type: 6,
+                    },
+                  },
+                },
+                keywords: { 'Seo local': 100 },
+                type: 5,
+              },
+              keywords: { 'Seo local': 200 },
+              type: 4,
+            },
+            keywords: { 'Seo local': 300 },
+            type: 3,
+          },
         },
+        keywords: {},
+        type: 2,
       },
-      keywords: {},
+      'Seo online': { headings: {}, keywords: {}, type: 2 },
+      'Seo presencial': { headings: {}, keywords: {}, type: 2 },
     },
-  });
-  console.log(droppableAreas['h1']['headings']);
-  console.log('EstructurePage  droppableAreas:', droppableAreas);
+    keywords: { 'Seo local keyword': 400 },
+    type: 1,
+  },
+};
+const EstructurePage = () => {
+  console.log('in');
 
-  const handleDragStart = (event, word) => {
+  const [words, setWords] = useState([
+    'Que es el seo?',
+    'Seo para empresas',
+    'Seo España',
+    'Inicio para el seo',
+  ]);
+  const [droppableAreas, setDroppableAreas] = useState<any>(estructure);
+
+  const handleDragStart = (event: any, word: any) => {
     event.dataTransfer.setData('word', word);
   };
-  const handleDragOver = (event) => {
+  const handleDragOver = (event: any) => {
     event.preventDefault();
   };
 
-  const handleDroph1 = (event, tag, areaIndex) => {
+  const handleDropKeyword = (event: any, tag: any) => {
     const word = event.dataTransfer.getData('word');
     const wordIndex = words.indexOf(word);
 
@@ -36,46 +73,87 @@ const EstructurePage = () => {
       newWords.splice(wordIndex, 1);
       setWords(newWords);
 
-      const newKeyword = { ...droppableAreas[tag]['keywords'], [word]: {} };
+      const template = { ...droppableAreas[tag]['keywords'], [word]: {} };
+
+      const templateEmpty = ({ headings = {}, keywords = {}, type }: any) => {
+        return { headings, keywords, type };
+      };
 
       setDroppableAreas((prevState: any) => ({
         ...prevState,
         [tag]: {
           ...prevState[tag],
           ['keywords']: {
-            ...newKeyword,
+            ...template,
           },
         },
       }));
     }
   };
 
-  const handleDrop = (event, tag, areaIndex) => {
+  const handleDropHeading = (event: any, tag: any, type: any, route: any) => {
     const word = event.dataTransfer.getData('word');
+
+    console.log('tag:', tag);
+    console.log('word', word);
+    console.log('word', type);
+    console.log(route);
+
     const wordIndex = words.indexOf(word);
 
     if (wordIndex !== -1) {
       const newWords = [...words];
       newWords.splice(wordIndex, 1);
       setWords(newWords);
+      console.log('in');
 
-      const newKeyword = { ...droppableAreas[tag]['headings']['h2'], [word]: {} };
+      const templates = () => {
+        console.log(droppableAreas[tag]['headings'][word]);
+        // console.log(droppableAreas[tag]['headings'][word].length);
+        if (droppableAreas[tag]['headings'].word == undefined) {
+          console.log('handleDrop  word:', word);
+          return { headings: {}, keywords: {}, type: type + 1 };
+        } else {
+          console.log(droppableAreas[tag]['headings'][word].length);
+        }
+      };
 
+      console.log('handleDrop  word:', word);
       setDroppableAreas((prevState: any) => ({
         ...prevState,
         [tag]: {
           ...prevState[tag],
           ['headings']: {
             ...prevState[tag]['headings'],
-            ['h2']: {
-              ...prevState[tag]['headings']['h2'],
-              ...newKeyword,
-            },
+            [word]: templates,
           },
         },
       }));
+      console.log(droppableAreas);
     }
   };
+
+  const findValue = (obj: any, key: any) => {
+    const stack = [{ obj, path: [] }];
+
+    while (stack.length > 0) {
+      const { obj, path } = stack.pop();
+
+      for (let k in obj) {
+        const newPath = [...path, k];
+
+        if (k === key && Object.keys(obj[k]).length !== 0) {
+          console.log(newPath.join(' -> '), obj[k]);
+        }
+
+        if (typeof obj[k] === 'object' && obj[k] !== null) {
+          stack.push({ obj: obj[k], path: newPath });
+        }
+      }
+    }
+  };
+
+  findValue(estructure, 'keywords');
 
   return (
     <section>
@@ -95,83 +173,14 @@ const EstructurePage = () => {
             );
           })}
 
-          {/* <div onDragStart={(event) => handleDragStart(event, 0)} draggable>
-            <p className=''>{words[0]}</p>
-          </div>
-          <div onDragStart={(event) => handleDragStart(event, 1)} draggable>
-            <p>{words[1]}</p>
-          </div>
-          <div className='mb-16' onDragStart={(event) => handleDragStart(event, 2)} draggable>
-            <p>{words[2]}</p>
-          </div> */}
-          {Object.keys(droppableAreas) &&
-            Object.keys(droppableAreas).map((area, areaIndex) => (
-              <div key={uuidv4}>
-                <div className='bg-blue-600 px-20 py-10 text-white rounded-md mt-10'>
-                  <div className=''>
-                    <p className=' py-2 text-3xl font-bold'>
-                      <span className='text-gray-400 '>{area}</span>
-                      <span className='ml-5 text-2xl'> {droppableAreas[area].value}</span>
-                    </p>
-                    <div className=' flex'>
-                      <div className='font-bold  text-gray-400 flex items-center'>Keyyord</div>
-                      <button
-                        onDragOver={handleDragOver}
-                        onDrop={(event) => handleDroph1(event, area, areaIndex)}
-                        className='py-2 ml-6  text-gray-400 border-gray-300 border-2 px-4  rounded-md border-dotted '
-                      >
-                        {'+'}
-                      </button>
-                      <div className='ml-5 '>
-                        {Object.keys(droppableAreas[area]['keywords']).map((keyword) => {
-                          return <p className=''>{keyword}</p>;
-                        })}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className=' ml-20'>
-                    {Object.keys(droppableAreas[area]['headings']).length
-                      ? Object.keys(droppableAreas[area]['headings']).map((heading: any) => {
-                          console.log({ heading });
-                          return (
-                            <>
-                              <div className='flex mt-4'>
-                                <span className='font-bold text-gray-400 text-xl ml-5 flex items-center'>
-                                  H2
-                                </span>
-
-                                <button
-                                  key={area}
-                                  onDragOver={handleDragOver}
-                                  onDrop={(event) => handleDrop(event, area, areaIndex)}
-                                  className='py-2 ml-6  text-gray-400 border-gray-300 border-2 px-4  rounded-md border-dotted 	'
-                                >
-                                  {`+`}
-                                </button>
-                                <div className='pl-4 '>
-                                  {/* <span className='font-bold text-gray-400 text-2xl py-2 mt-2'>H2</span> */}
-                                  {Object.keys(droppableAreas[area]['headings'][heading]).map(
-                                    (headingValue: any) => {
-                                      console.log(headingValue);
-                                      return (
-                                        <p className=' p-1' key={uuidv4}>
-                                          {headingValue}
-                                        </p>
-                                      );
-                                    },
-                                  )}
-                                </div>
-                              </div>
-                            </>
-                          );
-                        })
-                      : null}
-                  </div>
-                </div>
-              </div>
-            ))}
+          <PanelConstruction
+            droppableAreas={droppableAreas}
+            handleDragOver={handleDragOver}
+            handleDropKeyword={handleDropKeyword}
+            handleDropHeading={handleDropHeading}
+          />
         </div>
+
         <div className='w-1/2'>
           <PanelResult droppableAreas={droppableAreas} />
         </div>
