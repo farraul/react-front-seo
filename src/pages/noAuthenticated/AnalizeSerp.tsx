@@ -5,6 +5,7 @@ import { Headings, urlSeo } from 'src/models/seo/seo';
 import { Input } from 'src/components/ui/input';
 import { Button, CustomInput } from 'src/components/PrimitiveElements';
 import { RegisterOptions, SubmitHandler, UseFormRegisterReturn, useForm } from 'react-hook-form';
+import { getAnalyseUrlSeo } from 'src/services/seo';
 
 const initialState: any = {
   url: '',

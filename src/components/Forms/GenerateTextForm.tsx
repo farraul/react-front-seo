@@ -2,9 +2,14 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { RegisterOptions, SubmitHandler, UseFormRegisterReturn, useForm } from 'react-hook-form';
 import { Button, CustomInput } from 'src/components/PrimitiveElements';
-import { API_KEY_OPENAI } from 'src/constants/API';
+import {
+  API_RAPID_GENERATE_TEXT_HOST,
+  API_RAPID_GENERATE_TEXT_KEY,
+  API_RAPID_GENERATE_TEXT_URL,
+} from 'src/constants/API';
 import { number } from 'yup';
 
+console.log(API_RAPID_GENERATE_TEXT_HOST, API_RAPID_GENERATE_TEXT_KEY, API_RAPID_GENERATE_TEXT_URL);
 type Inputs = {
   email: string;
   password: string;
@@ -31,8 +36,6 @@ export const GenerateTextForm = ({ setTextGenerated, setIsLoading }: any) => {
   const onSubmit: SubmitHandler<any> = async (value) => {
     const { quantityWords, tematic, estructure, purpose } = value;
 
-    const url = 'https://api.openai.com/v1/chat/completions';
-
     const textRequest = `Escribe un texto que tenga sobre ${quantityWords} palabras sobre esta temática: ${tematic}
       La estructura del texto debe ser la siguiente: ${estructure}.
       En este apartado debes usar estas palabras clave: “cómo aplicar el lifelong learning”, “proceso para implantar el lifelong learning”.
@@ -40,11 +43,11 @@ export const GenerateTextForm = ({ setTextGenerated, setIsLoading }: any) => {
 
     const options = {
       method: 'POST',
-      url: 'https://chatgpt-42.p.rapidapi.com/conversationgpt4',
+      url: API_RAPID_GENERATE_TEXT_URL,
       headers: {
         'content-type': 'application/json',
-        'X-RapidAPI-Key': '09f461d154msh7949ffcf5db9411p1978fbjsn075e9930aee8',
-        'X-RapidAPI-Host': 'chatgpt-42.p.rapidapi.com',
+        'X-RapidAPI-Key': API_RAPID_GENERATE_TEXT_KEY,
+        'X-RapidAPI-Host': API_RAPID_GENERATE_TEXT_HOST,
       },
       data: {
         messages: [
