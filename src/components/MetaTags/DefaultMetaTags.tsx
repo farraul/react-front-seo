@@ -7,7 +7,6 @@ function DefaultMetaTags() {
 
   return (
     <Helmet>
-      <meta charSet='utf-8' />
       <meta name='title' content={title} />
       <meta name='description' content={description} />
 

@@ -56,6 +56,7 @@ const EstructurePage = () => {
     'Inicio para el seo',
   ]);
   const [droppableAreas, setDroppableAreas] = useState<any>(estructure);
+  console.log('EstructurePage  droppableAreas:', droppableAreas);
 
   const handleDragStart = (event: any, word: any) => {
     event.dataTransfer.setData('word', word);
@@ -181,9 +182,7 @@ const EstructurePage = () => {
           />
         </div>
 
-        <div className='w-1/2'>
-          <PanelResult droppableAreas={droppableAreas} />
-        </div>
+        <div className='w-1/2'>{/* <PanelResult droppableAreas={droppableAreas} /> */}</div>
       </div>
     </section>
   );

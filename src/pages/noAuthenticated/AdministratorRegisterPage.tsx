@@ -1,7 +1,7 @@
 import { CssBaseline, Container } from '@mui/material';
 import { AdministratorForm } from 'src/components/Forms/Register/AdministratorForm';
 
-import { LifeguardRegisterForm } from 'src/components/Forms/LifeguardRegisterForm ';
+import { LifeguardRegisterForm } from 'src/components/Forms/Register/LifeguardRegisterForm ';
 
 export default function AdministratorRegisterPage() {
   return (

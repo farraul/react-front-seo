@@ -1,6 +1,6 @@
 import { CssBaseline, Container } from '@mui/material';
 
-import { LifeguardRegisterForm } from 'src/components/Forms/LifeguardRegisterForm ';
+import { LifeguardRegisterForm } from 'src/components/Forms/Register/LifeguardRegisterForm ';
 import { CompanyForm } from 'src/components/Forms/Register/CompanyForm';
 
 export default function CompanyRegisterPage() {

@@ -2,6 +2,8 @@ import React, { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { Spinner } from 'src/components/Loaders';
 import { Layout } from 'src/layouts';
+import AnalizeSerp from 'src/pages/noAuthenticated/AnalizeSerp';
+import { GenerateTextPage } from 'src/pages/noAuthenticated/GenerateTextPage';
 
 const Home = lazy(() => import('src/pages/noAuthenticated/HomePage'));
 const ErrorPage = lazy(() => import('src/pages/authenticated/ErrorPage'));
@@ -43,6 +45,23 @@ export const routesConfigUnAuth = createBrowserRouter([
             element: (
               <Suspense fallback={<Spinner />}>
                 <EstructurePage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/generate-text',
+            element: (
+              <Suspense fallback={<Spinner />}>
+                <GenerateTextPage />
+              </Suspense>
+            ),
+          },
+
+          {
+            path: '/analize-serp',
+            element: (
+              <Suspense fallback={<Spinner />}>
+                <AnalizeSerp />
               </Suspense>
             ),
           },

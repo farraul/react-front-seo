@@ -47,7 +47,7 @@ const CustomInput = ({
   return (
     <div className={`${classAditional || ''} flex flex-col w-full`}>
       {label && (
-        <label className='text-secondary' htmlFor={id}>
+        <label className='' htmlFor={id}>
           {label}
           {isRequired && <b className='text-red-900'>*</b>}
         </label>

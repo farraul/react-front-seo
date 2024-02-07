@@ -120,7 +120,13 @@ function Header() {
                   Inteciones
                 </button>
                 <button className='text-xl mr-12' onClick={() => navigate('/estructure')}>
-                  Estructura{' '}
+                  Estructura
+                </button>
+                <button className='text-xl mr-12' onClick={() => navigate('/generate-text')}>
+                  Generate text
+                </button>
+                <button className='text-xl mr-12' onClick={() => navigate('/analize-serp')}>
+                  Analizar Serp
                 </button>
               </li>
             </ul>
