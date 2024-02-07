@@ -6,6 +6,7 @@ import { Input } from 'src/components/ui/input';
 import { Button, CustomInput } from 'src/components/PrimitiveElements';
 import { RegisterOptions, SubmitHandler, UseFormRegisterReturn, useForm } from 'react-hook-form';
 import { getAnalyseUrlSeo } from 'src/services/seo';
+import { ListItem, ListItemText, ListSubheader } from '@mui/material';
 
 const initialState: any = {
   url: '',
@@ -17,7 +18,6 @@ const KeywordSerp = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [countLinks, setCountLinks] = useState();
-  const [urlsRecent, setUrlsRecent] = useState<string[]>([]);
 
   const [results, setResults] = useState<any>([]);
 
@@ -36,8 +36,8 @@ const KeywordSerp = () => {
     defaultValues: initialState,
   });
 
-  const onSubmit: SubmitHandler<any> = async (value) => {
-    console.log({ value });
+  const onSubmit: SubmitHandler<any> = async ({ url }) => {
+    console.log({ url });
     try {
       const response = await getAnalyseUrlSeo(url);
 
@@ -53,10 +53,6 @@ const KeywordSerp = () => {
       setTitle(response.data.title);
       setDescription(response.data.description);
       setCountLinks(response.data.links.length);
-
-      if (!urlsRecent.includes(url)) {
-        if (_id) createUrlsSeo(_id, url);
-      }
     } catch (error) {
       console.error(error);
     }
@@ -93,6 +89,50 @@ const KeywordSerp = () => {
             Crear texto
           </Button>
         </form>
+      </div>
+      <div className='w-1/2 p-24'>
+        {headings.map((heading) => {
+          const singleKey = Object.keys(heading)[0] as keyof Headings;
+          return (
+            <>
+              <div key={`section-${heading}`}>
+                <div>
+                  <ListSubheader sx={{ bgcolor: '#bfbff1', color: 'black' }}>
+                    {Object.keys(heading)[0]}
+                  </ListSubheader>
+
+                  <ListItem
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      padding: 0,
+                      margin: 0,
+                    }}
+                    key={`item-${Object.keys(heading)[0]}-list`}
+                  >
+                    {heading[singleKey].map((e) => {
+                      return (
+                        <ListItemText
+                          sx={{
+                            borderTop: 1,
+                            borderColor: 'grey.500',
+                            width: '100%',
+                            paddingTop: 2,
+                            paddingBottom: 2,
+                            paddingLeft: 2,
+                            paddingRight: 2,
+                            margin: 0,
+                          }}
+                          primary={e}
+                        />
+                      );
+                    })}
+                  </ListItem>
+                </div>
+              </div>
+            </>
+          );
+        })}
       </div>
     </div>
   );
