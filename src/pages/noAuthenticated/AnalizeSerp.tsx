@@ -91,6 +91,18 @@ const KeywordSerp = () => {
         </form>
       </div>
       <div className='w-1/2 p-24'>
+        {title ? (
+          <>
+            <div className='py-4 px-2 bg-violet-300 '>Title</div>
+            <div className='py-4'>{title}</div>
+          </>
+        ) : null}
+        {description ? (
+          <>
+            <div className='py-4 px-2 bg-violet-300 '>Meta-description</div>
+            <div className='py-4'>{description}</div>
+          </>
+        ) : null}
         {headings.map((heading) => {
           const singleKey = Object.keys(heading)[0] as keyof Headings;
           return (
