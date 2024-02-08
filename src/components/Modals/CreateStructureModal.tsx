@@ -5,10 +5,10 @@ import Button from '../PrimitiveElements/Button/Button';
 import { CustomInput } from '../PrimitiveElements';
 
 const initialState: any = {
-  keywordToChange: '',
+  structure: '',
 };
 
-export const CreateIntentionModal = ({ isOpenCreateIntention, closeModalEditKeyword }: any) => {
+export const CreateStructureModal = ({ isOpenCreateIntention, closeModalEditKeyword }: any) => {
   const onSubmit: SubmitHandler<any> = async (value: any) => {
     console.log({ value });
   };
@@ -26,7 +26,7 @@ export const CreateIntentionModal = ({ isOpenCreateIntention, closeModalEditKeyw
   return (
     <Modal
       close={closeModalEditKeyword}
-      title='Nueva intención '
+      title='Escribe el nombre de la nueva estructura:'
       isOpen={isOpenCreateIntention}
       className={'bg-slate-200 max-w-xl'}
     >
@@ -35,9 +35,9 @@ export const CreateIntentionModal = ({ isOpenCreateIntention, closeModalEditKeyw
         className='md:space-y-6 flex flex-col justify-center pb-10'
       >
         <CustomInput
-          label='Escribe tu nueva intención: '
-          name='keywordToChange'
-          error={errors.keywordToChange?.message as string}
+          label='Escribe el nombre de la nueva estructura: '
+          name='structure'
+          error={errors.structure?.message as string}
           register={register}
           rules={{
             required: true,
@@ -47,7 +47,7 @@ export const CreateIntentionModal = ({ isOpenCreateIntention, closeModalEditKeyw
             },
           }}
           type='text'
-          id='keywordToChange'
+          id='structure'
           isRequired={true}
           placeholder=''
           className='border-2 border-slate-300 border-solid mt-4 p-2 color-black  w-full'
@@ -56,7 +56,7 @@ export const CreateIntentionModal = ({ isOpenCreateIntention, closeModalEditKeyw
           className='h-12 text-center hover:scale-110 active:scale-90 transition flex items-center text-white bg-blue-700 justify-center  w-full'
           type='submit'
         >
-          Crear intención
+          Crear nueva estructura
         </Button>
       </form>
     </Modal>

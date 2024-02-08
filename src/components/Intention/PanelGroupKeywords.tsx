@@ -1,11 +1,6 @@
-import { useState } from 'react';
-import { CreateIntentionModal } from '../Modals/CreateIntentionModal';
-import { EyeClosedIcon } from '@radix-ui/react-icons';
-import { SearchIcon } from '../Icons/Effects/search';
 import { SettingsIcon } from '../Icons/Effects/Settings';
 import { TrashIcon } from '../Icons/Effects/Trash';
-import { ExternalLinkIcon } from '../Icons/ExternalLinkIcon';
-import { PlusIcon } from '../Icons/PlusIcon';
+import { AssociatedStructure } from './AssociatedStructure';
 
 export const PanelGroupKeywords = ({
   intentions,
@@ -25,15 +20,12 @@ export const PanelGroupKeywords = ({
                   .filter((mainKeyword: any) => mainKeyword !== 'news')
                   .map((mainKeyword: any) => {
                     return (
-                      <div
-                        key={mainKeyword}
-                        className='w-full max-w-lg w-1/4 border-2  flex flex-col w-4 '
-                      >
+                      <div key={mainKeyword} className=' max-w-lg w-1/4 border-2  flex flex-col'>
                         {intentionSelected !== 'news' && (
                           <>
-                            <div className='flex pl-10 pt-8 text-xl font-bold justify-between bg-primary py-10 px-10  '>
+                            <div className='flex pl-10 pt-8 text-xl font-bold justify-between bg-primary  px-10  '>
                               <p className='text-white'>{mainKeyword}</p>
-                              <div className='flex'>
+                              <div className='flex mt-6'>
                                 <span className='  text-green-400'>
                                   {intentions[intentionSelected][mainKeyword]['vol']}
                                 </span>
@@ -66,7 +58,7 @@ export const PanelGroupKeywords = ({
                               </div>
                             </div>
                             <div className='pl-14 bg-primary  px-10 '>
-                              <p className=' text-gray-400 mt-2'>Sinónimos</p>
+                              <p className=' text-gray-400'>Sinónimos</p>
                               {Object.keys(intentions[intentionSelected][mainKeyword]['synonymous'])
                                 .length ? (
                                 <>
@@ -126,8 +118,7 @@ export const PanelGroupKeywords = ({
                                 </>
                               ) : null}
                             </div>
-
-                            <div className='pl-14 bg-primary px-10 pb-10 pt-'>
+                            <div className='pl-14 bg-primary px-10 pb-10 '>
                               <p className=' text-gray-400 mt-4'>Long tails</p>
                               {intentions[intentionSelected][mainKeyword]['longTail'] ? (
                                 <>
@@ -188,21 +179,7 @@ export const PanelGroupKeywords = ({
                                 </>
                               ) : null}
                             </div>
-                            <div className='bg-blue-900 px-10  flex justify-around py-4'>
-                              <div className='text-center  text-gray-400 flex'>
-                                <p>Estrucura asociada</p>
-                                <div className='flex ml-2 border-dashed border-white border'>
-                                  <PlusIcon width='w-4' />
-                                  {/* <span className='text-sm ml-2 text-gray-400'>Añadir nueva</span> */}
-                                </div>
-                              </div>
-                              <div className=''>
-                                <div className='flex '>
-                                  <div className='text-white mr-2'>Estructura 1</div>
-                                  <ExternalLinkIcon width='w-6' />
-                                </div>
-                              </div>
-                            </div>
+                            <AssociatedStructure />
                           </>
                         )}
                       </div>
