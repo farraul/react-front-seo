@@ -2,8 +2,6 @@ import React, { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import { Spinner } from 'src/components/Loaders';
 import { Layout } from 'src/layouts';
-import AnalizeSerp from 'src/pages/noAuthenticated/AnalizeSerp';
-import { GenerateTextPage } from 'src/pages/noAuthenticated/GenerateTextPage';
 
 const Home = lazy(() => import('src/pages/noAuthenticated/HomePage'));
 const ErrorPage = lazy(() => import('src/pages/authenticated/ErrorPage'));
@@ -11,6 +9,8 @@ const ErrorPage = lazy(() => import('src/pages/authenticated/ErrorPage'));
 const KeywordsPage = lazy(() => import('src/pages/noAuthenticated/KeywordsPage'));
 const InstentionsPage = lazy(() => import('src/pages/noAuthenticated/IntentionsPage'));
 const EstructurePage = lazy(() => import('src/pages/noAuthenticated/EstructurePage'));
+const GenerateTextPage = lazy(() => import('src/pages/noAuthenticated/GenerateTextPage'));
+const AnalizeSerpPage = lazy(() => import('src/pages/noAuthenticated/AnalizeSerp'));
 
 // const ReserveLeadPage = lazy(() => import('src/pages/authenticated/ReserveLeadPage '));
 // const ReserveLifeguardPage = lazy(() => import('src/pages/authenticated/ReserveLifeguardPage'));
@@ -61,7 +61,7 @@ export const routesConfigUnAuth = createBrowserRouter([
             path: '/analize-serp',
             element: (
               <Suspense fallback={<Spinner />}>
-                <AnalizeSerp />
+                <AnalizeSerpPage />
               </Suspense>
             ),
           },

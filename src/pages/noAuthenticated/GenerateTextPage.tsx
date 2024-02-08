@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { GenerateTextForm } from 'src/components/Forms/GenerateTextForm';
 import { Spinner } from 'src/components/Loaders';
 
-export const GenerateTextPage = () => {
+const GenerateTextPage = () => {
   const [textGenerated, setTextGenerated] = useState<any>('');
   const [isLoading, setIsLoading] = useState<any>(false);
 
@@ -24,3 +24,5 @@ export const GenerateTextPage = () => {
     </section>
   );
 };
+
+export default GenerateTextPage;
