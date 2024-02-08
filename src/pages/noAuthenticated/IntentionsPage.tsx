@@ -4,14 +4,20 @@ import { useNavigate } from 'react-router-dom';
 import intentionsStub from 'src/stub/intentionsStub.json';
 import { Button } from 'src/components/ui/button';
 import { v4 as uuidv4 } from 'uuid';
-import { PanelKeywords } from 'src/components/Intention/PanelKeywords';
+import { PanelGroupKeywords } from 'src/components/Intention/PanelGroupKeywords';
 import { EditKeywordModal } from 'src/components/Modals/EditKeywordModal';
+import { CreateIntentionModal } from 'src/components/Modals/CreateIntentionModal';
 
 const IntentionsPage = () => {
   const [intentions, setIntentions] = useState<any>(intentionsStub);
   const [intentionSelected, setIntentionSelected] = useState<any>();
   const [isOpenEditKeyword, setIsOpenEditKeyword] = useState<any>(false);
   const [keywordToEdit, setKeywordToEdit] = useState<any>('');
+  const [isOpenCreateIntention, setIsOpenCreateIntention] = useState(false);
+
+  const closeCreateIntention = () => {
+    setIsOpenCreateIntention(false);
+  };
 
   const closeModalEditKeyword = () => {
     setIsOpenEditKeyword(false);
@@ -62,7 +68,9 @@ const IntentionsPage = () => {
                       <Button
                         variant='outline'
                         className='bg-gray-200  border-gray-400 border-2 w-72 h-24 flex  items-center justify-center rounded-2xl flex-col text-xl text-black border-dashed'
-                        onClick={() => {}}
+                        onClick={() => {
+                          setIsOpenCreateIntention(true);
+                        }}
                       >
                         Nueva intención
                       </Button>
@@ -74,7 +82,7 @@ const IntentionsPage = () => {
           </div>
         </section>
         {intentionSelected ? (
-          <PanelKeywords
+          <PanelGroupKeywords
             intentions={intentions}
             setIntentions={setIntentions}
             intentionSelected={intentionSelected}
@@ -92,6 +100,12 @@ const IntentionsPage = () => {
             closeModalEditKeyword={closeModalEditKeyword}
             isOpenEditKeyword={isOpenEditKeyword}
             keywordToEdit={keywordToEdit}
+          />
+        </section>
+        <section>
+          <CreateIntentionModal
+            isOpenCreateIntention={isOpenCreateIntention}
+            closeModalEditKeyword={closeCreateIntention}
           />
         </section>
       </article>
