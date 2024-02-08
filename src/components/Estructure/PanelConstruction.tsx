@@ -14,7 +14,7 @@ export const PanelConstruction = ({
           const type = droppableAreas[area]['type'];
 
           return (
-            <div key={uuidv4}>
+            <div key={area}>
               <div className='bg-blue-600 px-20 py-10 text-white rounded-md mt-10'>
                 <div className=''>
                   <p className=' py-2 text-3xl font-bold'>
@@ -25,7 +25,7 @@ export const PanelConstruction = ({
                     </span>
                   </p>
                   <div className=' flex ml-5 '>
-                    <div className='font-bold  text-gray-400 flex items-center w-16'>Keyyord</div>
+                    <div className='font-bold  text-gray-400 flex items-center w-16'>Kewyord</div>
                     <button
                       onDragOver={handleDragOver}
                       onDrop={(event) => handleDropKeyword(event, area)}

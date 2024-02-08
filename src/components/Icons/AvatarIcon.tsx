@@ -3,7 +3,7 @@ interface Avatar {
   width?: string;
 }
 
-export const Avatar = ({ height, width }: Avatar) => {
+export const AvatarIcon = ({ height, width }: Avatar) => {
   return (
     <div
       className={`relative inline-flex items-center justify-center  overflow-hidden bg-gray-100 rounded-full ${height} ${width}`}
