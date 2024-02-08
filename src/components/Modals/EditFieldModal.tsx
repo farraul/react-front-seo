@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from 'src/components/ui/select';
 
-export const EditFieldPopUp = ({ listDataProfile }: any) => {
+export const EditFieldModal = ({ listDataProfile }: any) => {
   const dispatch = useAppDispatch();
   const user = useAppSelector<Company>((state) => state.user.userInfo);
   const [profile, setProfile] = useState<Company>(user);
