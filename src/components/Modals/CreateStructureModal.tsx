@@ -8,7 +8,7 @@ const initialState: any = {
   structure: '',
 };
 
-export const CreateStructureModal = ({ isOpenCreateIntention, closeModalEditKeyword }: any) => {
+export const CreateStructureModal = ({ isOpenModal, closeModal }: any) => {
   const onSubmit: SubmitHandler<any> = async (value: any) => {
     console.log({ value });
   };
@@ -25,9 +25,10 @@ export const CreateStructureModal = ({ isOpenCreateIntention, closeModalEditKeyw
 
   return (
     <Modal
-      close={closeModalEditKeyword}
+      close={closeModal}
+      typeModal='create'
       title='Nueva estructura'
-      isOpen={isOpenCreateIntention}
+      isOpen={isOpenModal}
       className={'bg-slate-200 max-w-xl'}
     >
       <form

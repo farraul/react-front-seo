@@ -8,16 +8,13 @@ import { EditKeywordModal } from 'src/components/Modals/EditKeywordModal';
 import { CreateIntentionModal } from 'src/components/Modals/CreateIntentionModal';
 import { Button } from 'src/components/PrimitiveElements';
 import { typeModalOpen } from 'src/models/common';
+import { useModal } from 'src/hooks/useModal';
 
 const IntentionsPage = () => {
   const [intentions, setIntentions] = useState<any>(intentionsStub);
   const [intentionSelected, setIntentionSelected] = useState<any>();
   const [keywordToEdit, setKeywordToEdit] = useState<any>('');
-  const [isOpenModal, setIsOpenModal] = useState<typeModalOpen>('close');
-
-  const closeModal = () => {
-    setIsOpenModal('close');
-  };
+  const { isOpenModal, setIsOpenModal, closeModal } = useModal();
 
   const showIntention = (intention: string) => {
     console.log({ intention });
