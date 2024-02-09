@@ -1,8 +1,8 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Modal } from 'src/components/Modals';
-import Button from '../PrimitiveElements/Button/Button';
-import { CustomInput } from '../PrimitiveElements';
+
+import { PortalModal } from 'src/components/template';
+import { Button, CustomInput } from '../PrimitiveElements';
 
 const initialState: any = {
   keywordToChange: '',
@@ -24,7 +24,7 @@ export const CreateIntentionModal = ({ closeModal, isOpenModal }: any) => {
   });
 
   return (
-    <Modal
+    <PortalModal
       close={closeModal}
       typeModal='create'
       title='Nueva intención '
@@ -60,6 +60,6 @@ export const CreateIntentionModal = ({ closeModal, isOpenModal }: any) => {
           Crear intención
         </Button>
       </form>
-    </Modal>
+    </PortalModal>
   );
 };

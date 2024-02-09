@@ -1,8 +1,12 @@
 @import './vars.css';
 @import './spreadsheetImport.css';
+@import './mui.css';
 
-@tailwind base;
+/* tailwind reinicia */
+
+
 @tailwind components;
+/* no son elementos html son un conjunto de clases de tailwind */
 @layer components{
   .btn-primary{
     @apply  bg-thirdary text-primary-generic text-lg px-4 py-2 rounded-md w-full;
@@ -14,8 +18,11 @@
     @apply text-base mr-12 py-6 p-4 ;
   }
 }
+/* esto son clases pero que les solemos asignar estilos a medida que no estan en la documentación */
 @tailwind utilities;
- 
+
+ /*Son elemntos html, En base Aqui van las bases elementos primitivos h1,p section, lo del final de la página */
+@tailwind base;
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Modal } from 'src/components/Modals';
-import Button from '../PrimitiveElements/Button/Button';
-import { CustomInput } from '../PrimitiveElements';
+import Button from '../../PrimitiveElements/Button/Button';
+import { CustomInput } from '../../PrimitiveElements';
+import { PortalModal } from 'src/components/template';
 
 const initialState: any = {
   keywordToChange: '',
@@ -24,7 +24,7 @@ export const EditKeywordModal = ({ isOpenModal, keywordToEdit, closeModal }: any
   });
 
   return (
-    <Modal
+    <PortalModal
       typeModal={'edit'}
       close={closeModal}
       title='Modificación de la keyword '
@@ -60,6 +60,6 @@ export const EditKeywordModal = ({ isOpenModal, keywordToEdit, closeModal }: any
           Modificar palabra
         </Button>
       </form>
-    </Modal>
+    </PortalModal>
   );
 };

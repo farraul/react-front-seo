@@ -10,9 +10,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from 'src/components/ui/select';
-import { Modal } from 'src/components/Modals';
 import { Button, CustomInput } from 'src/components/PrimitiveElements';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { PortalModal } from 'src/components/template';
 const initialState: any = {
   intention: '',
 };
@@ -158,8 +158,9 @@ export const LeftHandleKewyords = ({
           Crear intención de búsqueda
         </button>
       </div>
-      <Modal
+      <PortalModal
         close={closeModalCreateIntention}
+        typeModal='create'
         title='Añade una intención de búsqueda'
         isOpen={isOpenModalCreateIntention}
         className={'bg-slate-200 max-w-xl'}
@@ -188,7 +189,7 @@ export const LeftHandleKewyords = ({
             Loguearse
           </Button>
         </form>
-      </Modal>
+      </PortalModal>
     </>
   );
 };

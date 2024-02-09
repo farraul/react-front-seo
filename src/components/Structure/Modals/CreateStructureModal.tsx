@@ -1,8 +1,8 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Modal } from 'src/components/Modals';
-import Button from '../PrimitiveElements/Button/Button';
-import { CustomInput } from '../PrimitiveElements';
+import Button from '../../PrimitiveElements/Button/Button';
+import { CustomInput } from '../../PrimitiveElements';
+import { PortalModal } from 'src/components/template';
 
 const initialState: any = {
   structure: '',
@@ -24,7 +24,7 @@ export const CreateStructureModal = ({ isOpenModal, closeModal }: any) => {
   });
 
   return (
-    <Modal
+    <PortalModal
       close={closeModal}
       typeModal='create'
       title='Nueva estructura'
@@ -60,6 +60,6 @@ export const CreateStructureModal = ({ isOpenModal, closeModal }: any) => {
           Crear nueva estructura
         </Button>
       </form>
-    </Modal>
+    </PortalModal>
   );
 };

@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import intentionsStub from 'src/stub/intentionsStub.json';
 import { v4 as uuidv4 } from 'uuid';
 import { GroupKeywordsPanel } from 'src/components/Intention/Panels/GroupKeywordsPanel';
-import { EditKeywordModal } from 'src/components/Modals/EditKeywordModal';
-import { CreateIntentionModal } from 'src/components/Modals/CreateIntentionModal';
+import { EditKeywordModal } from 'src/components/Keywords/Modals/EditKeywordModal';
 import { Button } from 'src/components/PrimitiveElements';
 import { typeModalOpen } from 'src/models/common';
 import { useModal } from 'src/hooks/useModal';
+import { CreateIntentionModal } from 'src/components/Modals/CreateIntentionModal';
 
 const IntentionsPage = () => {
   const [intentions, setIntentions] = useState<any>(intentionsStub);
