@@ -111,7 +111,7 @@ function Header() {
               <NavLink className='menu-header-link' to='/intentions'>
                 Intenciones
               </NavLink>
-              <NavLink className='menu-header-link' to='/estructure'>
+              <NavLink className='menu-header-link' to='/structure'>
                 Estructura
               </NavLink>
               <NavLink className='menu-header-link' to='/generate-text'>

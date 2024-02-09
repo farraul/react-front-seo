@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import intentionsStub from 'src/stub/intentionsStub.json';
-import { Button } from 'src/components/ui/button';
 import { v4 as uuidv4 } from 'uuid';
-import { PanelGroupKeywords } from 'src/components/Intention/PanelGroupKeywords';
+import { GroupKeywordsPanel } from 'src/components/Intention/Panels/GroupKeywordsPanel';
 import { EditKeywordModal } from 'src/components/Modals/EditKeywordModal';
 import { CreateIntentionModal } from 'src/components/Modals/CreateIntentionModal';
+import { Button } from 'src/components/PrimitiveElements';
 
 const IntentionsPage = () => {
   const [intentions, setIntentions] = useState<any>(intentionsStub);
@@ -46,8 +46,7 @@ const IntentionsPage = () => {
                         <div>
                           <div>
                             <Button
-                              variant='outline'
-                              className='bg-primary w-72 h-24 flex  items-center justify-center rounded-2xl flex-col text-xl text-white'
+                              className='bg-primary w-72 h-20 flex  items-center justify-center rounded-2xl flex-col text-xl text-white'
                               onClick={() => showIntention(intention)}
                             >
                               {intention}
@@ -66,8 +65,7 @@ const IntentionsPage = () => {
                   <div>
                     <div>
                       <Button
-                        variant='outline'
-                        className='bg-gray-200  border-gray-400 border-2 w-72 h-24 flex  items-center justify-center rounded-2xl flex-col text-xl text-black border-dashed'
+                        className='bg-gray-200  border-gray-400 border-2 w-72 h-20 flex  items-center justify-center rounded-2xl flex-col text-xl text-black border-dashed'
                         onClick={() => {
                           setIsOpenCreateIntention(true);
                         }}
@@ -82,7 +80,7 @@ const IntentionsPage = () => {
           </div>
         </section>
         {intentionSelected ? (
-          <PanelGroupKeywords
+          <GroupKeywordsPanel
             intentions={intentions}
             setIntentions={setIntentions}
             intentionSelected={intentionSelected}

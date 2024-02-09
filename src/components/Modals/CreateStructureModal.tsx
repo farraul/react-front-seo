@@ -26,7 +26,7 @@ export const CreateStructureModal = ({ isOpenCreateIntention, closeModalEditKeyw
   return (
     <Modal
       close={closeModalEditKeyword}
-      title='Escribe el nombre de la nueva estructura:'
+      title='Nueva estructura'
       isOpen={isOpenCreateIntention}
       className={'bg-slate-200 max-w-xl'}
     >

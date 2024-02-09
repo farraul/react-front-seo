@@ -17,12 +17,12 @@ export const AssociatedStructure = () => {
         <div className='text-center  text-gray-400 flex items-center'>
           <div className='flex border-dashed border-white border px-1 py-1 '>
             <span
-              className='cursor-pointer'
+              className='cursor-pointer flex'
               onClick={() => {
                 setIsOpenCreateStructure(true);
               }}
             >
-              <PlusIcon width='w-4' />
+              <PlusIcon width='w-4' height='' />
             </span>
           </div>
           <p className=' ml-2'>Estrucura asociada</p>

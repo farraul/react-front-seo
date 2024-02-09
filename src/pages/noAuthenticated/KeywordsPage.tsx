@@ -33,16 +33,16 @@ function ImportKeywordsPage() {
             setIntentions={setIntentions}
           />
         </div>
-        <div className='w-full max-w-7xl'>
-          <div className='flex gap-x-4'>
-            {intentionSelected && (
+        <div className='w-full max-w-9xl flex gap-x-4 '>
+          {intentionSelected ? (
+            <>
+              {console.log(intentionSelected)}
               <>
-                {console.log(intentionSelected)}
-                <>
-                  <div className=' text-white flex flex-col items-center  rounded-sm w-full  '>
-                    <h3 className='text-4xl font-bold px-12  text-primary-generic mb-16'>
-                      {intentionSelected}
-                    </h3>
+                <div className=' text-white flex flex-col items-center  rounded-sm w-full  '>
+                  <h3 className='text-4xl font-bold px-12  text-primary-generic mb-16'>
+                    {intentionSelected}
+                  </h3>
+                  <div className='flex'>
                     <div className='flex'>
                       <HandleKewyords
                         intentions={intentions}
@@ -124,14 +124,17 @@ function ImportKeywordsPage() {
                                 </div>
                               );
                             })}
-                        kK
                       </div>
                     </div>
                   </div>
-                </>
+                </div>
               </>
-            )}
-          </div>
+            </>
+          ) : (
+            <div className='border border-dashed border-slate-600 w-full flex items-center justify-center text-2xl '>
+              Selecciona las palabras clave y su intención de búsqueda
+            </div>
+          )}
         </div>
       </section>
     </>

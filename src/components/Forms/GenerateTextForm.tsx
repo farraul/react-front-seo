@@ -1,20 +1,14 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { RegisterOptions, SubmitHandler, UseFormRegisterReturn, useForm } from 'react-hook-form';
-import { Button, CustomInput } from 'src/components/PrimitiveElements';
+import { Button, CustomInput, Select } from 'src/components/PrimitiveElements';
 import {
   API_RAPID_GENERATE_TEXT_HOST,
   API_RAPID_GENERATE_TEXT_KEY,
   API_RAPID_GENERATE_TEXT_URL,
 } from 'src/constants/API';
 import { number } from 'yup';
-
-console.log(API_RAPID_GENERATE_TEXT_HOST, API_RAPID_GENERATE_TEXT_KEY, API_RAPID_GENERATE_TEXT_URL);
-type Inputs = {
-  email: string;
-  password: string;
-  community: string;
-};
+import structuresStub from 'src/stub/structuresStub.json';
 
 const initialState: any = {
   estructure: '',
@@ -22,6 +16,14 @@ const initialState: any = {
   tematic: '',
   purpose: '',
 };
+
+const estructure = Object.keys(structuresStub)[0];
+const selectOptions = [
+  { name: estructure, value: estructure, section: 'seos' },
+  { name: 'SEM', value: 'b', section: 'sems' },
+];
+console.log('selectOptions:', selectOptions);
+
 export const GenerateTextForm = ({ setTextGenerated, setIsLoading }: any) => {
   const {
     register,
@@ -78,6 +80,10 @@ export const GenerateTextForm = ({ setTextGenerated, setIsLoading }: any) => {
     }
   };
 
+  const importStructure = (e: any) => {
+    console.log(e);
+  };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -119,6 +125,7 @@ export const GenerateTextForm = ({ setTextGenerated, setIsLoading }: any) => {
         placeholder='Escribe la tematica'
         className='border-2 border-slate-300 border-solid mt-4 p-2 color-black  w-full'
       />
+
       <CustomInput
         label='La estructura del texto (H1, H2, H3, Keywords...)'
         name='estructure'
@@ -137,6 +144,19 @@ export const GenerateTextForm = ({ setTextGenerated, setIsLoading }: any) => {
         placeholder='Escribe la estructura'
         className='border-2 border-slate-300 border-solid mt-4 p-2  w-full '
       />
+      <div>
+        <p>Importar estructura</p>
+        <Select
+          id='brand'
+          name='brand'
+          color='text-red-200'
+          // values={values?.brand as string}
+          // onChange={handleChange}
+          // placeholder={`${values && values.brand ? values.brand : 'Type brand'}`}
+          options={selectOptions}
+          className='border-2 border-slate-300 p-2'
+        />
+      </div>
       <CustomInput
         label='Finalidad del texto :'
         name='purpose'

@@ -29,7 +29,7 @@ const initialState: CompanyRegister = {
   website: '',
   yearsActive: undefined,
   availability: '',
-  priceHour: undefined,
+  priceHour: null,
   community: '',
   province: '',
   location: '',

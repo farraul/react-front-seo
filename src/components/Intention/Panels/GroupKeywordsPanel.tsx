@@ -1,8 +1,8 @@
-import { SettingsIcon } from '../Icons/Effects/Settings';
-import { TrashIcon } from '../Icons/Effects/Trash';
-import { AssociatedStructure } from './AssociatedStructure';
+import { SettingsIcon } from '../../Icons/Effects/Settings';
+import { TrashIcon } from '../../Icons/Effects/Trash';
+import { AssociatedStructure } from '../AssociatedStructure';
 
-export const PanelGroupKeywords = ({
+export const GroupKeywordsPanel = ({
   intentions,
   intentionSelected,
   setIntentions,
@@ -13,6 +13,7 @@ export const PanelGroupKeywords = ({
     <>
       <section className='px-16'>
         <div className='w-full max-w-9xl overflow-y-auto  '>
+          <p className='text-center text-2xl'>Grupos de palabras clave</p>
           <div className=' flex w-full  items-center  '>
             {Object.keys(intentions[intentionSelected]).length ? (
               <div className='w-full flex flex-wrap mt-6 mb-5  '>
@@ -24,7 +25,13 @@ export const PanelGroupKeywords = ({
                         {intentionSelected !== 'news' && (
                           <>
                             <div className='flex pl-10 pt-8 text-xl font-bold justify-between bg-primary  px-10  '>
-                              <p className='text-white'>{mainKeyword}</p>
+                              <p className='text-white'>
+                                {' '}
+                                {mainKeyword}{' '}
+                                <span className='text-base ml-4 text-gray-400 italic'>
+                                  Palabra principal
+                                </span>
+                              </p>
                               <div className='flex mt-6'>
                                 <span className='  text-green-400'>
                                   {intentions[intentionSelected][mainKeyword]['vol']}
@@ -58,7 +65,7 @@ export const PanelGroupKeywords = ({
                               </div>
                             </div>
                             <div className='pl-14 bg-primary  px-10 '>
-                              <p className=' text-gray-400'>Sinónimos</p>
+                              <p className=' text-gray-400  italic'>Sinónimos</p>
                               {Object.keys(intentions[intentionSelected][mainKeyword]['synonymous'])
                                 .length ? (
                                 <>
@@ -119,7 +126,7 @@ export const PanelGroupKeywords = ({
                               ) : null}
                             </div>
                             <div className='pl-14 bg-primary px-10 pb-10 '>
-                              <p className=' text-gray-400 mt-4'>Long tails</p>
+                              <p className=' text-gray-400 mt-4  italic'>Long tails</p>
                               {intentions[intentionSelected][mainKeyword]['longTail'] ? (
                                 <>
                                   {Object.keys(

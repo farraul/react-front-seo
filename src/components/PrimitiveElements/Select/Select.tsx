@@ -8,7 +8,7 @@ export type props = React.DetailedHTMLProps<
 > &
   UseFormRegisterReturn & {
     className?: string;
-    color?: 'primary';
+    color?: string;
     label?: string;
     error?: any;
     options: {
@@ -43,18 +43,24 @@ const Select = forwardRef<any, props>(
         >
           <>
             {sectionNames?.[0]
-              ? sections.map((section, idx) => (
-                  <optgroup label={sectionNames[idx]} key={idx}>
-                    {section.map(({ name, value }, idx) => (
-                      <option value={value}>{name}</option>
-                    ))}
-                  </optgroup>
-                ))
-              : options?.map(({ name, value, disabled }, idx) => (
-                  <option key={idx} value={value} disabled={disabled}>
-                    {name}
-                  </option>
-                ))}
+              ? sections.map((section, idx) => {
+                  console.log(section);
+                  return (
+                    <optgroup label={sectionNames[idx]} key={idx}>
+                      {section.map(({ name, value }, idx) => (
+                        <option value={value}>{name}</option>
+                      ))}
+                    </optgroup>
+                  );
+                })
+              : options?.map(({ name, value, disabled }, idx) => {
+                  console.log({ name });
+                  return (
+                    <option key={idx} value={value} disabled={disabled}>
+                      {name}
+                    </option>
+                  );
+                })}
           </>
         </select>
         {error && <p className='mt-1 ml-1 text-xs text-customRed '>{error}</p>}
