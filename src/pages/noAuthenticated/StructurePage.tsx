@@ -194,7 +194,7 @@ const StructurePage = () => {
         {structureSelected ? (
           <div className='mt-16 mb-1'>
             <div className='w-1/2'>
-              <h1 className='font-bold text-2xl mb-6'>HTML </h1>
+              {/* <h1 className='font-bold text-2xl mb-6'>HTML </h1> */}
               <p className='mb-8'>Pincha y arrastra las palabras:</p>
               {words.map((word) => {
                 return (

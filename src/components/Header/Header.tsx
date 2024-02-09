@@ -118,7 +118,7 @@ function Header() {
                 Generate text
               </NavLink>
               <NavLink className='menu-header-link' to='/analize-serp'>
-                Analizar Serp
+                Analizar Competencia
               </NavLink>
             </div>
           </div>

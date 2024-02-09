@@ -86,7 +86,7 @@ const KeywordSerp = () => {
             className='h-12 text-center hover:scale-110 active:scale-90 transition flex items-center text-white bg-black justify-center  w-full'
             type='submit'
           >
-            Crear texto
+            Analizar Url
           </Button>
         </form>
       </div>
