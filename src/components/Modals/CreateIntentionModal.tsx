@@ -8,7 +8,7 @@ const initialState: any = {
   keywordToChange: '',
 };
 
-export const CreateIntentionModal = ({ isOpenCreateIntention, closeModalEditKeyword }: any) => {
+export const CreateIntentionModal = ({ closeModal, isOpenModal }: any) => {
   const onSubmit: SubmitHandler<any> = async (value: any) => {
     console.log({ value });
   };
@@ -25,9 +25,10 @@ export const CreateIntentionModal = ({ isOpenCreateIntention, closeModalEditKeyw
 
   return (
     <Modal
-      close={closeModalEditKeyword}
+      close={closeModal}
+      typeModal='create'
       title='Nueva intención '
-      isOpen={isOpenCreateIntention}
+      isOpen={isOpenModal}
       className={'bg-slate-200 max-w-xl'}
     >
       <form

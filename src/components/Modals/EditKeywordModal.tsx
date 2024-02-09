@@ -8,11 +8,7 @@ const initialState: any = {
   keywordToChange: '',
 };
 
-export const EditKeywordModal = ({
-  closeModalEditKeyword,
-  isOpenEditKeyword,
-  keywordToEdit,
-}: any) => {
+export const EditKeywordModal = ({ isOpenModal, keywordToEdit, closeModal }: any) => {
   const onSubmit: SubmitHandler<any> = async (value: any) => {
     console.log({ value });
   };
@@ -29,9 +25,10 @@ export const EditKeywordModal = ({
 
   return (
     <Modal
-      close={closeModalEditKeyword}
+      typeModal={'edit'}
+      close={closeModal}
       title='Modificación de la keyword '
-      isOpen={isOpenEditKeyword}
+      isOpen={isOpenModal}
       className={'bg-slate-200 max-w-xl'}
     >
       <form

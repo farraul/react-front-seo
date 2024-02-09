@@ -1,30 +1,32 @@
 import React, { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { IoMdClose } from 'react-icons/io';
+import { typeModalOpen } from 'src/models/common';
 
 createPortal;
 
 interface ModalProps {
   close: () => void;
-  isOpen: boolean;
+  isOpen: typeModalOpen;
+  typeModal: typeModalOpen;
   title: string;
   className: string;
   children: ReactNode;
 }
 
-const PortalModal = ({ close, isOpen, title, className, children }: ModalProps) => {
+const PortalModal = ({ close, isOpen, title, className, children, typeModal }: ModalProps) => {
   return createPortal(
     <>
       <div
         onClick={close}
         className={`${
-          isOpen ? '' : 'hidden'
+          isOpen === typeModal ? '' : 'hidden'
         } cursor-pointer mx-auto overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-[102] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-gray-900 opacity-90`}
       ></div>
       <div
         id='productModal'
         className={`${
-          isOpen ? 'flex' : 'hidden'
+          isOpen === typeModal ? 'flex' : 'hidden'
         } mx-auto overflow-y-auto overflow-x-hidden absolute z-[103] justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full opacity-100`}
       >
         <div className={`${className} relative shadow rounded-lg p-8 w-full max-h-full z-[104]`}>

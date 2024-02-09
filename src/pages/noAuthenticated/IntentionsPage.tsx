@@ -7,20 +7,16 @@ import { GroupKeywordsPanel } from 'src/components/Intention/Panels/GroupKeyword
 import { EditKeywordModal } from 'src/components/Modals/EditKeywordModal';
 import { CreateIntentionModal } from 'src/components/Modals/CreateIntentionModal';
 import { Button } from 'src/components/PrimitiveElements';
+import { typeModalOpen } from 'src/models/common';
 
 const IntentionsPage = () => {
   const [intentions, setIntentions] = useState<any>(intentionsStub);
   const [intentionSelected, setIntentionSelected] = useState<any>();
-  const [isOpenEditKeyword, setIsOpenEditKeyword] = useState<any>(false);
   const [keywordToEdit, setKeywordToEdit] = useState<any>('');
-  const [isOpenCreateIntention, setIsOpenCreateIntention] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState<typeModalOpen>('close');
 
-  const closeCreateIntention = () => {
-    setIsOpenCreateIntention(false);
-  };
-
-  const closeModalEditKeyword = () => {
-    setIsOpenEditKeyword(false);
+  const closeModal = () => {
+    setIsOpenModal('close');
   };
 
   const showIntention = (intention: string) => {
@@ -49,7 +45,7 @@ const IntentionsPage = () => {
                               className='bg-primary w-72 h-20 flex  items-center justify-center rounded-2xl flex-col text-xl text-white'
                               onClick={() => showIntention(intention)}
                             >
-                              {intention}
+                              estaa {intention}
                             </Button>
                           </div>
                         </div>
@@ -67,7 +63,7 @@ const IntentionsPage = () => {
                       <Button
                         className='bg-gray-200  border-gray-400 border-2 w-72 h-20 flex  items-center justify-center rounded-2xl flex-col text-xl text-black border-dashed'
                         onClick={() => {
-                          setIsOpenCreateIntention(true);
+                          setIsOpenModal('create');
                         }}
                       >
                         Nueva intención
@@ -84,9 +80,8 @@ const IntentionsPage = () => {
             intentions={intentions}
             setIntentions={setIntentions}
             intentionSelected={intentionSelected}
-            closeModalEditKeyword={closeModalEditKeyword}
-            setIsOpenEditKeyword={setIsOpenEditKeyword}
-            setKeywordToEdit={setKeywordToEdit}
+            closeModal={closeModal}
+            setIsOpenModal={setIsOpenModal}
           />
         ) : (
           <section className='py-32'>
@@ -95,16 +90,15 @@ const IntentionsPage = () => {
         )}
         <section>
           <EditKeywordModal
-            closeModalEditKeyword={closeModalEditKeyword}
-            isOpenEditKeyword={isOpenEditKeyword}
+            // closeModalEditKeyword={closeModalEditKeyword}
+            // isOpenEditKeyword={isOpenEditKeyword}
+            closeModal={closeModal}
+            isOpenModal={isOpenModal}
             keywordToEdit={keywordToEdit}
           />
         </section>
         <section>
-          <CreateIntentionModal
-            isOpenCreateIntention={isOpenCreateIntention}
-            closeModalEditKeyword={closeCreateIntention}
-          />
+          <CreateIntentionModal closeModal={closeModal} isOpenModal={isOpenModal} />
         </section>
       </article>
     </>

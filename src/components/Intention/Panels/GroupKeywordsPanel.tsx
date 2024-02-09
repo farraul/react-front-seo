@@ -6,8 +6,8 @@ export const GroupKeywordsPanel = ({
   intentions,
   intentionSelected,
   setIntentions,
-  setIsOpenEditKeyword,
-  setKeywordToEdit,
+  setIsOpenModal,
+  closeModal,
 }: any) => {
   return (
     <>
