@@ -7,6 +7,7 @@ export const GroupKeywordsPanel = ({
   intentionSelected,
   setIntentions,
   setIsOpenModal,
+  setKeywordToEdit,
   closeModal,
 }: any) => {
   return (
@@ -40,7 +41,7 @@ export const GroupKeywordsPanel = ({
                                   <div
                                     className='pl-4 cursor-pointer'
                                     onClick={() => {
-                                      setIsOpenEditKeyword(true);
+                                      setIsOpenModal('create');
                                       setKeywordToEdit(mainKeyword);
                                     }}
                                   >
@@ -88,7 +89,7 @@ export const GroupKeywordsPanel = ({
                                         <div
                                           className='ml-4 cursor-pointer'
                                           onClick={() => {
-                                            setIsOpenEditKeyword(true);
+                                            setIsOpenModal('create');
                                             setKeywordToEdit(aynonymous);
                                           }}
                                         >
@@ -149,7 +150,7 @@ export const GroupKeywordsPanel = ({
                                         <div
                                           className='ml-4 cursor-pointer'
                                           onClick={() => {
-                                            setIsOpenEditKeyword(true);
+                                            setIsOpenModal('edit');
                                             setKeywordToEdit(longTail);
                                           }}
                                         >

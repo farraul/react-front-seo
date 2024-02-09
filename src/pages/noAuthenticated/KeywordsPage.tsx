@@ -33,6 +33,7 @@ function ImportKeywordsPage() {
             setIntentions={setIntentions}
           />
         </div>
+        {/* desde aqui a template */}
         <div className='w-full max-w-9xl flex gap-x-4 '>
           {intentionSelected ? (
             <>
