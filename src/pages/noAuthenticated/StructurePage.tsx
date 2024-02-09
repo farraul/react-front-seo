@@ -5,8 +5,13 @@ import { v4 as uuidv4 } from 'uuid';
 import intentionsStub from 'src/stub/intentionsStub.json';
 import structuresStub from 'src/stub/structuresStub.json';
 
-import { Button } from 'src/components/PrimitiveElements';
+import { Button, CustomInput } from 'src/components/PrimitiveElements';
+import { RegisterOptions, UseFormRegisterReturn, useForm } from 'react-hook-form';
 
+const initialState: any = {
+  tiele: '',
+  metaDescription: '',
+};
 const estructure = structuresStub;
 const StructurePage = () => {
   const [structures, setStructures] = useState<any>(intentionsStub);
@@ -62,6 +67,15 @@ const StructurePage = () => {
     }
   };
 
+  const {
+    register,
+    handleSubmit,
+    getValues,
+    control,
+    formState: { errors },
+  } = useForm<any>({
+    defaultValues: initialState,
+  });
   const handleDropHeading = (event: any, tag: any, type: any, route: any) => {
     const word = event.dataTransfer.getData('word');
 
@@ -127,7 +141,7 @@ const StructurePage = () => {
   findValue(estructure, 'keywords');
 
   return (
-    <article>
+    <article className='mb-32'>
       <section className='px-20'>
         <div className=' mb-16 mt-20 flex items-center flex-col justify-cente'>
           <h1 className=' text-4xl font-bold  text-primary-generic'>Estructuras</h1>
@@ -178,9 +192,9 @@ const StructurePage = () => {
       </section>
       <section>
         {structureSelected ? (
-          <div className='mt-16 mb-1 flex'>
+          <div className='mt-16 mb-1'>
             <div className='w-1/2'>
-              <h1 className='font-bold text-3xl mb-6'> Nuevas palabras </h1>
+              <h1 className='font-bold text-2xl mb-6'>HTML </h1>
               <p className='mb-8'>Pincha y arrastra las palabras:</p>
               {words.map((word) => {
                 return (
@@ -200,6 +214,73 @@ const StructurePage = () => {
                 handleDropKeyword={handleDropKeyword}
                 handleDropHeading={handleDropHeading}
               />
+              <div className='bg-blue-800 px-10 py-10'>
+                <div className='flex  items-center '>
+                  <p className=' text-white text-right  w-[130px] pr-4 text-sm'>URL:</p>
+                  <CustomInput
+                    label=''
+                    name='url'
+                    error={errors.title?.message as string}
+                    register={register}
+                    rules={{
+                      required: true,
+                      minLength: {
+                        value: 10,
+                        message: 'Mínimo 10 caracteres.',
+                      },
+                    }}
+                    type='text'
+                    id='url'
+                    isRequired={true}
+                    placeholder='La tiene que tener  al menos 2 charactreres'
+                    className='border-2 border-slate-200 border-solid  p-2 color-black  w-full text-sm'
+                  />
+                </div>
+                <div className='flex pt-4  items-center'>
+                  <p className=' text-white text-right  w-[130px] pr-4 text-sm'>Title:</p>
+                  <CustomInput
+                    label=''
+                    name='title'
+                    error={errors.title?.message as string}
+                    register={register}
+                    rules={{
+                      required: true,
+                      minLength: {
+                        value: 10,
+                        message: 'Mínimo 10 caracteres.',
+                      },
+                    }}
+                    type='text'
+                    id='title'
+                    isRequired={true}
+                    placeholder='El title tiene que tener de 10 a 90 charactreres'
+                    className='border-2 border-slate-200 border-solid  p-2 color-black  w-full text-sm'
+                  />
+                </div>
+                <div className='flex pt-4 items-center '>
+                  <div className=' text-white w-[130px] pr-4 text-sm text-right '>
+                    <p>Meta</p> <p>description:</p>
+                  </div>
+                  <CustomInput
+                    label=''
+                    name='metaDescription'
+                    error={errors.metaDescription?.message as string}
+                    register={register}
+                    rules={{
+                      required: true,
+                      minLength: {
+                        value: 10,
+                        message: 'Mínimo 10 caracteres.',
+                      },
+                    }}
+                    type='text'
+                    id='metaDescription'
+                    isRequired={true}
+                    placeholder='La meta-description tiene que tener de 170 a 200 charactreres'
+                    className='border-2 border-slate-200 border-solid  p-2 color-black  text-sm w-full text-sm'
+                  />
+                </div>
+              </div>
             </div>
 
             <div className='w-1/2'>{/* <PanelResult droppableAreas={droppableAreas} /> */}</div>

@@ -15,7 +15,7 @@ export const ConstructionPanel = ({
 
           return (
             <div key={area}>
-              <div className='bg-blue-600 px-20 py-10 text-white rounded-md mt-10'>
+              <div className='bg-blue-600 px-20 py-10 text-white rounded-t-md mt-10'>
                 <div className=''>
                   <p className=' py-2 text-3xl font-bold'>
                     <span className=''>{area}</span>
