@@ -2,7 +2,7 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import Button from '../../PrimitiveElements/Button/Button';
 import { CustomInput } from '../../PrimitiveElements';
-import { PortalModal } from 'src/components/template';
+import { PortalModal } from 'src/components/templates';
 
 const initialState: any = {
   structure: '',

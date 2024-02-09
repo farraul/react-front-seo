@@ -4,7 +4,7 @@
 
 /* tailwind reinicia */
 
-
+@tailwind base;
 @tailwind components;
 /* no son elementos html son un conjunto de clases de tailwind */
 @layer components{
@@ -22,7 +22,6 @@
 @tailwind utilities;
 
  /*Son elemntos html, En base Aqui van las bases elementos primitivos h1,p section, lo del final de la página */
-@tailwind base;
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -132,7 +131,7 @@ h6 {
 }
 
 
-/* #sidebar a.active {
+#sidebar a.active {
   font-weight: bold;
   background-color: white;
-} */
+}

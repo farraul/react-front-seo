@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import intentionsStub from 'src/stub/intentionsStub.json';
-import { v4 as uuidv4 } from 'uuid';
-import { GroupKeywordsPanel } from 'src/components/Intention/Panels/GroupKeywordsPanel';
-import { EditKeywordModal } from 'src/components/Keywords/Modals/EditKeywordModal';
-import { Button } from 'src/components/PrimitiveElements';
-import { typeModalOpen } from 'src/models/common';
-import { useModal } from 'src/hooks/useModal';
-import { CreateIntentionModal } from 'src/components/Modals/CreateIntentionModal';
-import { IntentionTemplate } from 'src/components/template';
+import { IntentionTemplate } from 'src/components/templates';
 
 const IntentionsPage = () => {
   const [intentionSelected, setIntentionSelected] = useState<any>();

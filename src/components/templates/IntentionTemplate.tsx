@@ -42,7 +42,7 @@ const IntentionTemplate = ({ intentionsStub, showIntention, intentionSelected }:
               <div>
                 <div>
                   <Button
-                    className='bg-gray-200  border-gray-400 border-2 w-72 h-20 flex  items-center justify-center rounded-2xl flex-col text-xl text-black border-dashed'
+                    className='bg-gray-200  border-gray-800 border-6 w-72 h-20 flex  items-center justify-center rounded-2xl flex-col text-xl text-black border-dashed'
                     onClick={() => {
                       setIsOpenModal('create');
                     }}

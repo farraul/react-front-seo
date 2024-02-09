@@ -1,7 +1,7 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { PortalModal } from 'src/components/template';
+import { PortalModal } from 'src/components/templates';
 import { Button, CustomInput } from '../PrimitiveElements';
 
 const initialState: any = {
@@ -54,7 +54,7 @@ export const CreateIntentionModal = ({ closeModal, isOpenModal }: any) => {
           className='border-2 border-slate-300 border-solid mt-4 p-2 color-black  w-full'
         />
         <Button
-          className='h-12 text-center hover:scale-110 active:scale-90 transition flex items-center text-white bg-blue-700 justify-center  w-full'
+          className='h-12 text-center hover:scale-110 active:scale-90 transition flex items-center text-white bg-blue-700 justify-center w-full'
           type='submit'
         >
           Crear intención

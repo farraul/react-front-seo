@@ -12,7 +12,7 @@ import {
 } from 'src/components/ui/select';
 import { Button, CustomInput } from 'src/components/PrimitiveElements';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { PortalModal } from 'src/components/template';
+import { PortalModal } from 'src/components/templates';
 const initialState: any = {
   intention: '',
 };
