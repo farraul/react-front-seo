@@ -17,6 +17,9 @@
   .menu-header-link{
     @apply text-base mr-12 py-6 p-4 ;
   }
+  .heading-h1{
+    @apply text-4xl font-bold text-primary-generic my-8
+  }
 }
 /* esto son clases pero que les solemos asignar estilos a medida que no estan en la documentación */
 @tailwind utilities;

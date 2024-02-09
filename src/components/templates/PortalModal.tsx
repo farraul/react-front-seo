@@ -15,6 +15,10 @@ interface ModalProps {
 }
 
 const PortalModal = ({ close, isOpen, title, className, children, typeModal }: ModalProps) => {
+  console.log('PortalModal  typeModal:', typeModal);
+
+  console.log('PortalModal  isOpen:', isOpen);
+
   return createPortal(
     <>
       <div

@@ -26,7 +26,7 @@ export const CreateStructureModal = ({ isOpenModal, closeModal }: any) => {
   return (
     <PortalModal
       close={closeModal}
-      typeModal='create'
+      typeModal='newStructureIntetion'
       title='Nueva estructura'
       isOpen={isOpenModal}
       className={'bg-slate-200 max-w-xl'}

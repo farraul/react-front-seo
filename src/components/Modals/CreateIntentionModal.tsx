@@ -26,7 +26,7 @@ export const CreateIntentionModal = ({ closeModal, isOpenModal }: any) => {
   return (
     <PortalModal
       close={closeModal}
-      typeModal='create'
+      typeModal='createIntention'
       title='Nueva intención '
       isOpen={isOpenModal}
       className={'bg-slate-200 max-w-xl'}

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { ExternalLinkIcon } from '../Icons/ExternalLinkIcon';
 import { PlusIcon } from '../Icons/PlusIcon';
-import { CreateIntentionModal } from './Modals/CreateIntentionModal';
 import { CreateStructureModal } from '../Structure/Modals/CreateStructureModal';
 import { useModal } from 'src/hooks/useModal';
 
@@ -15,18 +14,18 @@ export const AssociatedStructure = () => {
             <span
               className='cursor-pointer flex'
               onClick={() => {
-                setIsOpenModal('create');
+                setIsOpenModal('newStructureIntetion');
               }}
             >
               <PlusIcon width='w-4' height='' />
             </span>
           </div>
-          <p className=' ml-2'>Estrucura asociada</p>
+          <p className=' ml-2'>Estructura asociada</p>
         </div>
         <div className=''>
           <div className='flex items-center'>
             <div className='text-white mr-2'>Estructura 1</div>
-            <span onClick={() => setIsOpenModal('create')}>
+            <span>
               <ExternalLinkIcon width='w-6' />
             </span>
           </div>

@@ -11,8 +11,8 @@ export const GroupKeywordsPanel = ({
 }: any) => {
   return (
     <>
-      <section className='px-16'>
-        <div className='w-full max-w-9xl overflow-y-auto  '>
+      <section className='px-0 mt-12'>
+        <div className='w-full  '>
           <p className='text-center text-2xl'>Grupos de palabras clave</p>
           <div className=' flex w-full  items-center  '>
             {Object.keys(intentions[intentionSelected]).length ? (
@@ -31,7 +31,7 @@ export const GroupKeywordsPanel = ({
                               <div className='flex pl-10 pt-8 text-xl font-bold justify-between  px-10 pb-6 '>
                                 <p className='text-white'>
                                   {mainKeyword}
-                                  <span className='text-base ml-4 text-gray-400 italic'>
+                                  <span className='text-xs ml-4 text-gray-400 italic'>
                                     Palabra principal
                                   </span>
                                 </p>
@@ -68,7 +68,7 @@ export const GroupKeywordsPanel = ({
                                 </div>
                               </div>
                               <div className='pl-14 bg-primary  px-10 '>
-                                <p className=' text-gray-400  italic'>Sinónimos</p>
+                                <p className=' text-gray-400 italic text-xs'>Sinónimos</p>
                                 {Object.keys(
                                   intentions[intentionSelected][mainKeyword]['synonymous'],
                                 ).length ? (
@@ -92,7 +92,7 @@ export const GroupKeywordsPanel = ({
                                           <div
                                             className='ml-4 cursor-pointer'
                                             onClick={() => {
-                                              setIsOpenModal('create');
+                                              setIsOpenModal('editKewyordIntention');
                                               setKeywordToEdit(aynonymous);
                                             }}
                                           >
@@ -130,7 +130,7 @@ export const GroupKeywordsPanel = ({
                                 ) : null}
                               </div>
                               <div className='pl-14 bg-primary px-10 pb-10 '>
-                                <p className=' text-gray-400 mt-4  italic'>Long tails</p>
+                                <p className=' text-gray-400 mt-4 italic text-xs'>Long tails</p>
                                 {intentions[intentionSelected][mainKeyword]['longTail'] ? (
                                   <>
                                     {Object.keys(
@@ -200,7 +200,7 @@ export const GroupKeywordsPanel = ({
               </div>
             ) : (
               <div className=' py-32 flex justify-center w-full'>
-                <p className=' text-xl text-center'>
+                <p className=' text-xl text-center text-red-600'>
                   No hay palabras para esta intención de búsqueda
                 </p>
               </div>

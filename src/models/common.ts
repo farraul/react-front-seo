@@ -1,1 +1,5 @@
-export type typeModalOpen = 'close' | 'create' | 'edit';
+export type typeModalOpen =
+  | 'close'
+  | 'createIntention'
+  | 'editKewyordIntention'
+  | 'newStructureIntetion';

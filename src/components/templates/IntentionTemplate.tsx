@@ -10,6 +10,9 @@ const IntentionTemplate = ({ intentionsStub, showIntention, intentionSelected }:
   const [keywordToEdit, setKeywordToEdit] = useState<any>('');
 
   const { setIsOpenModal, closeModal, isOpenModal } = useModal();
+  console.log('IntentionTemplate  isOpenModal:', isOpenModal);
+  console.log('IntentionTemplate  closeModal:', closeModal);
+  console.log('IntentionTemplate  setIsOpenModal:', setIsOpenModal);
 
   return (
     <>
@@ -26,7 +29,7 @@ const IntentionTemplate = ({ intentionsStub, showIntention, intentionSelected }:
                           className='bg-primary w-72 h-20 flex  items-center justify-center rounded-2xl flex-col text-xl text-white'
                           onClick={() => showIntention(intention)}
                         >
-                          estaa {intention}
+                          {intention}
                         </Button>
                       </div>
                     </div>
@@ -44,7 +47,7 @@ const IntentionTemplate = ({ intentionsStub, showIntention, intentionSelected }:
                   <Button
                     className='bg-gray-200  border-gray-800 border-6 w-72 h-20 flex  items-center justify-center rounded-2xl flex-col text-xl text-black border-dashed'
                     onClick={() => {
-                      setIsOpenModal('create');
+                      setIsOpenModal('createIntention');
                     }}
                   >
                     Nueva intención
@@ -66,7 +69,9 @@ const IntentionTemplate = ({ intentionsStub, showIntention, intentionSelected }:
         />
       ) : (
         <section className='py-32'>
-          <p className='text-xl  text-center'>Selecciona una intención de búsqueda</p>
+          <div className='border-2 border-slate-400 border-dashed h-40  flex justify-center items-center'>
+            <p className='text-xl'>Selecciona una intención de búsqueda</p>
+          </div>
         </section>
       )}
       <EditKeywordModal

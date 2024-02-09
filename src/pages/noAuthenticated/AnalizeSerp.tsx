@@ -61,6 +61,7 @@ const KeywordSerp = () => {
   return (
     <div className='flex'>
       <div className='w-1/2 p-24'>
+        <h1 className='heading-h1'> Analizar competencia</h1>
         <form
           onSubmit={handleSubmit(onSubmit)}
           className='space-y-4 md:space-y-6 flex flex-col justify-center py-10'
