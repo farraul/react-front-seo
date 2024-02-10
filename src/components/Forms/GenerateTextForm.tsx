@@ -92,13 +92,13 @@ export const GenerateTextForm = ({ setTextGenerated, setIsLoading }: any) => {
       <CustomInput
         label='Número de palabras:'
         name='quantityWords'
-        error={errors.quantity?.message as string}
+        error={errors.quantityWords?.message as string}
         register={register}
         rules={{
           required: true,
           minLength: {
             value: 1,
-            message: 'Mínimo 5 caracteres.',
+            message: 'Mínimo4 caracteres.',
           },
         }}
         type='number'
@@ -115,7 +115,7 @@ export const GenerateTextForm = ({ setTextGenerated, setIsLoading }: any) => {
         rules={{
           required: true,
           minLength: {
-            value: 1,
+            value: 5,
             message: 'Mínimo 5 caracteres.',
           },
         }}

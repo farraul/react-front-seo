@@ -5,26 +5,27 @@ import { classNames } from 'src/utilities/classNames';
 export type props = React.DetailedHTMLProps<
   React.SelectHTMLAttributes<HTMLSelectElement>,
   HTMLSelectElement
-> &
-  UseFormRegisterReturn & {
-    className?: string;
-    color?: string;
-    label?: string;
-    error?: any;
-    options: {
-      name: string;
-      value: any;
-      section?: string;
-      disabled?: boolean;
-    }[];
-    fullWidth?: boolean;
-  };
+> & {
+  className?: string;
+  color?: string;
+  label?: string;
+  error?: any;
+  options: {
+    name: string;
+    value: any;
+    section?: string;
+    disabled?: boolean;
+  }[];
+  fullWidth?: boolean;
+};
 const Select = forwardRef<any, props>(
   ({ className, color = 'primary', label, error, options, fullWidth = true, ...props }, ref) => {
     const sectionNames: string[] = [];
-    options?.forEach((option) => {
+
+    options.forEach((option) => {
       if (!sectionNames.includes(option.section)) sectionNames.push(option.section);
     });
+
     const sections = sectionNames.map((sectionName) => {
       return options.filter((option) => option.section == sectionName);
     });
