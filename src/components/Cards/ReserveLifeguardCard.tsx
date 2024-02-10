@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar } from 'src/components/Avatar/Avatar';
+import { Avatar } from 'src/components/Icons/AvatarIcon';
 import QuestionHoverCard from 'src/components/HoverCards/QuestionHoverCard';
 interface LifeguardProps {
   name: string;

@@ -3,12 +3,13 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Spinner } from 'src/components/Loaders';
 import { Layout } from 'src/layouts';
 
-const Home = lazy(() => import('src/pages/noAuthenticated/HomePage'));
 const ErrorPage = lazy(() => import('src/pages/authenticated/ErrorPage'));
 
 const KeywordsPage = lazy(() => import('src/pages/noAuthenticated/KeywordsPage'));
 const InstentionsPage = lazy(() => import('src/pages/noAuthenticated/IntentionsPage'));
-const EstructurePage = lazy(() => import('src/pages/noAuthenticated/EstructurePage'));
+const StructurePage = lazy(() => import('src/pages/noAuthenticated/StructurePage'));
+const GenerateTextPage = lazy(() => import('src/pages/noAuthenticated/GenerateTextPage'));
+const AnalizeSerpPage = lazy(() => import('src/pages/noAuthenticated/AnalizeSerp'));
 
 // const ReserveLeadPage = lazy(() => import('src/pages/authenticated/ReserveLeadPage '));
 // const ReserveLifeguardPage = lazy(() => import('src/pages/authenticated/ReserveLifeguardPage'));
@@ -17,10 +18,10 @@ export const routesConfigUnAuth = createBrowserRouter([
   {
     path: '/',
     element: <Layout />,
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        // errorElement: <ErrorPage />,
+        errorElement: <ErrorPage />,
         children: [
           {
             index: true,
@@ -39,10 +40,27 @@ export const routesConfigUnAuth = createBrowserRouter([
             ),
           },
           {
-            path: '/estructure',
+            path: '/structure',
             element: (
               <Suspense fallback={<Spinner />}>
-                <EstructurePage />
+                <StructurePage />
+              </Suspense>
+            ),
+          },
+          {
+            path: '/generate-text',
+            element: (
+              <Suspense fallback={<Spinner />}>
+                <GenerateTextPage />
+              </Suspense>
+            ),
+          },
+
+          {
+            path: '/analize-serp',
+            element: (
+              <Suspense fallback={<Spinner />}>
+                <AnalizeSerpPage />
               </Suspense>
             ),
           },

@@ -61,8 +61,6 @@ export const AuthProvider = ({ children }: PropsProvider) => {
     jwtService.init();
 
     function success(user: any, message: any) {
-      //check
-
       // const defaultUser = {
       //   name: 'Isabel',
       //   lastName: 'García',

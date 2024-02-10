@@ -1,0 +1,43 @@
+{
+  "Seo": {
+    "headings": {
+      "Seo local": {
+        "headings": {
+          "Seo local valencia": {
+            "headings": {
+              "Seo local valencia ahora": {
+                "headings": {
+                  "seo local valencia ahora mismo": {
+                    "headings": {
+                      "Seo local valencia ahora": {
+                        "headings": {
+                          "headings": {},
+                          "keywords": { "Seo local": 100 },
+                          "type": 7
+                        }
+                      },
+                      "keywords": { "Seo local": 100 },
+                      "type": 6
+                    }
+                  }
+                },
+                "keywords": { "Seo local": 100 },
+                "type": 5
+              },
+              "keywords": { "Seo local": 200 },
+              "type": 4
+            },
+            "keywords": { "Seo local": 300 },
+            "type": 3
+          }
+        },
+        "keywords": {},
+        "type": 2
+      },
+      "Seo online": { "headings": {}, "keywords": {}, "type": 2 },
+      "Seo presencial": { "headings": {}, "keywords": {}, "type": 2 }
+    },
+    "keywords": { "Seo local keyword": 400 },
+    "type": 1
+  }
+}

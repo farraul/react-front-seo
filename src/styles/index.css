@@ -1,8 +1,12 @@
 @import './vars.css';
 @import './spreadsheetImport.css';
+@import './mui.css';
+
+/* tailwind reinicia */
 
 @tailwind base;
 @tailwind components;
+/* no son elementos html son un conjunto de clases de tailwind */
 @layer components{
   .btn-primary{
     @apply  bg-thirdary text-primary-generic text-lg px-4 py-2 rounded-md w-full;
@@ -10,9 +14,17 @@
   .btn-secondary{
     @apply  bg-primary text-secondary-generic text-lg px-4 py-2 rounded-md w-full;
   }
+  .menu-header-link{
+    @apply text-base mr-12 py-6 p-4 ;
+  }
+  .heading-h1{
+    @apply text-4xl font-bold text-primary-generic my-8
+  }
 }
+/* esto son clases pero que les solemos asignar estilos a medida que no estan en la documentación */
 @tailwind utilities;
- 
+
+ /*Son elemntos html, En base Aqui van las bases elementos primitivos h1,p section, lo del final de la página */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -75,9 +87,6 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
   }
-}
- 
-@layer base {
   * {
     @apply border-border;
   }
@@ -85,6 +94,8 @@
     @apply bg-background text-foreground;
   }
 }
+ 
+
 
 section {
   padding-top: 20px;
@@ -96,4 +107,34 @@ section {
 .Mui-disabled {
   cursor: not-allowed;
   pointer-events: auto;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.17em;
+}
+
+h4 {
+  font-size: 1.00em;
+}
+
+h5 {
+  font-size: 0.83em;
+}
+
+h6 {
+  font-size: 0.67em;
+}
+
+
+#sidebar a.active {
+  font-weight: bold;
+  background-color: white;
 }

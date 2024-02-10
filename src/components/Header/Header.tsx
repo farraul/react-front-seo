@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { logout } from 'src/store/user/userSlice';
 import { useAppDispatch, useAppSelector } from 'src/hooks/useApp';
 import React from 'react';
@@ -73,7 +73,7 @@ function Header() {
               className='title text-theme-primary cursor-pointer text-3xl'
               onClick={() => navigate('/')}
             >
-              Lifeguard
+              Seo Tool
             </p>
           </div>
 
@@ -101,29 +101,27 @@ function Header() {
             </ul>
           </div>
         </nav>
-        <nav className='  h-20 flex flex-nowrap items-center bg-gray-300 justify-between px-40  text-gray-700'>
+        <nav className='flex flex-nowrap items-center bg-gray-300 justify-between px-40  text-gray-700 h-14'>
           <div className='text-theme-primary'></div>
-
-          <div className='  justify-between items-center  '>
-            <ul className='flex font-medium space-x-8 mt-0 gap-12 '>
-              <li>
-                {/* <Link
-                    href='/servicios'
-                    className='font-light block py-2 pr-4 pl-3 text-fifth hover:bg-second hover:rounded-xl transition md:text-2xl  lg:hover:bg-transparent lg:hover:text-primary-700 lg:p-0 uppercase '
-                  >
-                    servicios
-                  </Link> */}
-                <button className=' text-xl mr-12' onClick={() => navigate('/')}>
-                  Nuevas palabras{' '}
-                </button>
-                <button className='text-xl mr-12' onClick={() => navigate('/intentions')}>
-                  Inteciones
-                </button>
-                <button className='text-xl mr-12' onClick={() => navigate('/estructure')}>
-                  Estructura{' '}
-                </button>
-              </li>
-            </ul>
+          <div className='justify-between items-center  '>
+            <div id='sidebar' className='height-32'>
+              {/* //check, se cambian de tamaño y letras */}
+              <NavLink className='menu-header-link' to='/'>
+                Nuevas palabras
+              </NavLink>
+              <NavLink className='menu-header-link' to='/intentions'>
+                Intenciones
+              </NavLink>
+              <NavLink className='menu-header-link' to='/structure'>
+                Estructura
+              </NavLink>
+              <NavLink className='menu-header-link' to='/generate-text'>
+                Generate text
+              </NavLink>
+              <NavLink className='menu-header-link' to='/analize-serp'>
+                Analizar Competencia
+              </NavLink>
+            </div>
           </div>
         </nav>
       </header>

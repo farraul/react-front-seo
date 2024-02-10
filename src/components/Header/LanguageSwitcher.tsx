@@ -6,10 +6,11 @@ import React from 'react';
 import { Select } from '../PrimitiveElements';
 import { selectCurrentLanguage } from 'src/store/i18n/i18Selectors';
 
-const languageValues = {
-  es: 'Es',
-  en: 'En',
-};
+const languageValues = [
+  {
+    es: 'Es',
+  },
+];
 
 export const LanguageSwitcher = () => {
   const dispatch = useAppDispatch();
