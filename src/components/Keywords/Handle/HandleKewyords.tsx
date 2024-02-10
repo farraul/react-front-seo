@@ -16,8 +16,11 @@ import {
 export const HandleKewyords = ({ intentions, intentionSelected, setIntentions }: any) => {
   return (
     <div className=' w-full max-w-sm border-2 bg-gray-700'>
-      <p className='bg-gray-800 text-l px-10 py-4 '>Nuevas palabras</p>
-      {Object.keys(intentions[intentionSelected]['news']).length ? (
+      <p className='bg-gray-800 text-l px-10 py-4 text-center '>Nuevas palabras</p>
+
+      {intentionSelected &&
+      Object.keys(intentions[intentionSelected]).length &&
+      Object.keys(intentions[intentionSelected]['news']).length ? (
         <div className='px-6  bg-gray-700 pb-8  overflow-y-auto max-h-[550px]		'>
           {Object.keys(intentions[intentionSelected]['news']).map((keyword) => (
             <>
