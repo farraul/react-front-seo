@@ -24,7 +24,9 @@ const Select = forwardRef<any, props>(
     const sectionNames: string[] = [];
 
     options.forEach((option) => {
-      if (!sectionNames.includes(option.section)) sectionNames.push(option.section);
+      if (option.section) {
+        if (!sectionNames.includes(option.section)) sectionNames.push(option.section);
+      }
     });
 
     const sections = sectionNames.map((sectionName) => {

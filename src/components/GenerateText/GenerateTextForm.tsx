@@ -14,6 +14,7 @@ import AreaCustom from '../PrimitiveElements/Area/AreaCustom';
 const initialState: any = {
   estructure: '',
   quantityWords: null,
+  area: '',
   tematic: '',
   purpose: '',
 };
@@ -21,7 +22,9 @@ const initialState: any = {
 const estructure = Object.keys(structuresStub)[0];
 const selectOptions = [
   { name: estructure, value: estructure, section: 'seos' },
+
   { name: 'SEM', value: 'b', section: 'sems' },
+  { name: 'SEM', value: 'b', section: 'seos' },
 ];
 console.log('selectOptions:', selectOptions);
 
@@ -176,7 +179,23 @@ export const GenerateTextForm = ({ setTextGenerated, setIsLoading }: any) => {
         placeholder='Escribe la finalidad'
         className='border-2 border-slate-300 border-solid mt-4 p-2  w-full'
       />
-      <AreaCustom id={''} error={''} register={register} />
+      <AreaCustom
+        error={errors.descriptionCompany?.message as string}
+        register={register}
+        rules={{
+          minLength: {
+            value: 15,
+            message: 'La descripción debe ser un poco más larga (min - 15 carácteres)',
+          },
+          maxLength: {
+            value: 299,
+            message: 'La descripción debe ser máximo de 300 carácteres',
+          },
+        }}
+        name='descriptionCompany'
+        label='Descripcion de la empresa'
+        id='descriptionCompany'
+      />
       <Button
         className='h-12 text-center hover:scale-110 active:scale-90 transition flex items-center text-white bg-black justify-center  w-full'
         type='submit'
