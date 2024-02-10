@@ -1,57 +1,34 @@
 import React from 'react';
+import { Seo, SeoHeadingWithName } from 'src/models/seo';
 import { v4 as uuidv4 } from 'uuid';
+import InHeadingResult from './InHeadingResult';
 
-export const ResultPanel = ({ droppableAreas }: any) => {
-  console.log('PanelResult  droppableAreas:', Object.keys(droppableAreas));
+interface Props {
+  droppableAreas: SeoHeadingWithName;
+}
 
-  return (
-    <div className='border-black border-4 mx-20 rounded-sm p-20'>
-      {Object.keys(droppableAreas) &&
-        Object.keys(droppableAreas).map((area, areaIndex) => (
-          <div key={uuidv4}>
-            <div className='pl-5'>
-              <div className=''>
-                <p className=' py-2'>
-                  <span className='font-bold  text-4xl'>{Object.keys(droppableAreas)[0]}</span>
-                  <span className='text-gray-400 ml-5 text-2xl'>H1</span>
-                </p>
-                {Object.keys(droppableAreas[area]['keywords']).length ? (
-                  <div className=' mt-10 ml-20'>
-                    {Object.keys(droppableAreas[area]['keywords']).map((keyword) => {
-                      return (
-                        <p className='text-lg  mr-10'>
-                          <span className='font-bold'> {keyword}</span>{' '}
-                          <span className='text-gray-400 ml-5 text-sm'>Keywords</span>
-                        </p>
-                      );
-                    })}
-                  </div>
-                ) : null}
+export const ResultPanel = ({ droppableAreas }: Props) => (
+  <div className='border-black border-4 mx-20 rounded-sm p-20 w-full'>
+    <div className='mt-6 ml-6 p-2 text-2xl flex flex-col'>
+      <span className='font-semibold'>{droppableAreas.name}:</span>
+      <span className='text-gray-400 ml-5 text-3xl'>H{droppableAreas.type}</span>
+      <div className='flex gap-2 text-base text-gray-500'>
+        {droppableAreas.keywords.map((keyword, index) => (
+          <div key={index}>
+            {Object.entries(keyword).map((word, index) => (
+              <div className='flex gap-2' key={index}>
+                <span>{word[0]}:</span>
+                <span className='font-semibold'>{word[1]}</span>
               </div>
-
-              <div className='mt-6 ml-6'>
-                {Object.keys(droppableAreas[area]['headings']).length
-                  ? Object.keys(droppableAreas[area]['headings']).map((heading: any) => {
-                      return (
-                        <div className=''>
-                          {Object.keys(droppableAreas[area]['headings'][heading]).map(
-                            (headingValue: any) => {
-                              return (
-                                <p className=' p-2 text-2xl ' key={uuidv4}>
-                                  <span className='font-bold'>{headingValue}</span>
-                                  <span className='text-gray-400 ml-5 text-lg '>H2</span>
-                                </p>
-                              );
-                            },
-                          )}
-                        </div>
-                      );
-                    })
-                  : null}
-              </div>
-            </div>
+            ))}
           </div>
         ))}
+      </div>
+      {droppableAreas.headings.map((heading) => (
+        <div className='flex flex-col gap-2 ml-4'>
+          <InHeadingResult heading={heading} />
+        </div>
+      ))}
     </div>
-  );
-};
+  </div>
+);
