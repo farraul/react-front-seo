@@ -1,189 +1,128 @@
 import React, { useState } from 'react';
 import { PanelConstruction } from 'src/components/Estructure/PanelConstruction';
 import { PanelResult } from 'src/components/Estructure/PanelResult';
+import { SeoHeadingWithName } from 'src/models/seo';
+import { handleDragStart, handleDragOver, findHeading } from 'src/utilities/dragAndDropHelper';
 import { v4 as uuidv4 } from 'uuid';
 
-const estructure = {
-  Seo: {
-    headings: {
-      'Seo local': {
-        headings: {
-          'Seo local valencia': {
-            headings: {
-              'Seo local valencia ahora': {
-                headings: {
-                  'seo local valencia ahora mismo': {
-                    headings: {
-                      'Seo local valencia ahora': {
-                        headings: {
-                          headings: {},
-                          keywords: { 'Seo local': 100 },
-                          type: 7,
-                        },
-                      },
-                      keywords: { 'Seo local': 100 },
-                      type: 6,
-                    },
-                  },
-                },
-                keywords: { 'Seo local': 100 },
-                type: 5,
-              },
-              keywords: { 'Seo local': 200 },
-              type: 4,
-            },
-            keywords: { 'Seo local': 300 },
-            type: 3,
-          },
-        },
-        keywords: {},
-        type: 2,
-      },
-      'Seo online': { headings: {}, keywords: {}, type: 2 },
-      'Seo presencial': { headings: {}, keywords: {}, type: 2 },
-    },
-    keywords: { 'Seo local keyword': 400 },
-    type: 1,
-  },
+const estructure: SeoHeadingWithName = {
+  name: 'Seo',
+  headings: [],
+  keywords: [],
+  type: 1,
 };
-const EstructurePage = () => {
-  console.log('in');
 
+const EstructurePage = () => {
   const [words, setWords] = useState([
     'Que es el seo?',
     'Seo para empresas',
     'Seo España',
     'Inicio para el seo',
   ]);
-  const [droppableAreas, setDroppableAreas] = useState<any>(estructure);
+  const [droppableAreas, setDroppableAreas] = useState<SeoHeadingWithName>(estructure);
 
-  const handleDragStart = (event: any, word: any) => {
-    event.dataTransfer.setData('word', word);
-  };
-  const handleDragOver = (event: any) => {
-    event.preventDefault();
-  };
-
-  const handleDropKeyword = (event: any, tag: any) => {
+  const handleDropKeyword = (
+    event: React.DragEvent<HTMLElement>,
+    name: string,
+    type: number,
+    keyword: Record<string, number>[],
+  ) => {
     const word = event.dataTransfer.getData('word');
-    const wordIndex = words.indexOf(word);
-
-    if (wordIndex !== -1) {
-      const newWords = [...words];
-      newWords.splice(wordIndex, 1);
-      setWords(newWords);
-
-      const template = { ...droppableAreas[tag]['keywords'], [word]: {} };
-
-      const templateEmpty = ({ headings = {}, keywords = {}, type }: any) => {
-        return { headings, keywords, type };
+    console.log(name, type, keyword, word);
+    const headingDeterminated = findHeading(estructure, name, type);
+    if (headingDeterminated) {
+      console.log(headingDeterminated);
+      // stub strong in keyword
+      const dataKeyword = {
+        [word]: 100,
       };
-
-      setDroppableAreas((prevState: any) => ({
-        ...prevState,
-        [tag]: {
-          ...prevState[tag],
-          ['keywords']: {
-            ...template,
-          },
-        },
-      }));
+      headingDeterminated.keywords.push(dataKeyword);
+      console.log(headingDeterminated);
     }
+    setDroppableAreas((prevState) => {
+      const updatedHeadings = replaceKeyword(prevState.headings, name, type, word);
+      return {
+        ...prevState,
+        headings: updatedHeadings,
+      };
+    });
   };
 
-  const handleDropHeading = (event: any, tag: any, type: any, route: any) => {
+  const handleDropHeading = (
+    event: React.DragEvent<HTMLElement>,
+    type: number,
+    heading: SeoHeadingWithName,
+  ) => {
+    if (type === 6) return;
     const word = event.dataTransfer.getData('word');
-
-    console.log('tag:', tag);
-    console.log('word', word);
-    console.log('word', type);
-    console.log(route);
-
-    const wordIndex = words.indexOf(word);
-
-    if (wordIndex !== -1) {
-      const newWords = [...words];
-      newWords.splice(wordIndex, 1);
-      setWords(newWords);
-      console.log('in');
-
-      const templates = () => {
-        console.log(droppableAreas[tag]['headings'][word]);
-        // console.log(droppableAreas[tag]['headings'][word].length);
-        if (droppableAreas[tag]['headings'].word == undefined) {
-          console.log('handleDrop  word:', word);
-          return { headings: {}, keywords: {}, type: type + 1 };
-        } else {
-          console.log(droppableAreas[tag]['headings'][word].length);
-        }
-      };
-
-      console.log('handleDrop  word:', word);
-      setDroppableAreas((prevState: any) => ({
+    const newDataHeading: SeoHeadingWithName = {
+      name: word,
+      type: type + 1,
+      headings: [],
+      keywords: [],
+    };
+    heading.headings.push(newDataHeading);
+    setDroppableAreas((prevState) => {
+      return {
         ...prevState,
-        [tag]: {
-          ...prevState[tag],
-          ['headings']: {
-            ...prevState[tag]['headings'],
-            [word]: templates,
-          },
-        },
-      }));
-      console.log(droppableAreas);
-    }
+        heading,
+      };
+    });
   };
 
-  const findValue = (obj: any, key: any) => {
-    const stack = [{ obj, path: [] }];
-
-    while (stack.length > 0) {
-      const { obj, path } = stack.pop();
-
-      for (let k in obj) {
-        const newPath = [...path, k];
-
-        if (k === key && Object.keys(obj[k]).length !== 0) {
-          console.log(newPath.join(' -> '), obj[k]);
-        }
-
-        if (typeof obj[k] === 'object' && obj[k] !== null) {
-          stack.push({ obj: obj[k], path: newPath });
-        }
+  const replaceKeyword = (
+    headings: SeoHeadingWithName[],
+    name: string,
+    type: number,
+    word: string,
+  ): SeoHeadingWithName[] => {
+    return headings.map((heading) => {
+      if (heading.name === name && heading.type === type) {
+        const updatedKeywords = [...heading.keywords, { [word]: 100 }];
+        return {
+          ...heading,
+          keywords: updatedKeywords,
+        };
       }
-    }
+      return {
+        ...heading,
+        headings: replaceKeyword(heading.headings, name, type, word),
+      };
+    });
   };
-
-  findValue(estructure, 'keywords');
 
   return (
-    <section>
-      <div className='mt-16 mb-1 flex'>
-        <div className='w-1/2'>
-          <h1 className='font-bold text-3xl mb-6'> Nuevas palabras </h1>
-          <p className='mb-8'>Pincha y arrastra las palabras:</p>
-          {words.map((word) => {
-            return (
-              <span
-                className='border-2 ml-4 py-2 px-4'
-                onDragStart={(event) => handleDragStart(event, word)}
-                draggable
-              >
-                <span className=''>{word}</span>
-              </span>
-            );
-          })}
-
-          <PanelConstruction
-            droppableAreas={droppableAreas}
-            handleDragOver={handleDragOver}
-            handleDropKeyword={handleDropKeyword}
-            handleDropHeading={handleDropHeading}
-          />
+    <section className='flex justify-between'>
+      <div className='mt-16 mb-1 flex flex-col w-full'>
+        <div className='w-full flex gap-2 whitespace-pre-wrap flex-col'>
+          <div className='flex flex-col'>
+            <h1 className='font-bold text-3xl mb-6'> Nuevas palabras </h1>
+            <p className='mb-8'>Pincha y arrastra las palabras:</p>
+          </div>
+          <div className='w-full flex '>
+            {words.map((word, index) => {
+              return (
+                <span
+                  key={index}
+                  className='border-2 ml-4 text-xs py-2 px-4 w-fit'
+                  onDragStart={(event) => handleDragStart(event, word)}
+                  draggable
+                >
+                  <span className=''>{word}</span>
+                </span>
+              );
+            })}
+          </div>
         </div>
-
-        <div className='w-1/2'>
-          <PanelResult droppableAreas={droppableAreas} />
-        </div>
+        <PanelConstruction
+          droppableAreas={droppableAreas}
+          handleDragOver={handleDragOver}
+          handleDropKeyword={handleDropKeyword}
+          handleDropHeading={handleDropHeading}
+        />
+      </div>
+      <div className='w-full max-w-lg'>
+        <PanelResult droppableAreas={droppableAreas} />
       </div>
     </section>
   );
