@@ -32,28 +32,52 @@ export const HandleKewyords = ({ intentions, intentionSelected, setIntentions }:
                   <Select
                     required
                     onValueChange={(param) => {
-                      const mainKeyword = param.split('*')[1];
-                      const typeKeyword: any = param.split('*')[2];
+                      const type: any = param.split('*')[0];
+                      const group: any = param.split('*')[1];
+                      const vol: any = param.split('*')[2];
                       const keyword: any = param.split('*')[3];
-                      const vol: any = param.split('*')[4];
-                      const updatedType: any = Object.assign(
-                        ...[intentions[intentionSelected][mainKeyword][typeKeyword]],
-                        { [keyword]: vol },
-                      );
+                      const intention = param.split('*')[4];
 
-                      delete intentions[intentionSelected]['news'][keyword];
+                      if (type == 'createMainKeyword') {
+                        console.log(intentions[intentionSelected]);
+                        console.log(intentions[intentionSelected][intention]);
+                        console.log({ keyword });
+                        console.log({ vol });
 
-                      setIntentions((prevState: any) => ({
-                        ...prevState,
-                        [intentionSelected]: {
-                          ...prevState[intentionSelected],
-                          [mainKeyword]: {
-                            ...prevState[intentionSelected][mainKeyword],
-                            [typeKeyword]: updatedType,
+                        delete intentions[intentionSelected]['news'][keyword];
+
+                        setIntentions((prevState: any) => ({
+                          ...prevState,
+                          [intentionSelected]: {
+                            ...prevState[intentionSelected],
+                            [keyword]: {
+                              ['vol']: vol,
+                              ['synonymous']: {},
+                              ['longTail']: {},
+                            },
+                            ['news']: intentions[intentionSelected]['news'],
                           },
-                          ['news']: intentions[intentionSelected]['news'],
-                        },
-                      }));
+                        }));
+                      } else {
+                        const updatedType: any = Object.assign(
+                          ...[intentions[intentionSelected][intention][type]],
+                          { [keyword]: vol },
+                        );
+
+                        delete intentions[intentionSelected]['news'][keyword];
+
+                        setIntentions((prevState: any) => ({
+                          ...prevState,
+                          [intentionSelected]: {
+                            ...prevState[intentionSelected],
+                            [intention]: {
+                              ...prevState[intentionSelected][intention],
+                              [group]: updatedType,
+                            },
+                            ['news']: intentions[intentionSelected]['news'],
+                          },
+                        }));
+                      }
                     }}
                   >
                     <SelectTrigger className='w-[100%] bg-white text-black'>
@@ -62,6 +86,12 @@ export const HandleKewyords = ({ intentions, intentionSelected, setIntentions }:
 
                     <SelectContent>
                       <>
+                        <SelectItem
+                          key={`createMainKeyword`}
+                          value={`createMainKeyword*${intentionSelected}*${intentions[intentionSelected]['news'][keyword]}*${keyword}`}
+                        >
+                          <span className='text-bold'> Crear Keyword Principal</span>
+                        </SelectItem>
                         {Object.keys(intentions[intentionSelected])
                           .filter((b: any) => b !== 'news')
                           .map((i: any) => {
@@ -72,13 +102,13 @@ export const HandleKewyords = ({ intentions, intentionSelected, setIntentions }:
 
                                   <SelectItem
                                     key={`synonymous${i}`}
-                                    value={`${intentionSelected}*${i}*synonymous*${keyword}*${intentions[intentionSelected]['news'][keyword]}`}
+                                    value={`synonymous*${intentionSelected}*${intentions[intentionSelected]['news'][keyword]}*${keyword}*${i}`}
                                   >
                                     Sinónimos
                                   </SelectItem>
                                   <SelectItem
                                     key={`longTail${i}`}
-                                    value={`${intentionSelected}*${i}*longTail*${keyword}*${intentions[intentionSelected]['news'][keyword]}`}
+                                    value={`longTail*${intentionSelected}*${intentions[intentionSelected]['news'][keyword]}*${keyword}*${i}`}
                                   >
                                     Long tails
                                   </SelectItem>

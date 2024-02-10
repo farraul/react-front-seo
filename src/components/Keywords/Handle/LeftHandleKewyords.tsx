@@ -13,6 +13,7 @@ import {
 import { Button, CustomInput } from 'src/components/PrimitiveElements';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { PortalModal } from 'src/components/templates';
+import { useModal } from 'src/hooks/useModal';
 const initialState: any = {
   intention: '',
 };
@@ -28,7 +29,7 @@ export const LeftHandleKewyords = ({
   const [isOpenImportModal, setIsOpenImportModal] = useState<any>(false);
   const [keywordsChecked, setKeywordsChecked] = useState<object>({});
   const [keywordsSelected, setKeywordsSelected] = useState<string>('intention');
-  const [isOpenModalCreateIntention, setIsOpenModalCreateIntention] = useState<any>(false);
+  const { setIsOpenModal, closeModal, isOpenModal } = useModal();
 
   const onClose = () => {
     setIsOpenImportModal(false);
@@ -71,7 +72,7 @@ export const LeftHandleKewyords = ({
   };
 
   const closeModalCreateIntention = () => {
-    setIsOpenModalCreateIntention(false);
+    setIsOpenModal('close');
   };
 
   const onSubmitform: SubmitHandler<Inputs> = (value) => {
@@ -153,16 +154,16 @@ export const LeftHandleKewyords = ({
         </Select>
         <button
           className=' mt-5 ml-4 underline mb-0 text-gray-700'
-          onClick={() => setIsOpenModalCreateIntention(!isOpenModalCreateIntention)}
+          onClick={() => setIsOpenModal('createIntention')}
         >
           Crear intención de búsqueda
         </button>
       </div>
       <PortalModal
         close={closeModalCreateIntention}
-        typeModal='create'
+        typeModal='createIntention'
         title='Añade una intención de búsqueda'
-        isOpen={isOpenModalCreateIntention}
+        isOpen={isOpenModal}
         className={'bg-slate-200 max-w-xl'}
       >
         <form

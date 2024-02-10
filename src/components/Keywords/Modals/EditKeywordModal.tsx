@@ -25,7 +25,7 @@ export const EditKeywordModal = ({ isOpenModal, keywordToEdit, closeModal }: any
 
   return (
     <PortalModal
-      typeModal={'edit'}
+      typeModal={'editKewyordIntention'}
       close={closeModal}
       title='Modificación de la keyword '
       isOpen={isOpenModal}

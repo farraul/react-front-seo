@@ -10,9 +10,6 @@ const IntentionTemplate = ({ intentionsStub, showIntention, intentionSelected }:
   const [keywordToEdit, setKeywordToEdit] = useState<any>('');
 
   const { setIsOpenModal, closeModal, isOpenModal } = useModal();
-  console.log('IntentionTemplate  isOpenModal:', isOpenModal);
-  console.log('IntentionTemplate  closeModal:', closeModal);
-  console.log('IntentionTemplate  setIsOpenModal:', setIsOpenModal);
 
   return (
     <>
