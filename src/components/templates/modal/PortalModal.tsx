@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { IoMdClose } from 'react-icons/io';
-import { typeModalOpen } from 'src/models/common';
+import { typeModalOpen } from 'src/models/modals';
 
 createPortal;
 

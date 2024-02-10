@@ -10,7 +10,7 @@ const GenerateTextPage = () => {
     <section>
       <div className='px-28 mt-28 flex gap-20'>
         <div className='w-1/2'>
-          <h1 className='heading-h1'>Generate text</h1>
+          <h1 className=''>Generate text</h1>
           <GenerateTextForm setTextGenerated={setTextGenerated} setIsLoading={setIsLoading} />
         </div>
         <div className='w-1/2'>

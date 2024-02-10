@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { typeModalOpen } from 'src/models/common';
+import { typeModalOpen } from 'src/models/modals';
 
 export const useModal = () => {
   const [isOpenModal, setIsOpenModal] = useState<typeModalOpen>('close');

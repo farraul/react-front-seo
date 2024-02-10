@@ -5,9 +5,14 @@ import { useState } from 'react';
 import { EditKeywordModal } from '../Keywords/Modals/EditKeywordModal';
 import { CreateIntentionModal } from '../Modals/CreateIntentionModal';
 
-const IntentionTemplate = ({ intentionsStub, showIntention, intentionSelected }: any) => {
+const IntentionTemplate = ({ intentionsStub }: any) => {
   const [intentions, setIntentions] = useState<any>(intentionsStub);
   const [keywordToEdit, setKeywordToEdit] = useState<any>('');
+  const [intentionSelected, setIntentionSelected] = useState<any>();
+
+  const showIntention = (intention: string) => {
+    setIntentionSelected(intention);
+  };
 
   const { setIsOpenModal, closeModal, isOpenModal } = useModal();
 
