@@ -3,7 +3,6 @@ import { createBrowserRouter } from 'react-router-dom';
 import { Spinner } from 'src/components/Loaders';
 import { Layout } from 'src/layouts';
 
-const Home = lazy(() => import('src/pages/noAuthenticated/HomePage'));
 const ErrorPage = lazy(() => import('src/pages/authenticated/ErrorPage'));
 
 const KeywordsPage = lazy(() => import('src/pages/noAuthenticated/KeywordsPage'));

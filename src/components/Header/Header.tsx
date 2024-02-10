@@ -105,6 +105,7 @@ function Header() {
           <div className='text-theme-primary'></div>
           <div className='justify-between items-center  '>
             <div id='sidebar' className='height-32'>
+              {/* //check, se cambian de tamaño y letras */}
               <NavLink className='menu-header-link' to='/'>
                 Nuevas palabras
               </NavLink>

@@ -9,6 +9,7 @@ import {
 } from 'src/constants/API';
 import { number } from 'yup';
 import structuresStub from 'src/stub/structuresStub.json';
+import AreaCustom from '../PrimitiveElements/Area/AreaCustom';
 
 const initialState: any = {
   estructure: '',
@@ -175,6 +176,7 @@ export const GenerateTextForm = ({ setTextGenerated, setIsLoading }: any) => {
         placeholder='Escribe la finalidad'
         className='border-2 border-slate-300 border-solid mt-4 p-2  w-full'
       />
+      <AreaCustom id={''} error={''} register={register} />
       <Button
         className='h-12 text-center hover:scale-110 active:scale-90 transition flex items-center text-white bg-black justify-center  w-full'
         type='submit'

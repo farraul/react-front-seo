@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { GenerateTextForm } from 'src/components/Forms/GenerateTextForm';
+import { GenerateTextForm } from 'src/components/GenerateText/GenerateTextForm';
 import { Spinner } from 'src/components/Loaders';
 
 const GenerateTextPage = () => {
