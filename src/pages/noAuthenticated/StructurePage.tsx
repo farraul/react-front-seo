@@ -158,8 +158,8 @@ const StructurePage = () => {
       <section>
         {structureSelected ? (
           <>
-            <div className='mt-16 mb-1 flex'>
-              <div className='w-1/2'>
+            <div className='mt-16 mb-1 flex gap-x-4'>
+              <div className='w-2/3'>
                 {/* <h1 className='font-bold text-2xl mb-6'>HTML </h1> */}
                 <p className='mb-8'>Pincha y arrastra las palabras:</p>
                 {words.map((word) => {
@@ -180,7 +180,7 @@ const StructurePage = () => {
                   handleDropHeading={handleDropHeading}
                 />
               </div>
-              <div className='w-full max-w-lg'>
+              <div className='w-1/3'>
                 <ResultPanel droppableAreas={droppableAreas} />
               </div>
             </div>

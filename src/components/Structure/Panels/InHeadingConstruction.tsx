@@ -33,7 +33,7 @@ const InHeadingConstruction = ({
         </div>
         <div className='ml-10 pt-2'>
           <div className='flex justify-between items-center w-fit '>
-            <div className='flex items-center'>
+            <div className='flex item'>
               <span className='capitalize text-gray-200 text-sm italic w-16'>keywords</span>
               <ButtonAddForDrag
                 name={heading.name}

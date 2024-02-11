@@ -57,7 +57,7 @@ export const ConstructionPanel = ({
           ))
         ) : (
           <div className='flex items-center ml-4'>
-            <span className='text-xs text-gray-100'>'N/A'</span>
+            <span className='text-xs text-gray-100'></span>
           </div>
         )}
       </div>
@@ -92,7 +92,7 @@ export const ConstructionPanel = ({
             ))
           ) : (
             <div className='flex items-center ml-4'>
-              <span className='text-xs text-gray-100'>'N/A'</span>
+              <span className='text-xs text-gray-100'></span>
             </div>
           )}
         </div>
