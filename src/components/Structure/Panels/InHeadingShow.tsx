@@ -19,14 +19,20 @@ interface Props {
 }
 
 const InHeadingShow = ({ heading }: any) => {
-  console.log('InHeadingShow  heading:', heading);
+  console.log('InHeadingShow  heading:', heading.type);
 
   return (
     <div className=' px-4 '>
       <div className=' flex flex-col mt-2'>
         <div className='flex gap-2 items-center'>
-          <p className='font-bold'> {heading.name}</p>{' '}
-          <span className='ml-5 '>H{heading.type}</span>
+          <p
+            className={`font-bold ${
+              heading.type === 2 ? 'text-2xl' : heading.type === 3 ? 'text-xl' : 'text-text-base'
+            }`}
+          >
+            {heading.name}
+          </p>
+          <span className={`ml-5 `}>H{heading.type}</span>
           <span className='font-bold ml-4 flex items-center '></span>
         </div>
         <div className='ml-10 pt-2'>
@@ -41,7 +47,7 @@ const InHeadingShow = ({ heading }: any) => {
                     {Object.entries(keyword).map((word, index) => (
                       <div className='flex gap-2 w-full' key={index}>
                         {/* <span className='text-xs text-gray-200'>[{indexKey + 1}]</span> */}
-                        <span className='w-max'>{word[0]}</span>
+                        <span className='w-max'>{word[0]}, </span>
                       </div>
                     ))}
                   </div>

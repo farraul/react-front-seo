@@ -12,7 +12,7 @@ export const ResultPanel = ({ droppableAreas }: Props) => (
   <div className=' flex flex-col mt-2  h-full p-8 rounded-sm  border border-black'>
     <div className='flex items-center'>
       {droppableAreas.name ? (
-        <p className='text-2xl font-bold'>{droppableAreas.name}</p>
+        <p className='text-4xl font-bold'>{droppableAreas.name}</p>
       ) : (
         <p>[ ]</p>
       )}
@@ -26,7 +26,7 @@ export const ResultPanel = ({ droppableAreas }: Props) => (
             {Object.entries(keyword).map((word, index) => (
               <div className='flex gap-2' key={index}>
                 {/* <span className='text-xs text-gray-200'>[{indexKey + 1}]</span> */}
-                <span>{word[0]} </span>
+                <span>{word[0]}, </span>
               </div>
             ))}
           </div>
