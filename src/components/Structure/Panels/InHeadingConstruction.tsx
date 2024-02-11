@@ -25,65 +25,84 @@ const InHeadingConstruction = ({
   handleDropHeading,
 }: Props) => {
   return (
-    <div className='bg-blue-600 px-5 py-4 text-white rounded-md mt-2'>
+    <div className='bg-blue-600 px-4 text-white'>
       <div className=' flex flex-col mt-2'>
         <div className='flex gap-2 items-center'>
           <p>{heading.name}</p>
-          <span className='font-bold text-gray-400 ml-5 flex items-center '>H{heading.type}</span>
+          <span className='font-bold text-gray-400 ml-5 flex items-center '></span>
         </div>
-
-        <div className='flex justify-between items-center w-36'>
-          <span className='capitalize text-gray-200 font-semibold'>keywords</span>
-          <ButtonAddForDrag
-            name={heading.name}
-            type={heading.type}
-            keyword={heading.keywords}
-            handleDragOver={handleDragOver}
-            handleDrop={handleDropKeyword}
-          />
-          {Object.keys(heading.keywords).length > 0 ? (
-            heading.keywords.map((keyword, indexKey) => (
-              <div className='ml-2 flex items-center gap-2' key={indexKey}>
-                {Object.entries(keyword).map((word, index) => (
-                  <div className='flex gap-2' key={index}>
-                    <span className='text-xs text-gray-200'>[{indexKey + 1}]</span>
-                    <span>{word[0]}</span>
+        <div className='ml-10 pt-2'>
+          <div className='flex justify-between items-center w-fit '>
+            <div className='flex items-center'>
+              <span className='capitalize text-gray-200 text-sm italic w-16'>keywords</span>
+              <ButtonAddForDrag
+                name={heading.name}
+                type={heading.type}
+                keyword={heading.keywords}
+                handleDragOver={handleDragOver}
+                handleDrop={handleDropKeyword}
+              />
+            </div>
+            <div className='flex'>
+              {Object.keys(heading.keywords).length > 0 ? (
+                heading.keywords.map((keyword, indexKey) => (
+                  <div className='ml-2 flex items-center gap-2 w-full' key={indexKey}>
+                    {Object.entries(keyword).map((word, index) => (
+                      <div className='flex gap-2 w-full' key={index}>
+                        {/* <span className='text-xs text-gray-200'>[{indexKey + 1}]</span> */}
+                        <span className='w-max'>{word[0]}</span>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            ))
-          ) : (
-            <div className='flex items-center ml-4'>
-              <span className='text-xs text-gray-100'>'N/A'</span>
+                ))
+              ) : (
+                <div className='flex items-center ml-4 '>
+                  <span className='text-xs text-gray-100'></span>
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        <div className='flex ml-4 items-center'>
-          <div className='flex items-center justify-between w-36'>
-            <span className='capitalize text-gray-200 font-semibold'>H{heading.type + 1}</span>
-            <ButtonAddForDrag
-              name={heading.name}
-              type={heading.type}
-              keyword={heading.keywords}
-              handleDragOver={handleDragOver}
-              handleDrop={handleDropHeading}
-              heading={heading}
-            />
           </div>
-          {heading.headings.length > 0 ? (
-            heading.headings.map((newHeading, index) => (
-              <div className='ml-2 flex items-center gap-2' key={index}>
-                <span>{newHeading.name}</span>
+          <div className='flex  mt-2'>
+            <div className='flex w-36 '>
+              <div className='capitalize text-gray-200 text-sm italic w-16 py-2 h-full flex items-center justify-end '>
+                H{heading.type + 1}
               </div>
-            ))
-          ) : (
-            <div className='flex items-center ml-4'>
-              <span className='text-xs text-gray-100'>'N/A'</span>
+              <div className='h-full'>
+                <ButtonAddForDrag
+                  name={heading.name}
+                  type={heading.type}
+                  keyword={heading.keywords}
+                  handleDragOver={handleDragOver}
+                  handleDrop={handleDropHeading}
+                  heading={heading}
+                />
+              </div>
             </div>
-          )}
+            <div>
+              {heading.headings.length > 0 ? (
+                heading.headings.map((newHeading, index) => (
+                  <div className='ml-2 flex items-center gap-2' key={index}>
+                    <span>
+                      <InHeadingConstruction
+                        handleDragOver={handleDragOver}
+                        handleDropKeyword={handleDropKeyword}
+                        handleDropHeading={handleDropHeading}
+                        key={index}
+                        heading={newHeading}
+                      />
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <div className='flex items-center ml-4'>
+                  <span className='text-xs text-gray-100'></span>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
-      {heading.headings.length > 0 ? (
+      {/* {heading.headings.length > 0 ? (
         <div>
           {heading.headings.map((subheading, subIndex) => (
             <InHeadingConstruction
@@ -95,7 +114,7 @@ const InHeadingConstruction = ({
             />
           ))}
         </div>
-      ) : null}
+      ) : null} */}
     </div>
   );
 };

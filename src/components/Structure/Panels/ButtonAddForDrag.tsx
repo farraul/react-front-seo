@@ -37,9 +37,7 @@ const ButtonAddForDrag = ({ type, keyword, name, heading, handleDrop, handleDrag
           ? actionsHeading['heading'](event, type, heading)
           : actionsHeading['keyword'](event, name, type, keyword)
       }
-      className={`${
-        heading ? `min-h-10 h-[${headingHeight}]` : 'h-16'
-      } py-2 ml-6 w-fit  text-gray-400 border-gray-300 border-2 px-4  rounded-md border-dotted`}
+      className={`py-2 ml-6 w-fit  text-gray-400 border-gray-300 border-2 px-4 rounded-md border-dotted h-full`}
     >
       {`+`}
     </button>
