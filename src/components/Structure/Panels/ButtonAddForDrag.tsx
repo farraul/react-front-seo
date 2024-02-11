@@ -24,7 +24,6 @@ interface Props {
 }
 
 const ButtonAddForDrag = ({ type, keyword, name, heading, handleDrop, handleDragOver }: Props) => {
-  const headingHeight = heading && heading.headings.length + 4;
   const actionsHeading = {
     keyword: handleDrop as typeHandleDropKeyword,
     heading: handleDrop as typeHandleDropHeading,

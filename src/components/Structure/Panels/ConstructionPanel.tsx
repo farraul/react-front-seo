@@ -26,7 +26,7 @@ export const ConstructionPanel = ({
   handleDropKeyword,
   handleDropHeading,
 }: Props) => (
-  <div className='bg-blue-600 px-8 py-10 text-white rounded-md  pl-10 mt-10'>
+  <div className='bg-blue-600 px-8 py-10 text-white   pl-10 mt-10'>
     <div className=' flex flex-col mt-2'>
       <div className='flex items-center'>
         <span className='mr-5 flex items-center text-xl '>H{droppableAreas.type}:</span>
@@ -50,7 +50,7 @@ export const ConstructionPanel = ({
               {Object.entries(keyword).map((word, index) => (
                 <div className='flex gap-2' key={index}>
                   {/* <span className='text-xs text-gray-200'>[{indexKey + 1}]</span> */}
-                  <span>{word[0]} |</span>
+                  <span>{word[0]}, </span>
                 </div>
               ))}
             </div>

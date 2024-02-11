@@ -1,15 +1,16 @@
-import React from 'react';
 import { Seo, SeoHeadingWithName } from 'src/models/seo';
 import { v4 as uuidv4 } from 'uuid';
 import InHeadingResult from './InHeadingResult';
-import InHeadingShow from './InHeadingShow';
 
 interface Props {
   droppableAreas: SeoHeadingWithName;
 }
 
-export const ResultPanel = ({ droppableAreas }: Props) => (
-  <div className=' flex flex-col mt-2  h-full p-8 rounded-sm  border border-black'>
+export const ResultPanel = ({ droppableAreas }: Props) => {
+  {
+    console.log({ droppableAreas });
+  }
+  <div className=' flex flex-col  h-full py-16 px-10 rounded-sm  border border-black'>
     <div className='flex items-center'>
       {droppableAreas.name ? (
         <p className='text-4xl font-bold'>{droppableAreas.name}</p>
@@ -46,7 +47,7 @@ export const ResultPanel = ({ droppableAreas }: Props) => (
         {droppableAreas.headings.length > 0 ? (
           droppableAreas.headings.map((heading, index) => (
             <div className='ml-2 flex items-center gap-2' key={index}>
-              <InHeadingShow key={heading.name} heading={heading} />
+              <InHeadingResult key={heading.name} heading={heading} />
             </div>
           ))
         ) : (
@@ -63,5 +64,5 @@ export const ResultPanel = ({ droppableAreas }: Props) => (
         </div>
       </div> */}
     </div>
-  </div>
-);
+  </div>;
+};
