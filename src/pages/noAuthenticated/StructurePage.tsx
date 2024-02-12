@@ -36,7 +36,7 @@ const StructurePage = () => {
 
   const [words, setWords] = useState([
     'Que es el seo?',
-    'Seo para empresas',
+    'Seo para empresas en valencia',
     'Seo España',
     'Inicio para el seo',
   ]);

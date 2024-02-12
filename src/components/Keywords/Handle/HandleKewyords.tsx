@@ -84,7 +84,7 @@ export const HandleKewyords = ({ intentions, intentionSelected, setIntentions }:
                     }}
                   >
                     <SelectTrigger className='w-[100%] bg-white text-black'>
-                      <SelectValue placeholder='Asignar' />
+                      <SelectValue placeholder='Asignar a un grupo de keywords' />
                     </SelectTrigger>
 
                     <SelectContent>
@@ -93,7 +93,7 @@ export const HandleKewyords = ({ intentions, intentionSelected, setIntentions }:
                           key={`createMainKeyword`}
                           value={`createMainKeyword*${intentionSelected}*${intentions[intentionSelected]['news'][keyword]}*${keyword}`}
                         >
-                          <span className='text-bold'> Crear Keyword Principal</span>
+                          <span className='text-bold'> Convertir en keyword principal</span>
                         </SelectItem>
                         {Object.keys(intentions[intentionSelected])
                           .filter((b: any) => b !== 'news')
@@ -101,19 +101,19 @@ export const HandleKewyords = ({ intentions, intentionSelected, setIntentions }:
                             return (
                               <>
                                 <SelectGroup>
-                                  <SelectLabel>{i}</SelectLabel>
+                                  <SelectLabel className='mt-4'>{i}</SelectLabel>
 
                                   <SelectItem
                                     key={`synonymous${i}`}
                                     value={`synonymous*${intentionSelected}*${intentions[intentionSelected]['news'][keyword]}*${keyword}*${i}`}
                                   >
-                                    Sinónimos
+                                    Usar como sinónimo
                                   </SelectItem>
                                   <SelectItem
                                     key={`longTail${i}`}
                                     value={`longTail*${intentionSelected}*${intentions[intentionSelected]['news'][keyword]}*${keyword}*${i}`}
                                   >
-                                    Long tails
+                                    Usar como long tail
                                   </SelectItem>
                                 </SelectGroup>
                               </>

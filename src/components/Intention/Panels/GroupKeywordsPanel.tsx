@@ -68,7 +68,7 @@ export const GroupKeywordsPanel = ({
                                 </div>
                               </div>
                               <div className='pl-14 bg-primary  px-10 '>
-                                <p className=' text-gray-400 italic text-xs'>Sinónimos</p>
+                                <p className=' text-gray-400 italic text-xs'>Sinónimosss</p>
                                 {Object.keys(
                                   intentions[intentionSelected][mainKeyword]['synonymous'],
                                 ).length ? (
