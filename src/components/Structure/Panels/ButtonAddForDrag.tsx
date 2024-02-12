@@ -23,7 +23,9 @@ interface Props {
   heading?: SeoHeadingWithName;
 }
 
-const ButtonAddForDrag = ({ type, keyword, name, heading, handleDrop, handleDragOver }: Props) => {
+const ButtonAddForDrag = ({ name, type, heading, handleDrop, handleDragOver, keyword }: Props) => {
+  console.log('ButtonAddForDrag  heading:', heading);
+
   const actionsHeading = {
     keyword: handleDrop as typeHandleDropKeyword,
     heading: handleDrop as typeHandleDropHeading,

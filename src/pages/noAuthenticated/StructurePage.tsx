@@ -25,6 +25,8 @@ const estructure: SeoHeadingWithName = {
 
 const StructurePage = () => {
   const [structureSelected, setStructureSelected] = useState<any>();
+  console.log('StructurePage  structureSelected:', structureSelected);
+
   const [isOpenEditKeyword, setIsOpenEditKeyword] = useState<any>(false);
   const [isOpenCreateIntention, setIsOpenCreateIntention] = useState(false);
 
@@ -39,6 +41,7 @@ const StructurePage = () => {
     'Inicio para el seo',
   ]);
   const [droppableAreas, setDroppableAreas] = useState<any>(estructure);
+  console.log('StructurePage  droppableAreas:', droppableAreas);
 
   const {
     register,
@@ -57,24 +60,40 @@ const StructurePage = () => {
     keyword: Record<string, number>[],
   ) => {
     const word = event.dataTransfer.getData('word');
-    console.log(name, type, keyword, word);
+    console.log(estructure, name, type, keyword, word);
+
     const headingDeterminated = findHeading(estructure, name, type);
+    let isRepeat = false;
     if (headingDeterminated) {
-      console.log(headingDeterminated);
-      // stub strong in keyword
-      const dataKeyword = {
-        [word]: 100,
-      };
-      headingDeterminated.keywords.push(dataKeyword);
-      console.log(headingDeterminated);
+      headingDeterminated.keywords.findIndex((KeywordIn) =>
+        Object.keys(KeywordIn).forEach((keywordInKey) => {
+          console.log(keywordInKey, word);
+          console.log(keywordInKey === word);
+          if (keywordInKey === word) isRepeat = true;
+        }),
+      );
+      if (!isRepeat) {
+        // stub strong in keyword
+        const dataKeyword = {
+          [word]: 100,
+        };
+
+        console.log(isRepeat);
+        headingDeterminated.keywords.push(dataKeyword);
+      }
     }
-    setDroppableAreas((prevState: { headings: SeoHeadingWithName[] }) => {
-      const updatedHeadings = replaceKeyword(prevState.headings, name, type, word);
-      return {
-        ...prevState,
-        headings: updatedHeadings,
-      };
-    });
+    if (!isRepeat) {
+      console.log('in');
+      setDroppableAreas((prevState: { headings: SeoHeadingWithName[] }) => {
+        const updatedHeadings = replaceKeyword(prevState.headings, name, type, word);
+        console.log('setDroppableAreas  updatedHeadings:', updatedHeadings);
+
+        return {
+          ...prevState,
+          headings: updatedHeadings,
+        };
+      });
+    }
   };
 
   const handleDropHeading = (
@@ -82,16 +101,23 @@ const StructurePage = () => {
     type: number,
     heading: SeoHeadingWithName,
   ) => {
-    if (type === 6) return;
+    if (type === 5) return;
     const word = event.dataTransfer.getData('word');
+    console.log('StructurePage  word:', word);
+
     const newDataHeading: SeoHeadingWithName = {
       name: word,
       type: type + 1,
       headings: [],
       keywords: [],
     };
+
+    const nameIndex = heading.headings.findIndex((headingObj) => headingObj.name === word);
+
+    if (nameIndex >= 0) return;
+
     heading.headings.push(newDataHeading);
-    setDroppableAreas((prevState) => {
+    setDroppableAreas((prevState: any) => {
       return {
         ...prevState,
         heading,
