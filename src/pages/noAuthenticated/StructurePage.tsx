@@ -16,6 +16,7 @@ const structure: SeoHeadingWithName = {
 const StructurePage = () => {
   const [structureSelected, setStructureSelected] = useState<any>();
   const [droppableAreas, setDroppableAreas] = useState<any>(structure);
+  console.log('StructurePage  droppableAreas:', droppableAreas);
 
   return (
     <article className='mb-32'>

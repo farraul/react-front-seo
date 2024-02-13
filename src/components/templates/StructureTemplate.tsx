@@ -33,18 +33,81 @@ export const StructureTemplate = ({
     word: string,
   ): SeoHeadingWithName[] => {
     return headings.map((heading) => {
+      console.log(heading);
+
       if (heading.name === name && heading.type === type) {
+        console.log(word);
+        console.log(heading.keywords);
         const updatedKeywords = [...heading.keywords, { [word]: 100 }];
+        console.log('returnheadings.map  updatedKeywords:', updatedKeywords);
+
         return {
           ...heading,
           keywords: updatedKeywords,
         };
+      } else {
+        console.log(word);
+        return {
+          ...heading,
+          headings: replaceKeyword(heading.headings, name, type, word),
+        };
       }
-      return {
-        ...heading,
-        headings: replaceKeyword(heading.headings, name, type, word),
-      };
     });
+  };
+  const handleDropKeyword = (
+    event: React.DragEvent<HTMLElement>,
+    name: string,
+    type: number,
+    heading: any,
+    keyword: Record<string, number>[],
+  ) => {
+    const word = event.dataTransfer.getData('word');
+    console.log('word:', word);
+    console.log(name);
+    console.log(type);
+    console.log(heading);
+    console.log(keyword);
+
+    const headingDeterminated = findKeyword(droppableAreas, name, type);
+    console.log('estructure:', estructure);
+    console.log('type:', type);
+    console.log('name:', name);
+
+    console.log('headingDeterminated:', headingDeterminated);
+
+    let isRepeat = false;
+    if (headingDeterminated) {
+      headingDeterminated.keywords.findIndex((KeywordIn) =>
+        Object.keys(KeywordIn).forEach((keywordInKey) => {
+          console.log(keywordInKey);
+          console.log(word);
+
+          if (keywordInKey === word) isRepeat = true;
+        }),
+      );
+      if (!isRepeat) {
+        console.log('in');
+        const dataKeyword = {
+          [word]: 100,
+        };
+
+        headingDeterminated.keywords.push(dataKeyword);
+      }
+    }
+    if (!isRepeat) {
+      console.log(isRepeat);
+      console.log(droppableAreas);
+      setDroppableAreas((prevState: { headings: SeoHeadingWithName[] }) => {
+        const updatedHeadings = replaceKeyword(prevState.headings, name, type, word);
+        console.log('setDroppableAreas  updatedHeadings:', updatedHeadings);
+
+        return {
+          ...prevState,
+          headings: updatedHeadings,
+        };
+      });
+      console.log(droppableAreas);
+    }
   };
 
   const handleDropHeading = (
@@ -77,53 +140,6 @@ export const StructureTemplate = ({
     });
   };
 
-  const handleDropKeyword = (
-    event: React.DragEvent<HTMLElement>,
-    name: string,
-    type: number,
-    heading: any,
-    keyword: Record<string, number>[],
-  ) => {
-    const word = event.dataTransfer.getData('word');
-    console.log('word:', word);
-
-    const headingDeterminated = findKeyword(droppableAreas, name, type);
-    console.log('estructure:', estructure);
-    console.log('type:', type);
-    console.log('name:', name);
-
-    console.log('headingDeterminated:', headingDeterminated);
-
-    let isRepeat = false;
-    if (headingDeterminated) {
-      headingDeterminated.keywords.findIndex((KeywordIn) =>
-        Object.keys(KeywordIn).forEach((keywordInKey) => {
-          console.log(keywordInKey);
-          console.log(word);
-
-          if (keywordInKey === word) isRepeat = true;
-        }),
-      );
-      if (!isRepeat) {
-        const dataKeyword = {
-          [word]: 100,
-        };
-
-        headingDeterminated.keywords.push(dataKeyword);
-      }
-    }
-    if (!isRepeat) {
-      console.log(isRepeat);
-      setDroppableAreas((prevState: { headings: SeoHeadingWithName[] }) => {
-        const updatedHeadings = replaceKeyword(prevState.headings, name, type, word);
-
-        return {
-          ...prevState,
-          headings: updatedHeadings,
-        };
-      });
-    }
-  };
   return (
     <>
       {structureSelected ? (

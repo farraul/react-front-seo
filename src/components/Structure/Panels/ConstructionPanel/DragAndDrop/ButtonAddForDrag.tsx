@@ -24,7 +24,7 @@ interface Props {
   heading?: SeoHeadingWithName;
 }
 
-const ButtonAddForDrag = ({ name, type, heading, handleDrop, handleDragOver, keyword }: Props) => {
+const ButtonAddForDrag = ({ name, type, handleDrop, handleDragOver, heading, keyword }: Props) => {
   console.log('ButtonAddForDrag  heading:', heading);
   console.log('in');
 
@@ -32,6 +32,7 @@ const ButtonAddForDrag = ({ name, type, heading, handleDrop, handleDragOver, key
     keyword: handleDrop as typeHandleDropKeyword,
     heading: handleDrop as typeHandleDropHeading,
   };
+  console.log(heading);
   return (
     <button
       onDragOver={handleDragOver}
@@ -42,7 +43,7 @@ const ButtonAddForDrag = ({ name, type, heading, handleDrop, handleDragOver, key
       }
       className={`py-2 ml-6 w-fit border-gray-700 text-gray-700 border-2 px-4 rounded-md  h-full`}
     >
-      {`+`}
+      {`?`}
     </button>
   );
 };
