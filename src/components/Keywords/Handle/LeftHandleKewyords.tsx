@@ -83,18 +83,28 @@ export const LeftHandleKewyords = ({
     <>
       <div className=' bg-gray-200 p-10 rounded-sm'>
         <ImportSpreadSheet isOpen={isOpenImportModal} onClose={onClose} onSubmit={onSubmit} />
-        <button
-          className='btn-secondary'
-          onClick={() => {
-            setIsOpenImportModal((prev: any) => {
-              return !prev;
-            });
-          }}
-        >
-          Añadir archivo
-        </button>
-        <p className='mt-10 font-bold text-xl text-gray-700 mb-6'>Keywords importadas:</p>
-        <div className=' overflow-y-auto h-96'>
+        <div className=''>
+          {/* <p className='text-center'>Importar keywords</p> */}
+          <div className='flex gap-2 '>
+            <div className='w-1/2'>
+              <button
+                className='btn-secondary text-base'
+                onClick={() => {
+                  setIsOpenImportModal((prev: any) => {
+                    return !prev;
+                  });
+                }}
+              >
+                Importar excel
+              </button>
+            </div>
+            <div className='w-1/2'>
+              <button className='btn-secondary text-base'>Importar manualmente</button>
+            </div>
+          </div>
+        </div>
+        {/* <p className='mt-10 font-bold text-xl text-gray-700 mb-6'>Keywords importadas:</p> */}
+        <div className=' overflow-y-auto h-96 mt-10'>
           {Object.entries(keywordsImported).map(([keyword, vol], i) => {
             console.log(keyword, vol, i);
             return (
@@ -125,7 +135,6 @@ export const LeftHandleKewyords = ({
         <p className='font-bold mt-10 text-xl mb-6 text-gray-700'>
           Keywords seleccionadas: {Object.keys(keywordsChecked).length}
         </p>
-
         <Select
           disabled={Object.keys(keywordsChecked).length ? false : true}
           required

@@ -40,14 +40,14 @@ const InHeadingResult = ({ heading }: any) => {
             {/* <div className='flex item'>
               <span className='capitalize text-gray-900 text-sm italic w-16'>keywords</span>
             </div> */}
-            <div className='flex'>
+            <div className='flex flex-wrap'>
               {Object.keys(heading.keywords).length > 0 ? (
                 heading.keywords.map((keyword, indexKey) => (
                   <div className='ml-2 flex items-center gap-2 w-full' key={indexKey}>
                     {Object.entries(keyword).map((word, index) => (
-                      <div className='flex gap-2 w-full' key={index}>
+                      <div className='flex gap-2 w-full ' key={index}>
                         {/* <span className='text-xs text-gray-200'>[{indexKey + 1}]</span> */}
-                        <span className='w-max'>{word[0]}, </span>
+                        <span className='w-max'>{word[0]} </span>
                       </div>
                     ))}
                   </div>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Seo, SeoHeadingWithName } from 'src/models/seo';
 import { v4 as uuidv4 } from 'uuid';
-import InHeadingConstruction from './InHeadingConstruction';
-import ButtonAddForDrag from './ButtonAddForDrag';
+import InHeadingConstruction from './DragAndDrop/InHeadingConstruction';
+import ButtonAddForDrag from './DragAndDrop/ButtonAddForDrag';
 
 interface Props {
   droppableAreas: SeoHeadingWithName;
@@ -12,6 +12,7 @@ interface Props {
     name: string,
     type: number,
     keyword: Record<string, number>[],
+    heading: any,
   ) => void;
   handleDropHeading: (
     event: React.DragEvent<HTMLElement>,
@@ -26,18 +27,21 @@ export const ConstructionPanel = ({
   handleDropKeyword,
   handleDropHeading,
 }: Props) => {
-  console.log({ droppableAreas });
   return (
-    <div className='bg-blue-600 px-8 py-10 text-white   pl-10 mt-10'>
+    <div className='bg-gray-100 px-8 py-10 pl-10'>
       <div className=' flex flex-col mt-2'>
         <div className='flex items-center'>
-          <span className='mr-5 flex items-center text-xl '>H{droppableAreas.type}:</span>
-          {droppableAreas.name ? <p>{droppableAreas.name}</p> : <p>[ ]</p>}
+          <span className='mr-5 flex items-center text-xl text-green-800 font-bold '>
+            H{droppableAreas.type}
+          </span>
+          <span className='text-blue-700 text-xl'>
+            {droppableAreas.name ? <p>{droppableAreas.name}</p> : <p>[ ]</p>}
+          </span>
         </div>
 
         <div className='flex ml-4 items-center mb-4'>
           <div className='flex justify-between items-center w-36'>
-            <div className='capitalize text-gray-200 font-semibold w-36'>keywords</div>
+            <div className='capitalize   w-36 text-green-800 font-bold'>keywords</div>
             <ButtonAddForDrag
               name={droppableAreas.name}
               type={droppableAreas.type}
@@ -52,7 +56,7 @@ export const ConstructionPanel = ({
                 {Object.entries(keyword).map((word, index) => (
                   <div className='flex gap-2' key={index}>
                     {/* <span className='text-xs text-gray-200'>[{indexKey + 1}]</span> */}
-                    <span>{word[0]}, </span>
+                    <span className='text-blue-700'>{word[0]}, </span>
                   </div>
                 ))}
               </div>
@@ -66,7 +70,7 @@ export const ConstructionPanel = ({
         <div className='flex ml-4 '>
           <div className='flex items-center justify-between w-36'>
             <div className='h-full flex'>
-              <div className=' text-gray-200 w-20 flex items-center  justify-end'>
+              <div className='  w-20 flex items-center  justify-end text-green-800 font-bold'>
                 H{droppableAreas.type + 1}
               </div>
               <ButtonAddForDrag
@@ -94,7 +98,7 @@ export const ConstructionPanel = ({
               ))
             ) : (
               <div className='flex items-center ml-4'>
-                <span className='text-xs text-gray-100'></span>
+                <span className='text-xs '></span>
               </div>
             )}
           </div>

@@ -24,7 +24,7 @@ function ImportKeywordsPage() {
     <>
       <section className='flex p-20 gap-x-14 '>
         <div className=' max-w-lg w-full h-fit'>
-          <h3 className=''>Nuevas Keywords</h3>
+          {/* <h3 className=''>Nuevas Keywords</h3> */}
           <LeftHandleKewyords
             setIntentionSelected={setIntentionSelected}
             keywordsImported={keywordsImported}

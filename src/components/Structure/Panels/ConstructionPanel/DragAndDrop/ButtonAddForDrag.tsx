@@ -5,6 +5,7 @@ type typeHandleDropKeyword = (
   event: React.DragEvent<HTMLElement>,
   name: string,
   type: number,
+  heading: any,
   keyword: Record<string, number>[],
 ) => void;
 
@@ -25,6 +26,7 @@ interface Props {
 
 const ButtonAddForDrag = ({ name, type, heading, handleDrop, handleDragOver, keyword }: Props) => {
   console.log('ButtonAddForDrag  heading:', heading);
+  console.log('in');
 
   const actionsHeading = {
     keyword: handleDrop as typeHandleDropKeyword,
@@ -36,9 +38,9 @@ const ButtonAddForDrag = ({ name, type, heading, handleDrop, handleDragOver, key
       onDrop={(event) =>
         heading
           ? actionsHeading['heading'](event, type, heading)
-          : actionsHeading['keyword'](event, name, type, keyword)
+          : actionsHeading['keyword'](event, name, type, heading, keyword)
       }
-      className={`py-2 ml-6 w-fit  text-gray-400 border-gray-300 border-2 px-4 rounded-md border-dotted h-full`}
+      className={`py-2 ml-6 w-fit border-gray-700 text-gray-700 border-2 px-4 rounded-md  h-full`}
     >
       {`+`}
     </button>
