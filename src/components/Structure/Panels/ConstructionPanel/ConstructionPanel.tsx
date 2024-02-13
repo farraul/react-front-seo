@@ -3,10 +3,11 @@ import { Seo, SeoHeadingWithName } from 'src/models/seo';
 import { v4 as uuidv4 } from 'uuid';
 import InHeadingConstruction from './DragAndDrop/InHeadingConstruction';
 import ButtonAddForDrag from './DragAndDrop/ButtonAddForDrag';
+import { handleDragOver } from 'src/utilities/dragAndDropHelper';
 
 interface Props {
   droppableAreas: SeoHeadingWithName;
-  handleDragOver: (event: React.DragEvent<HTMLElement>) => void;
+  // handleDragOver: (event: React.DragEvent<HTMLElement>) => void;
   handleDropKeyword: (
     event: React.DragEvent<HTMLElement>,
     name: string,
@@ -23,10 +24,11 @@ interface Props {
 
 export const ConstructionPanel = ({
   droppableAreas,
-  handleDragOver,
   handleDropKeyword,
   handleDropHeading,
 }: Props) => {
+  console.log(droppableAreas);
+
   return (
     <div className='bg-gray-100 px-8 py-10 pl-10'>
       <div className=' flex flex-col mt-2'>
@@ -50,6 +52,7 @@ export const ConstructionPanel = ({
               handleDrop={handleDropKeyword}
             />
           </div>
+
           {Object.keys(droppableAreas.keywords).length > 0 ? (
             droppableAreas.keywords.map((keyword, indexKey) => (
               <div className='ml-2  gap-2' key={indexKey}>

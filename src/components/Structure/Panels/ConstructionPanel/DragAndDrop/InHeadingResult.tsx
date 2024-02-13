@@ -19,6 +19,8 @@ interface Props {
 }
 
 const InHeadingResult = ({ heading }: any) => {
+  console.log('InHeadingResult  heading:', heading);
+
   console.log('InHeadingShow  heading:', heading.type);
 
   return (

@@ -14,7 +14,7 @@ import { ListKeywordsToDrag } from '../Structure/Panels/ConstructionPanel/DragAn
 import { MetaDataPanel } from '../Structure/Panels/MetaDataPanel';
 
 export const StructureTemplate = ({
-  estructure,
+  structure,
   structureSelected,
   droppableAreas,
   setDroppableAreas,
@@ -63,26 +63,16 @@ export const StructureTemplate = ({
   ) => {
     const word = event.dataTransfer.getData('word');
     console.log('word:', word);
-    console.log(name);
-    console.log(type);
-    console.log(heading);
-    console.log(keyword);
 
     const headingDeterminated = findKeyword(droppableAreas, name, type);
-    console.log('estructure:', estructure);
-    console.log('type:', type);
-    console.log('name:', name);
-
-    console.log('headingDeterminated:', headingDeterminated);
 
     let isRepeat = false;
     if (headingDeterminated) {
       headingDeterminated.keywords.findIndex((KeywordIn) =>
         Object.keys(KeywordIn).forEach((keywordInKey) => {
-          console.log(keywordInKey);
-          console.log(word);
-
-          if (keywordInKey === word) isRepeat = true;
+          if (keywordInKey === word) {
+            isRepeat = true;
+          }
         }),
       );
       if (!isRepeat) {
@@ -91,22 +81,20 @@ export const StructureTemplate = ({
           [word]: 100,
         };
 
+        console.log('headingDeterminated:', headingDeterminated);
         headingDeterminated.keywords.push(dataKeyword);
-      }
-    }
-    if (!isRepeat) {
-      console.log(isRepeat);
-      console.log(droppableAreas);
-      setDroppableAreas((prevState: { headings: SeoHeadingWithName[] }) => {
-        const updatedHeadings = replaceKeyword(prevState.headings, name, type, word);
-        console.log('setDroppableAreas  updatedHeadings:', updatedHeadings);
+        console.log('headingDeterminated:', headingDeterminated);
 
-        return {
-          ...prevState,
-          headings: updatedHeadings,
-        };
-      });
-      console.log(droppableAreas);
+        setDroppableAreas((prevState: { headings: SeoHeadingWithName[] }) => {
+          const updatedHeadings = replaceKeyword(prevState.headings, name, type, word);
+          console.log('setDroppableAreas  updatedHeadings:', updatedHeadings);
+
+          return {
+            ...prevState,
+            headings: updatedHeadings,
+          };
+        });
+      }
     }
   };
 
@@ -131,11 +119,11 @@ export const StructureTemplate = ({
 
     if (nameIndex >= 0) return;
 
-    heading.headings.push(newDataHeading);
+    const kewyordAdded = heading.headings.push(newDataHeading);
     setDroppableAreas((prevState: any) => {
       return {
         ...prevState,
-        heading,
+        kewyordAdded,
       };
     });
   };
@@ -154,7 +142,6 @@ export const StructureTemplate = ({
                   {/* <h1 className='font-bold text-2xl mb-6'>HTML </h1> */}
                   <ConstructionPanel
                     droppableAreas={droppableAreas}
-                    handleDragOver={handleDragOver}
                     handleDropKeyword={handleDropKeyword}
                     handleDropHeading={handleDropHeading}
                   />

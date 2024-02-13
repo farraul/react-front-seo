@@ -26,6 +26,7 @@ interface Props {
 
 const ButtonAddForDrag = ({ name, type, handleDrop, handleDragOver, heading, keyword }: Props) => {
   console.log('ButtonAddForDrag  heading:', heading);
+  console.log(keyword);
   console.log('in');
 
   const actionsHeading = {

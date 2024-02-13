@@ -32,7 +32,7 @@ const StructurePage = () => {
         />
       </section>
       <StructureTemplate
-        estructure={structure}
+        structure={structure}
         structureSelected={structureSelected}
         droppableAreas={droppableAreas}
         setDroppableAreas={setDroppableAreas}
