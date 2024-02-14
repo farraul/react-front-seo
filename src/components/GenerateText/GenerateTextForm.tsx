@@ -10,6 +10,7 @@ import {
 import { number } from 'yup';
 import structuresStub from 'src/stub/structuresStub.json';
 import CustomTextArea from '../PrimitiveElements/Area/AreaCustom';
+import { rapidApiService } from 'src/services/rapidApiService';
 
 const initialState: any = {
   estructure: '',
@@ -47,35 +48,9 @@ export const GenerateTextForm = ({ setTextGenerated, setIsLoading }: any) => {
       En este apartado debes usar estas palabras clave: cómo aplicar el lifelong learning, proceso para implantar el lifelong learning.
       Elabora el texto con una finalidad ${purpose}. El texto tiene que ser en html, ejemplo h1:ejemplo h2: ejemplo p: ejemplo`;
 
-    const options = {
-      method: 'POST',
-      url: API_RAPID_GENERATE_TEXT_URL,
-      headers: {
-        'content-type': 'application/json',
-        'X-RapidAPI-Key': API_RAPID_GENERATE_TEXT_KEY,
-        'X-RapidAPI-Host': API_RAPID_GENERATE_TEXT_HOST,
-      },
-      data: {
-        messages: [
-          {
-            role: 'user',
-            content: textRequest,
-          },
-        ],
-        system_prompt: '',
-        temperature: 0.9,
-        top_k: 5,
-        top_p: 0.9,
-        max_tokens: 256,
-        web_access: false,
-      },
-    };
-
     try {
       setIsLoading(true);
-      const response = await axios.request(options);
-      console.log(response.data);
-      console.log(response.data.result);
+      const response = await rapidApiService(textRequest);
       setTextGenerated(response.data.result);
     } catch (error) {
       console.error(error);

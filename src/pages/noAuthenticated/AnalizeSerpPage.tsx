@@ -1,14 +1,7 @@
-import React, { useState, useEffect, ChangeEvent } from 'react';
-import axios from 'axios';
-import cheerio from 'cheerio';
-import { Headings, urlSeo } from 'src/models/seo/seo';
-import { Input } from 'src/components/ui/input';
-import { Button, CustomInput } from 'src/components/PrimitiveElements';
-import { RegisterOptions, SubmitHandler, UseFormRegisterReturn, useForm } from 'react-hook-form';
-import { getAnalyseUrlSeo } from 'src/services/seo';
-import { ListItem, ListItemText, ListSubheader } from '@mui/material';
-import { Form } from 'src/components/AnalizeSerp/form';
+import { useState, useEffect, ChangeEvent } from 'react';
+import { Headings } from 'src/models/seo/seo';
 import { AnalizeSerpTemplate } from 'src/components/templates/AnalizeSerpTemplate';
+import { Form } from 'src/components/AnalizeSerp/Form';
 
 const KeywordSerp = () => {
   const [headings, setHeadings] = useState<Headings[]>([]);
