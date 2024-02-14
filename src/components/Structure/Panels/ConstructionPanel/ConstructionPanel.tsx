@@ -32,6 +32,7 @@ export const ConstructionPanel = ({
   return (
     <div className='bg-gray-100 px-8 py-10 pl-10'>
       <div className=' flex flex-col mt-2'>
+        {/*H1 statico */}
         <div className='flex items-center'>
           <span className='mr-5 flex items-center text-xl text-green-800 font-bold '>
             H{droppableAreas.type}

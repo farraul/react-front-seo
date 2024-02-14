@@ -10,6 +10,10 @@
     @apply text-4xl font-bold text-primary-generic my-8
 
   }
+  h2{
+    @apply text-3xl font-bold text-primary-generic my-4
+
+  }
 }
 @tailwind components;
 /* no son elementos html son un conjunto de clases de tailwind */

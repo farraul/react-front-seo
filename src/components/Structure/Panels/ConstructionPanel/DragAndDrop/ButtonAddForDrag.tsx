@@ -44,7 +44,7 @@ const ButtonAddForDrag = ({ name, type, handleDrop, handleDragOver, heading, key
       }
       className={`py-2 ml-6 w-fit border-gray-700 text-gray-700 border-2 px-4 rounded-md  h-full`}
     >
-      {`?`}
+      {`+`}
     </button>
   );
 };
