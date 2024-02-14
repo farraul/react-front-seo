@@ -1,7 +1,7 @@
 // import { SignUp } from 'src/models/auth';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CustomInput, Input } from 'src/components/PrimitiveElements/Input';
+import { CustomInput } from 'src/components/PrimitiveElements/Input';
 import { Button } from 'src/components/PrimitiveElements/Button';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import {

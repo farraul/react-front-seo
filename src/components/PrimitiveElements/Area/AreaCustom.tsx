@@ -7,7 +7,8 @@ type AttributeProps = React.DetailedHTMLProps<
 >;
 
 type Props = {
-  classAditional?: string;
+  classGeneral?: string;
+  classTextArea?: string;
   label: string;
   id: string;
   register: UseFormRegister<any>;
@@ -18,7 +19,8 @@ type Props = {
 } & AttributeProps;
 
 const CustomTextArea = ({
-  classAditional,
+  classGeneral,
+  classTextArea,
   label,
   id,
   isRequired,
@@ -29,7 +31,7 @@ const CustomTextArea = ({
   ...props
 }: Props) => {
   return (
-    <div className={`${classAditional} flex items-center justify-center flex-col w-full`}>
+    <div className={`flex flex-col w-full ${classGeneral}`}>
       <label className='label-primary' htmlFor={id}>
         {label}
         {isRequired && <b className='text-red-500 f'>*</b>}
@@ -40,10 +42,10 @@ const CustomTextArea = ({
           {...props}
           name={name}
           id={id}
-          className='h-20 pb-3 pr-1 custom-input'
+          className={`${classTextArea} h-20 pb-3 pr-1 custom-input w-full mt-4`}
         />
       </div>
-      {error && <p className='mt-1 ml-1 text-xs text-red-500 self-start '>{error}</p>}
+      {error && <p className='mt-1 ml-1 text-xs text-red-500 self-start'>{error}</p>}
     </div>
   );
 };
