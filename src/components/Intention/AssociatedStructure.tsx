@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { ExternalLinkIcon } from '../Icons/ExternalLinkIcon';
 import { PlusIcon } from '../Icons/PlusIcon';
-import { CreateStructureModal } from '../Structure/Modals/CreateStructureModal';
 import { useModal } from 'src/hooks/useModal';
+import { CreateStructureModal } from '../StructureComponents/Modals/CreateStructureModal';
 
 export const AssociatedStructure = () => {
   const { isOpenModal, setIsOpenModal, closeModal } = useModal();

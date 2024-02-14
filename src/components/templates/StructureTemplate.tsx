@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { ConstructionPanel } from '../Structure/Panels/ConstructionPanel/ConstructionPanel';
 import { SeoHeadingWithName } from 'src/models/seo';
 import { findKeyword } from 'src/utilities/dragAndDropHelper';
 import { useForm } from 'react-hook-form';
-import { ResultPanel } from '../Structure/Panels/ResultPanel';
-import { ListKeywordsToDrag } from '../Structure/Panels/ConstructionPanel/DragAndDrop/ListKeywordsToDrag';
-import { MetaDataPanel } from '../Structure/Panels/MetaDataPanel';
+import { ListKeywordsToDrag } from '../StructureComponents/Panels/ConstructionPanel/DragAndDrop/ListKeywordsToDrag';
+import { ConstructionPanel } from '../StructureComponents/Panels/ConstructionPanel/ConstructionPanel';
+import { MetaDataPanel } from '../StructureComponents/Panels/MetaDataPanel';
+import { ResultPanel } from '../StructureComponents/Panels/ResultPanel';
 
 export const StructureTemplate = ({
   structureSelected,

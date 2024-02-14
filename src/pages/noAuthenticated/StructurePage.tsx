@@ -1,14 +1,13 @@
 import { useState } from 'react';
 // components
 import { Button } from 'src/components/PrimitiveElements';
-import { ListStructures } from 'src/components/Structure/ListStructures';
 import { StructureTemplate } from 'src/components/templates/StructureTemplate';
 import intentions from 'src/stub/intentionsStub.json';
 console.log('intentions:', intentions);
 
 // utils
 import { SeoHeadingWithName } from 'src/models/seo';
-import { ListIntentions } from 'src/components/Structure/ListIntentions';
+import { ListIntentions } from 'src/components/StructureComponents/ListIntentions';
 
 const structure: SeoHeadingWithName = {
   name: 'Seo',

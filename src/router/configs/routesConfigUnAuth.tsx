@@ -9,7 +9,7 @@ const KeywordsPage = lazy(() => import('src/pages/noAuthenticated/KeywordsPage')
 const InstentionsPage = lazy(() => import('src/pages/noAuthenticated/IntentionsPage'));
 const StructurePage = lazy(() => import('src/pages/noAuthenticated/StructurePage'));
 const GenerateTextPage = lazy(() => import('src/pages/noAuthenticated/GenerateTextPage'));
-const AnalizeSerpPage = lazy(() => import('src/pages/noAuthenticated/AnalizeSerp'));
+const AnalizeSerpPage = lazy(() => import('src/pages/noAuthenticated/AnalizeSerpPage'));
 
 // const ReserveLeadPage = lazy(() => import('src/pages/authenticated/ReserveLeadPage '));
 // const ReserveLifeguardPage = lazy(() => import('src/pages/authenticated/ReserveLifeguardPage'));

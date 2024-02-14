@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_RAPID_SEO_HOST, API_RAPID_SEO_KEY, API_RAPID_SEO_URL } from 'src/constants/API';
 
-export const getAnalyseUrlSeo = async (url: string) => {
+export const getAnalyseUrlSeoService = async (url: string) => {
   const encodedParams = new URLSearchParams();
   encodedParams.set('url', url);
 

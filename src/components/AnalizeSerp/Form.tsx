@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, CustomInput } from '../PrimitiveElements';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Headings } from 'src/models/seo/seo';
-import { getAnalyseUrlSeo } from 'src/services/seo';
+import { getAnalyseUrlSeoService } from 'src/services/seoService';
 
 const initialState: any = {
   url: '',
@@ -22,7 +22,7 @@ export const Form = ({ handleIntegrateHeadings }: any) => {
   const onSubmit: SubmitHandler<any> = async ({ url }) => {
     console.log({ url });
     try {
-      const response = await getAnalyseUrlSeo(url);
+      const response = await getAnalyseUrlSeoService(url);
 
       const headings: Headings[] = [];
 
