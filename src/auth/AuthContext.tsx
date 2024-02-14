@@ -6,7 +6,7 @@ import jwtService from './jwtService';
 import Cookies from 'js-cookie';
 import { useAppDispatch } from 'src/hooks/useApp';
 import { Spinner } from 'src/components/Loaders';
-import profileCompanyStub from 'src/stub/profileCompanyStub copy.json';
+import profileCompanyStub from 'src/stubs/profileCompanyStub copy.json';
 
 type PropsProvider = {
   children: React.ReactNode;

@@ -1,10 +1,10 @@
 import React from 'react';
 import { handleDragStart } from 'src/utilities/dragAndDropHelper';
+import { v4 as uuidv4 } from 'uuid';
 
 export const ListKeywordsToDrag = ({ words }: any) => {
   return (
-    <div>
-      {' '}
+    <div key={uuidv4()}>
       <p className='mb-8'>Pincha y arrastra las palabras:</p>
       {words.map((word: string) => {
         return (

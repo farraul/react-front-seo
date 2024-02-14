@@ -8,7 +8,7 @@ import {
   API_RAPID_GENERATE_TEXT_URL,
 } from 'src/constants/API';
 import { number } from 'yup';
-import structuresStub from 'src/stub/structuresStub.json';
+import structuresStub from 'src/stubs/structuresStub.json';
 import CustomTextArea from '../PrimitiveElements/Area/AreaCustom';
 import { rapidApiService } from 'src/services/rapidApiService';
 

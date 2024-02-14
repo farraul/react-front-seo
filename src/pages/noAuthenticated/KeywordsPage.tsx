@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import keywordsStub from 'src/stub/keywordsStub.json';
-import intentionsStub from 'src/stub/intentionsStub.json';
+import keywordsStub from 'src/stubs/keywordsStub.json';
+import intentionsStub from 'src/stubs/intentionsStub.json';
 import { v4 as uuidv4 } from 'uuid';
 
 import {

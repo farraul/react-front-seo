@@ -7,12 +7,12 @@ import { useGetUserIsLogged } from 'src/hooks/useGetUserIsLogged';
 
 const RouterProvider = () => {
   const isLogin = useGetUserIsLogged();
-  // isLogin = true;
+  const routes = isLogin ? routesConfigAuth : routesConfigUnAuth;
 
   console.log({ isLogin });
   return (
     <Suspense fallback={<Spinner />}>
-      {isLogin ? <Provider router={routesConfigAuth} /> : <Provider router={routesConfigUnAuth} />}
+      <Provider router={routes} />
     </Suspense>
   );
 };

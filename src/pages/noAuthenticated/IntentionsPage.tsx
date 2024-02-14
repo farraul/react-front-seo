@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import intentionsStub from 'src/stub/intentionsStub.json';
+import intentionsStub from 'src/stubs/intentionsStub.json';
 import { IntentionTemplate } from 'src/components/templates';
 
 const IntentionsPage = () => {

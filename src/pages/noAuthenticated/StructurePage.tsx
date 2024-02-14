@@ -2,7 +2,7 @@ import { useState } from 'react';
 // components
 import { Button } from 'src/components/PrimitiveElements';
 import { StructureTemplate } from 'src/components/templates/StructureTemplate';
-import intentions from 'src/stub/intentionsStub.json';
+import intentions from 'src/stubs/intentionsStub.json';
 console.log('intentions:', intentions);
 
 // utils
