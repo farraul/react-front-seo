@@ -43,7 +43,8 @@ export const GroupKeywordsPanel = ({
                                     <div
                                       className='pl-4 cursor-pointer'
                                       onClick={() => {
-                                        setIsOpenModal('create');
+                                        console.log('in');
+                                        setIsOpenModal('editKewyordIntention');
                                         setKeywordToEdit(mainKeyword);
                                       }}
                                     >
@@ -153,7 +154,7 @@ export const GroupKeywordsPanel = ({
                                           <div
                                             className='ml-4 cursor-pointer'
                                             onClick={() => {
-                                              setIsOpenModal('edit');
+                                              setIsOpenModal('editKewyordIntention');
                                               setKeywordToEdit(longTail);
                                             }}
                                           >
