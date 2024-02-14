@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getMe = async (token: string) => {
+export const getMeService = async (token: string) => {
   return await axios({
     method: 'GET',
     url: '/user/profile',

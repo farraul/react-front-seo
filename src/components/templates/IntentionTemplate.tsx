@@ -1,9 +1,9 @@
 import { useModal } from 'src/hooks/useModal';
 import Button from '../PrimitiveElements/Button/Button';
-import { GroupKeywordsPanel } from '../Intention/Panels/GroupKeywordsPanel';
 import { useState } from 'react';
 import { EditKeywordModal } from '../Keywords/Modals/EditKeywordModal';
 import { CreateIntentionModal } from '../Modals/CreateIntentionModal';
+import { GroupKeywordsPanel } from '../IntentionComponents/Panels/GroupKeywordsPanel';
 
 const IntentionTemplate = ({ intentionsStub }: any) => {
   const [intentions, setIntentions] = useState<any>(intentionsStub);

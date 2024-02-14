@@ -8,7 +8,7 @@ const initialState: any = {
   url: '',
 };
 
-export const Form = ({ handleIntegrateHeadings }: any) => {
+export const UrlForm = ({ handleIntegrateHeadings }: any) => {
   const {
     register,
     handleSubmit,

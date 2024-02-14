@@ -1,7 +1,7 @@
 import { useState, useEffect, ChangeEvent } from 'react';
 import { Headings } from 'src/models/seo/seo';
 import { AnalizeSerpTemplate } from 'src/components/templates/AnalizeSerpTemplate';
-import { Form } from 'src/components/AnalizeSerp/Form';
+import { UrlForm } from 'src/components/AnalizeSerpComponents/UrlForm';
 
 const KeywordSerp = () => {
   const [headings, setHeadings] = useState<Headings[]>([]);
@@ -20,7 +20,7 @@ const KeywordSerp = () => {
     <div className='flex'>
       <div className='w-1/2 p-24'>
         <h1 className=''> Analizar competencia</h1>
-        <Form handleIntegrateHeadings={handleIntegrateHeadings} />
+        <UrlForm handleIntegrateHeadings={handleIntegrateHeadings} />
       </div>
       <AnalizeSerpTemplate titleç={title} description={description} headings={headings} />
     </div>
